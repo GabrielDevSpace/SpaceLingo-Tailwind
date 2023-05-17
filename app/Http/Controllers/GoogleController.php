@@ -52,7 +52,6 @@ class GoogleController extends Controller
             }
         
         } catch (Exception $e) {
-            
             return redirect()->intended('login');
         }
     }
