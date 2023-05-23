@@ -22,7 +22,15 @@ class UpdateNewregisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'vocabulary' => [
+                'required', 'string',
+            ], 
+            'translate' => [
+                'required', 'string',
+            ],
+            'note' => [
+                'required', 'string',
+            ],
         ];
     }
 }
