@@ -33,7 +33,9 @@ class NewregisterController extends Controller
      */
     public function store(StoreNewregisterRequest $request)
     {
-        Newregister::create($request->validated());
+        $userId = user_id();
+        $data = array_merge($request->validated(), ['user_id' => $userId]);
+        Newregister::create($data);
 
         return redirect()->route('newregister.index');
     }

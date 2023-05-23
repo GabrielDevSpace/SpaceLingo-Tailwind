@@ -21,6 +21,7 @@ class StoreNewregisterRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'vocabulary' => [
                 'required', 'string',
@@ -30,6 +31,8 @@ class StoreNewregisterRequest extends FormRequest
             ],
             'note' => [
                 'required', 'string',
+            ],
+            'user_id' => [
             ],
         ];
     }

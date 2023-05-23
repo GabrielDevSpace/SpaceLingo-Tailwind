@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('vocabulary');
             $table->string('translate');
             $table->string('note');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

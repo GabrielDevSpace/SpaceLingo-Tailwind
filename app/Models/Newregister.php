@@ -9,6 +9,6 @@ class Newregister extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['vocabulary','translate','note'];
+    protected $fillable = ['vocabulary','translate','note','user_id'];
 
 }
