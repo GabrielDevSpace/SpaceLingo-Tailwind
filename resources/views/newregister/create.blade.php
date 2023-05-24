@@ -13,8 +13,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="vocabulary" class="block font-medium text-sm text-gray-700">Vocabulary</label>
-                            <input type="text" name="vocabulary" id="vocabulary" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('vocabulary', '') }}" />
+                            <input type="text" name="vocabulary" id="vocabulary" type="text" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full"/>
                             @error('vocabulary')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -22,8 +21,7 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="translate" class="block font-medium text-sm text-gray-700">Translate</label>
-                            <input type="text" name="translate" id="translate" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('translate', '') }}" />
+                            <input type="text" name="translate" id="translate" type="text" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full"/>
                             @error('translate')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -31,8 +29,7 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="note" class="block font-medium text-sm text-gray-700">Note</label>
-                            <input type="text" name="note" id="note" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('note', '') }}" />
+                            <textarea name="note" id="note" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full"></textarea>
                             @error('note')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror

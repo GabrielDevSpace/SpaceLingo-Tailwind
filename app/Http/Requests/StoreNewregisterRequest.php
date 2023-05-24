@@ -33,6 +33,7 @@ class StoreNewregisterRequest extends FormRequest
                 'required', 'string',
             ],
             'user_id' => [
+                
             ],
         ];
     }

@@ -35,6 +35,7 @@ class NewregisterController extends Controller
     {
         $userId = user_id();
         $data = array_merge($request->validated(), ['user_id' => $userId]);
+
         Newregister::create($data);
 
         return redirect()->route('newregister.index');
@@ -61,8 +62,10 @@ class NewregisterController extends Controller
      */
     public function update(UpdateNewregisterRequest $request, Newregister $newregister)
     {
-        $newregister->update($request->validated());
-
+        //$newregister->update($request->validated());
+        $userId = user_id();
+        $data = array_merge($request->validated(), ['user_id' => $userId]);
+        $newregister->update($data);
         return redirect()->route('newregister.index');
     }
 

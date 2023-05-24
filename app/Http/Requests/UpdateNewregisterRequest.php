@@ -32,7 +32,7 @@ class UpdateNewregisterRequest extends FormRequest
                 'required', 'string',
             ],
             'user_id' => [
-                'required', 'string',
+               
             ],
         ];
     }
