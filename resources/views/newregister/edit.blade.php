@@ -93,7 +93,7 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="note" class="block font-medium text-sm text-gray-700">Note</label>
-                            <input type="text" name="note" id="note" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('note', $newregister->note) }}" />
+                            <textarea name="note" id="note" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full">{{ old('note', $newregister->note) }}</textarea>
                             @error('note')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
