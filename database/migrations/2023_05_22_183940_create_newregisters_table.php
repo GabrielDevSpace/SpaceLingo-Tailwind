@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('translate');
             $table->string('note');
             $table->string('user_id');
+            $table->string('type');
             $table->timestamps();
         });
     }

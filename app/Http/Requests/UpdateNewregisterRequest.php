@@ -31,6 +31,9 @@ class UpdateNewregisterRequest extends FormRequest
             'note' => [
                 'required', 'string',
             ],
+            'type' => [
+                'required', 'string',
+            ],
             'user_id' => [
                
             ],
