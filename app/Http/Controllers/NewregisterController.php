@@ -15,7 +15,9 @@ class NewregisterController extends Controller
      */
     public function index()
     {
-        $newregister = Newregister::all();
+        $user_id = user_id();
+        //$newregister = Newregister::all();
+        $newregister = Newregister::where('user_id', '=', $user_id)->get();
 
         return view('newregister.index', compact('newregister'));
     }
