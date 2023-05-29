@@ -24,7 +24,7 @@
                                             <line x1="10.2" y1="6.3" x2="16" y2="20" />
                                             <polyline points="5 20 11 4 13 4 20 20" />
                                         </svg> &nbsp
-                                        <input id="horizontal-list-radio-license" type="radio" value="vocabulary" name="type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <input checked id="horizontal-list-radio-license" type="radio" value="vocabulary" name="type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                         <label for="horizontal-list-radio-license" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vocabulary </label>
                                     </div>
                                 </li>
@@ -78,7 +78,7 @@
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="note" class="block font-medium text-sm text-gray-700">Note</label>
-                            <textarea name="note" id="note" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full"></textarea>
+                            <textarea name="note" id="note" autocomplete="off" rows="10" class="form-input rounded-md shadow-sm mt-1 block w-full"></textarea>
                             @error('note')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
