@@ -13,13 +13,16 @@ class NewregisterController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
         $user_id = user_id();
         //$newregister = Newregister::all();
         $newregister = Newregister::where('user_id', '=', $user_id)->get();
 
-        return view('newregister.index', compact('newregister'));
+        return view('newregister.index');
+        return view('livewire.search-pagination', compact('newregister'));
     }
 
     /**

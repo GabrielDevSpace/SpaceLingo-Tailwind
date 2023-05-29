@@ -30,3 +30,5 @@ Route::controller(GoogleController::class)->group(function(){
 });
 
 Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
+
+Route::get('/paginacao', [NewregisterController::class, 'index_page']);

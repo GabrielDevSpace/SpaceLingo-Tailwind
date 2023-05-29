@@ -38,3 +38,9 @@ function getSvgHelper($resultLoop) {
     </svg>';
     }
 }
+
+function ReplaceTextArea($string) {
+    
+    $replace = str_replace(array("\r\n","\r","\n","\\r","\\n","\\r\\n"),"<br/>",$string);
+        return $replace;
+}
