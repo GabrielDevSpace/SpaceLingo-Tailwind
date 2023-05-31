@@ -39,11 +39,11 @@ class SearchPagination extends Component
 
      public function render(){ 
           $newregister = Newregister::orderby($this->orderColumn,$this->sortOrder)->select('*');
-
           if(!empty($this->searchTerm)){
 
                $newregister->orWhere('vocabulary','like',"%".$this->searchTerm."%");
                $newregister->orWhere('translate','like',"%".$this->searchTerm."%");
+              
           }
 
           $newregister = $newregister->paginate(10);

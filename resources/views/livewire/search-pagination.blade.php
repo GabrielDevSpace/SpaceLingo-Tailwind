@@ -1,32 +1,22 @@
-<style>
-    .modal {
-        transition: opacity 0.25s ease;
-    }
-
-    body.modal-active {
-        overflow-x: hidden;
-        overflow-y: visible !important;
-    }
-</style>
 <div class="container mx-auto mt-5">
     <div class="flex justify-center">
         <div class="w-full px-4">
             <!-- INICIO -->
             <input type="text" class="form-input w-64 mb-4" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
-            <table class="min-w-full divide-y divide-gray-200 w-full">
+            <table class="table-auto min-w-full divide-y divide-gray-200 w-full">
                 <thead>
                     <tr>
-                        <th scope="col" class="border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="sortOrder('type')">
+                        <th scope="col" class="sort border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="sortOrder('type')">
                             type {!! $sortLink !!}
                         </th>
-                        <th scope="col" class="border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="sortOrder('vocabulary')">
+                        <th scope="col" class="sort border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="sortOrder('vocabulary')">
                             vocabulary {!! $sortLink !!}
                         </th>
-                        <th scope="col" class="border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="sortOrder('translate')">
+                        <th scope="col" class="sort border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="sortOrder('translate')">
                             Translate {!! $sortLink !!}
                         </th>
-                        <th scope="col" class="border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                           Actions
+                        <th scope="col" class="sort border sort px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actions
                         </th>
                     </tr>
                 </thead>
@@ -34,22 +24,22 @@
                     @if ($newregister->count())
                     @foreach ($newregister as $register)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td class="border px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             @php
                             $svg = getSvgHelper($register->type);
                             @endphp
 
                             {!! $svg !!}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td class="border px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             {{ $register->vocabulary }}
                         </td>
 
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td class="border px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             {{ $register->translate }}
                         </td>
 
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <td class="border px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <a href="#" onclick="ShowModal('myModal-{{ $register->id }}')" class="focus:outline-none myBtn text-white text-sm py-2 px-2 mt-1 mx-1 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg">Note</a>
                             <a href="{{ route('newregister.edit', $register->id) }}" class="focus:outline-none text-white text-sm py-2 px-2 mt-1 mx-1 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg">Edit</a>
                             <form class="inline-block" action="{{ route('newregister.destroy', $register->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
@@ -63,7 +53,7 @@
                     <div class="modal fixed z-10 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal-{{ $register->id }}">
                         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"></span>
                             <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <div class="sm:flex sm:items-start">
@@ -108,15 +98,13 @@
                     @endif
                 </tbody>
             </table>
-            <div class="mt-4">
-                {{ $newregister->links() }}
+            <div class="mt-4 pb-4">
+               {{ $newregister->links('pagination::tailwind') }}
             </div>
             <!-- FIM -->
-
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript">
     function ShowModal(id) {
