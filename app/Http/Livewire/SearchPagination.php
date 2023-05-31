@@ -40,12 +40,14 @@ class SearchPagination extends Component
      public function render(){ 
           $newregister = Newregister::orderby($this->orderColumn,$this->sortOrder)->select('*');
           if(!empty($this->searchTerm)){
+               
 
                $newregister->orWhere('vocabulary','like',"%".$this->searchTerm."%");
                $newregister->orWhere('translate','like',"%".$this->searchTerm."%");
-              
+               
           }
-
+          $user_id = user_id();
+          $newregister->where('user_id', $user_id);
           $newregister = $newregister->paginate(10);
 
           return view('livewire.search-pagination', [
