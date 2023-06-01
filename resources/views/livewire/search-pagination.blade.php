@@ -20,9 +20,7 @@
                         </p>
                     </div>
                     <div class="flex content-start flex-wrap">
-                    <div class="flex content-start flex-wrap">
                         <div id="chart_month"></div>
-                    </div>
                     </div>
                 </div>
             </div>
