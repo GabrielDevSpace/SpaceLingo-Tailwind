@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Newregister;
@@ -37,20 +38,50 @@ class SearchPagination extends Component
 
      }
 
+     # Function to return count of ids regitered this week 
+     public function countWeek(){
+        $user_id = user_id();
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+    
+        $countWeek = Newregister::where('user_id', '=', $user_id)
+        ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+        ->count();
+
+        return $countWeek;
+     }
+
+     public function countMonth(){
+          $user_id = user_id();
+          $startOfMonth = Carbon::now()->startOfMonth();
+          $endOfMonth = Carbon::now()->endOfMonth();
+      
+          $countMonth = Newregister::where('user_id', '=', $user_id)
+          ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+          ->count();
+  
+          return $countMonth;
+       }
+  
+
      public function render(){ 
           $newregister = Newregister::orderby($this->orderColumn,$this->sortOrder)->select('*');
           if(!empty($this->searchTerm)){
 
                $newregister->orWhere('vocabulary','like',"%".$this->searchTerm."%");
                $newregister->orWhere('translate','like',"%".$this->searchTerm."%");
-              
           }
-
+          $countMonth = $this->countMonth();
+          $countWeek = $this->countWeek();
+          $user_id = user_id();
+          $newregister->where('user_id', $user_id);
           $newregister = $newregister->paginate(10);
 
           return view('livewire.search-pagination', [
                'newregister' => $newregister,
-          ]);
+               'countWeek' => $countWeek,
+               'countMonth' => $countMonth
+          ],);
 
      }
 }

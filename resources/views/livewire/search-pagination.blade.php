@@ -5,23 +5,21 @@
                 <div><input type="text" class="form-input w-64 mb-5" placeholder="Search Vocabulary or Translate" wire:model="searchTerm"></div>
                 <div class="max-w-sm overflow-hidden">
                     <div class="px-6 py-1">
-                        <p class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            This Week
+                        <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            This Week 
                         </p>
+                        <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countWeek }}</b> Learned Vocabulary</p>
                     </div>
-                    <div class="flex content-start flex-wrap">
-                        <div id="chart_week"></div>
-                    </div>
+
                 </div>
                 <div class="max-w-sm overflow-hidden">
-                    <div class="px-6 py-1">
-                        <p class="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            This Month
+                <div class="px-6 py-1">
+                        <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            This Month 
                         </p>
+                        <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countMonth }}</b> Learned Vocabulary</p>
                     </div>
-                    <div class="flex content-start flex-wrap">
-                        <div id="chart_month"></div>
-                    </div>
+
                 </div>
             </div>
             <table class="table-auto min-w-full divide-y divide-gray-200 w-full">
@@ -135,92 +133,4 @@
         var modal = document.getElementById(id);
         modal.style.display = "";
     }
-</script>
-<script type="text/javascript">
-    var options = {
-        xaxis: {
-            labels: {
-                show: false
-            }
-        },
-        chart: {
-            toolbar: {
-                show: false,
-            },
-            height: '110px',
-            type: 'bar'
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true
-            }
-        },
-        series: [{
-            data: [{
-                x: 'Vocabulary',
-                y: 23,
-                goals: [{
-                    name: 'Expected',
-                    value: 15,
-                    strokeColor: '#0057E2'
-                }]
-            }, {
-                x: 'Expression',
-                y: 3,
-            }, {
-                x: 'Contractions',
-                y: 1,
-            }]
-        }]
-    }
-
-    var chart = new ApexCharts(document.querySelector("#chart_week"), options);
-
-    chart.render();
-</script>
-
-<script type="text/javascript">
-    var options = {
-        xaxis: {
-            labels: {
-                show: false
-            }
-        },
-        chart: {
-            toolbar: {
-                show: false,
-            },
-            height: '110px',
-            type: 'bar'
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true
-            }
-        },
-        series: [{
-            data: [{
-                x: 'Vocabulary',
-                y: 53,
-                fillColor: '#14BF8E',
-                goals: [{
-                    name: 'Expected',
-                    value: 60,
-                    strokeColor: '#0057E2'
-                }]
-            }, {
-                x: 'Expression',
-                y: 3,
-                fillColor: '#14BF8E',
-            }, {
-                x: 'Contractions',
-                y: 1,
-                fillColor: '#14BF8E',
-            }]
-        }]
-    }
-
-    var chart = new ApexCharts(document.querySelector("#chart_month"), options);
-
-    chart.render();
 </script>

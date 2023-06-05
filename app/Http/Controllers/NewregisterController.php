@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNewregisterRequest;
 use App\Http\Requests\UpdateNewregisterRequest;
@@ -20,6 +20,9 @@ class NewregisterController extends Controller
         $user_id = user_id();
         //$newregister = Newregister::all();
         $newregister = Newregister::where('user_id', '=', $user_id)->get();
+
+        
+        //dd($count);
 
         return view('newregister.index');
         return view('livewire.search-pagination', compact('newregister'));
