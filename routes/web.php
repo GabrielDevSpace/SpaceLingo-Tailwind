@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NewregisterController;
+use App\Http\Controllers\JsonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,10 @@ Route::controller(GoogleController::class)->group(function(){
 Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
 
 Route::get('/paginacao', [NewregisterController::class, 'index_page']);
+
+Route::get('/five-thousand/update', function () {
+    return view('update');
+});
+Route::post('/five-thousand/update', [JsonController::class, 'updateFromJson'])->name('five-thousand.update');
+Route::get('/five-thousand/update', [JsonController::class, 'showAllWords'])->name('five-thousand.words');
+
