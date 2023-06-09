@@ -11,25 +11,35 @@ use Carbon\Carbon;
 class JsonController extends Controller
 {
 
-    
-
-// ...
-
-    public function calculateRegistrationTime()
+    public function calculateRegistrationStats()
     {
         $today = Carbon::now()->format('Y-m-d');
-
+    
         $firstQuestion = Question::whereDate('created_at', $today)->oldest('created_at')->first();
         $lastQuestion = Question::whereDate('created_at', $today)->latest('created_at')->first();
-
+    
         if ($firstQuestion && $lastQuestion) {
-            $registrationTime = $firstQuestion->created_at->diff($lastQuestion->created_at)->format('%H:%I:%S');
-            return $registrationTime;
+            $registrationCount = Question::whereDate('created_at', $today)->count();
+    
+            $firstTime = Carbon::parse($firstQuestion->created_at);
+            $lastTime = Carbon::parse($lastQuestion->created_at);
+            $totalTime = $lastTime->diffInSeconds($firstTime);
+    
+            $timePerRegistration = $totalTime / $registrationCount;
+    
+            // Calcular tempo estimado para 300 registros
+            $estimatedTimeFor300 = $timePerRegistration * 300;
+    
+            return [
+                'registrationCount' => $registrationCount,
+                'timePerRegistration' => gmdate('H:i:s', $timePerRegistration),
+                'estimatedTimeFor300' => gmdate('H:i:s', $estimatedTimeFor300),
+            ];
         }
-
+    
         return null;
     }
-
+    
 
     public function showAllWords()
     {
@@ -47,14 +57,14 @@ class JsonController extends Controller
     $wordsCount = five_thousand_vocabulary::where('variation', '0')->count();
     $completeCount = five_thousand_vocabulary::whereNot('variation', '0')->count();
 
-    $registrationTime = $this->calculateRegistrationTime();
+    $registrationStats = $this->calculateRegistrationStats();
 
     return view('update')->with([
         'words' => $words,
         'complete' => $complete,
         'wordsCount' => $wordsCount,
         'completeCount' => $completeCount,
-        'registrationTime' => $registrationTime
+        'registrationStats' => $registrationStats
     ]);
     }
 

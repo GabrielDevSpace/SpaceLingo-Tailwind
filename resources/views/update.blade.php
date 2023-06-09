@@ -49,7 +49,7 @@
         "todas variações possíveis da palavra no presente, no futuro, no passado, etc. e dÊ a tradução das variações tambem"
     ],
     "pronunciation": [
-        "use uma aproximação simplificada da pronúncia em português da palavra acima"
+        "use uma aproximação simplificada da pronúncia em português da palavra acima, mas utilize somente letras do alfabeto portugues"
     ],
     "question1": [
         "complete a frase"
@@ -119,7 +119,15 @@
                                         <span>Foram cadastradas: {{ $completeCount }} Palavras</span>
                                         <p>
                                         <div>
-                                            Tempo de cadastro: {{ $registrationTime }}
+                                            <!-- Exibindo a contagem de registros -->
+                                            <p>Total de registros cadastrados hoje: {{ $registrationStats['registrationCount'] }}</p>
+
+                                            <!-- Exibindo o tempo médio por registro -->
+                                            <p>Tempo médio por registro: {{ $registrationStats['timePerRegistration'] }}</p>
+
+                                            <!-- Exibindo o tempo estimado para 300 registros -->
+                                            <p>Tempo estimado para 300 registros: {{ $registrationStats['estimatedTimeFor300'] }}</p>
+
                                         </div>
                                         </p>
                                         <table class="divide-y divide-gray-300">
