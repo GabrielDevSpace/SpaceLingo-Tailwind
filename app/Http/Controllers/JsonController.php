@@ -6,34 +6,55 @@ use App\Models\five_thousand_vocabulary;
 use App\Models\Question;
 use App\Models\Answer;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class JsonController extends Controller
 {
+
+    
+
+// ...
+
+    public function calculateRegistrationTime()
+    {
+        $today = Carbon::now()->format('Y-m-d');
+
+        $firstQuestion = Question::whereDate('created_at', $today)->oldest('created_at')->first();
+        $lastQuestion = Question::whereDate('created_at', $today)->latest('created_at')->first();
+
+        if ($firstQuestion && $lastQuestion) {
+            $registrationTime = $firstQuestion->created_at->diff($lastQuestion->created_at)->format('%H:%I:%S');
+            return $registrationTime;
+        }
+
+        return null;
+    }
+
+
     public function showAllWords()
     {
     $words = five_thousand_vocabulary::where('variation', '0')
     ->get();
 
-   // $complete = five_thousand_vocabulary::whereNot('variation', '0')
-   // ->get();
-
     $complete = five_thousand_vocabulary::join('questions', 'five_thousand_vocabulary.word', '=', 'questions.word')
     ->join('answers', 'questions.id', '=', 'answers.id_questions')
     ->select('five_thousand_vocabulary.*', 'questions.*', 'answers.*')
     ->whereNot('five_thousand_vocabulary.variation', '0')
+    ->orderByDesc('questions.created_at')
+    ->limit(5)
     ->get();
-
-
 
     $wordsCount = five_thousand_vocabulary::where('variation', '0')->count();
     $completeCount = five_thousand_vocabulary::whereNot('variation', '0')->count();
 
+    $registrationTime = $this->calculateRegistrationTime();
 
     return view('update')->with([
         'words' => $words,
         'complete' => $complete,
         'wordsCount' => $wordsCount,
-        'completeCount' => $completeCount
+        'completeCount' => $completeCount,
+        'registrationTime' => $registrationTime
     ]);
     }
 
