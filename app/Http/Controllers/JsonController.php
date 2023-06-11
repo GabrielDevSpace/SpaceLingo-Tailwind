@@ -24,10 +24,13 @@ class JsonController extends Controller
     ->get();
 
 
-    $completeCount = 0;
+  
     $wordsCount = five_thousand_vocabulary::where('variation', '0')->count();
     $completeCount = five_thousand_vocabulary::whereNot('variation', '0')->count();
 
+    if(!$completeCount){
+        $completeCount = 0;
+    }
 
     return view('update')->with([
         'words' => $words,
