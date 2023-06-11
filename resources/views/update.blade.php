@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +10,9 @@
 
     <title>Document</title>
 </head>
+
 <body>
-<div class="py-12">
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
 
@@ -41,13 +43,13 @@
     "word": "palavra pesquisada",
     "translate": ["todas as traduções da palavra"],
     "use": [
-        "O máximo de exemplos de uso iniciando com exemplo em inglês e depois traduzindo os exemplos"
+        "O máximo de exemplos de uso iniciando com exemplo em inglês e depois traduzindo os exemplos para portugues"
     ],
     "variation": [
         "todas variações possíveis da palavra no presente, no futuro, no passado, etc. e dÊ a tradução das variações tambem"
     ],
     "pronunciation": [
-        "use uma aproximação simplificada da pronúncia em português da palavra acima"
+        "use uma aproximação simplificada da pronúncia em português da palavra acima, mas utilize somente letras do alfabeto portugues"
     ],
     "question1": [
         "complete a frase"
@@ -98,7 +100,7 @@
                                                         {{ $word->word }}
                                                     </td>
                                                     <td class="px-6 py-4">
-                                                        <a href="#"  id="{{ $word->word }}" class="edit-button px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">Edit</a>
+                                                        <a href="#" id="{{ $word->word }}" class="edit-button px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">Edit</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -114,7 +116,20 @@
                             <div class="flex flex-col">
                                 <div class="w-full">
                                     <div class="border-b border-gray-200 shadow">
-                                    <span>Foram cadastrados: {{ $completeCount }} Palavras</span>
+                                        <span>Foram cadastradas: {{ $completeCount }} Palavras</span>
+                                        <p>
+                                        <div>
+                                            <!-- Exibindo a contagem de registros -->
+                                            <p>Total de registros cadastrados hoje: {{ $registrationStats['registrationCount'] }}</p>
+
+                                            <!-- Exibindo o tempo médio por registro -->
+                                            <p>Tempo médio por registro: {{ $registrationStats['timePerRegistration'] }}</p>
+
+                                            <!-- Exibindo o tempo estimado para 300 registros -->
+                                            <p>Tempo estimado para 300 registros: {{ $registrationStats['estimatedTimeFor300'] }}</p>
+
+                                        </div>
+                                        </p>
                                         <table class="divide-y divide-gray-300">
                                             <thead class="bg-gray-200">
                                                 <tr>
@@ -144,19 +159,19 @@
                                                         </div>
                                                         <b class='text-blue-600'>Pronunciation: </b> {{ $completed->pronunciation }}
                                                         <div class="overflow-auto max-h-40">
-                                                        <hr>
-                                                        <b class='text-blue-600'>Question One: </b>  {{ $completed->question1 }}<br>
-                                                        <b class='text-blue-600'>Answer: </b> {{ $completed->answer1 }}
+                                                            <hr>
+                                                            <b class='text-blue-600'>Question One: </b> {{ $completed->question1 }}<br>
+                                                            <b class='text-blue-600'>Answer: </b> {{ $completed->answer1 }}
                                                         </div>
                                                         <hr>
                                                         <div class="overflow-auto max-h-40">
-                                                        <b class='text-blue-600'>Question Two: </b>  {{ $completed->question2 }}<br>
-                                                        <b class='text-blue-600'>Answer: </b> {{ $completed->answer2 }}
+                                                            <b class='text-blue-600'>Question Two: </b> {{ $completed->question2 }}<br>
+                                                            <b class='text-blue-600'>Answer: </b> {{ $completed->answer2 }}
                                                         </div>
                                                         <hr>
                                                         <div class="overflow-auto max-h-40">
-                                                        <b class='text-blue-600'>Question Three: </b>  {{ $completed->question3 }}<br>
-                                                        <b class='text-blue-600'>Answer: </b> {{ $completed->answer3 }}
+                                                            <b class='text-blue-600'>Question Three: </b> {{ $completed->question3 }}<br>
+                                                            <b class='text-blue-600'>Answer: </b> {{ $completed->answer3 }}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -174,28 +189,28 @@
     </div>
 </body>
 <script>
-   // Get the "Edit" buttons
-   const editButtons = document.querySelectorAll('.edit-button');
+    // Get the "Edit" buttons
+    const editButtons = document.querySelectorAll('.edit-button');
 
-   // Add click event listener to each "Edit" button
-   editButtons.forEach((button) => {
-      button.addEventListener('click', (event) => {
-         event.preventDefault();
-         
-         const textarea = document.getElementById('textarea-input');
-         const wordId = event.target.id;
-         const word = event.target.parentElement.previousElementSibling.innerText.trim();
+    // Add click event listener to each "Edit" button
+    editButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
 
-         // Replace the word "got" with the selected word
-         const newText = textarea.value.replace('got', word);
+            const textarea = document.getElementById('textarea-input');
+            const wordId = event.target.id;
+            const word = event.target.parentElement.previousElementSibling.innerText.trim();
 
-         // Copy the updated text to the clipboard
-         navigator.clipboard.writeText(newText);
+            // Replace the word "got" with the selected word
+            const newText = textarea.value.replace('got', word);
 
-         // Paste the updated text in the textarea
-         textarea.value = newText;
-      });
-   });
+            // Copy the updated text to the clipboard
+            navigator.clipboard.writeText(newText);
+
+            // Paste the updated text in the textarea
+            textarea.value = newText;
+        });
+    });
 </script>
 
 </html>
