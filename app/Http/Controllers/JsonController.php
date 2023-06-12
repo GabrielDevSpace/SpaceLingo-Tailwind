@@ -54,14 +54,10 @@ class JsonController extends Controller
     ->limit(5)
     ->get();
 
-
-  
     $wordsCount = five_thousand_vocabulary::where('variation', '0')->count();
     $completeCount = five_thousand_vocabulary::whereNot('variation', '0')->count();
 
-    if(!$completeCount){
-        $completeCount = 0;
-    }
+    $registrationStats = $this->calculateRegistrationStats();
 
     return view('update')->with([
         'words' => $words,

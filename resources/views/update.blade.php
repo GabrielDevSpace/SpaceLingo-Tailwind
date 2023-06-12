@@ -49,16 +49,16 @@
         "todas variações possíveis da palavra no presente, no futuro, no passado, etc. e dÊ a tradução das variações tambem"
     ],
     "pronunciation": [
-        "use uma aproximação simplificada da pronúncia em português da palavra acima, mas utilize somente letras do alfabeto portugues"
+        "use uma aproximação simplificada da pronúncia em português da palavra acima, mas utilize SOMENTE letras do alfabeto portugues"
     ],
     "question1": [
-        "complete a frase"
+        "complete one sentence below in english:"
     ],
     "question2": [
-        "traduza a frase para o ingles que contenha a palavra"
+        "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
     ],
     "question3": [
-        "multipla escolha"
+        "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
     ],
     "answer1": [
         "answer question1"
