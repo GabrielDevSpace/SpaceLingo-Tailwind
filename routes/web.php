@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NewregisterController;
 use App\Http\Controllers\JsonController;
-
+use App\Http\Controllers\MoviesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,4 +39,6 @@ Route::get('/five-thousand/update', function () {
 });
 Route::post('/five-thousand/update', [JsonController::class, 'updateFromJson'])->name('five-thousand.update');
 Route::get('/five-thousand/update', [JsonController::class, 'showAllWords'])->name('five-thousand.words');
+
+Route::get('/movie', [MoviesController::class, 'index']);
 
