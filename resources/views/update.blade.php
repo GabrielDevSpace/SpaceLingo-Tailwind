@@ -36,14 +36,15 @@
 
                     <div class="col-span-2">
                         <textarea id="textarea-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" cols="70">
-                            Qual o significado da palavra em inglês "got", quando podemos utilizá-la, quais suas variações, como soa no português e 3 questoes de prova sobre a palavra informada? Formate a resposta no formato de array onde esteja no seguinte padrão:
+                            Qual o significado da palavra em inglês "got", quando podemos utilizá-la, quais suas variações, como soa no português e 3 questoes de prova sobre a palavra informada? 
+                            Formate a resposta no formato de array onde esteja no seguinte padrão:
 
                             [
                             {
                                 "word": "palavra pesquisada",
                                 "translate": ["todas as traduções da palavra"],
                                 "use": [
-                                    "O máximo de exemplos de uso iniciando com exemplo em inglês e depois traduzindo os exemplos para portugues"
+                                    "O máximo de exemplos de uso iniciando com exemplo em inglês e depois TRADUZINDO para portugues"
                                 ],
                                 "variation": [
                                     "todas variações possíveis da palavra no presente, no futuro, no passado, etc. e dÊ a tradução das variações tambem"
