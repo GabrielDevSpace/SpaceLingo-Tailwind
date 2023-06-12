@@ -36,41 +36,41 @@
 
                     <div class="col-span-2">
                         <textarea id="textarea-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" cols="70">
-                        Qual o significado da palavra em inglês "got", quando podemos utilizá-la, quais suas variações, como soa no português e 3 questoes de prova sobre a palavra informada? Formate a resposta no formato de array onde esteja no seguinte padrão:
+                            Qual o significado da palavra em inglês "got", quando podemos utilizá-la, quais suas variações, como soa no português e 3 questoes de prova sobre a palavra informada? Formate a resposta no formato de array onde esteja no seguinte padrão:
 
-[
-{
-    "word": "palavra pesquisada",
-    "translate": ["todas as traduções da palavra"],
-    "use": [
-        "O máximo de exemplos de uso iniciando com exemplo em inglês e depois traduzindo os exemplos para portugues"
-    ],
-    "variation": [
-        "todas variações possíveis da palavra no presente, no futuro, no passado, etc. e dÊ a tradução das variações tambem"
-    ],
-    "pronunciation": [
-        "use uma aproximação simplificada da pronúncia em português da palavra acima, mas utilize SOMENTE letras do alfabeto portugues"
-    ],
-    "question1": [
-        "complete one sentence below in english:"
-    ],
-    "question2": [
-        "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
-    ],
-    "question3": [
-        "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
-    ],
-    "answer1": [
-        "answer question1"
-    ],
-    "answer2": [
-        "answer question2"
-    ],
-    "answer3": [
-        "answer question3"
-    ]
-}
-]
+                            [
+                            {
+                                "word": "palavra pesquisada",
+                                "translate": ["todas as traduções da palavra"],
+                                "use": [
+                                    "O máximo de exemplos de uso iniciando com exemplo em inglês e depois traduzindo os exemplos para portugues"
+                                ],
+                                "variation": [
+                                    "todas variações possíveis da palavra no presente, no futuro, no passado, etc. e dÊ a tradução das variações tambem"
+                                ],
+                                "pronunciation": [
+                                    "use uma aproximação simplificada da pronúncia em português da palavra acima, mas utilize SOMENTE letras do alfabeto portugues"
+                                ],
+                                "question1": [
+                                    "complete one sentence below in english:"
+                                ],
+                                "question2": [
+                                    "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
+                                ],
+                                "question3": [
+                                    "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
+                                ],
+                                "answer1": [
+                                    "answer question1"
+                                ],
+                                "answer2": [
+                                    "answer question2"
+                                ],
+                                "answer3": [
+                                    "answer question3"
+                                ]
+                            }
+                            ]
                         </textarea>
                     </div>
                 </div>
