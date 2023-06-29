@@ -120,7 +120,7 @@
 
         if (noteLength > 1500) {
             event.preventDefault(); // Impede o envio do formulário
-            alert('The NOTE field must have a maximum of 1500 characters..');
+            alert('The NOTE field must have a maximum of 1500 characters.');
         }
     });
 </script>
