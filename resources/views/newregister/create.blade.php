@@ -99,7 +99,7 @@
 <script>
     var noteTextarea = document.getElementById('note');
     var charCount = document.getElementById('charCount');
-    var form = document.getElementById('myForm');
+    var submitButton = document.getElementById('submitButton');
 
     noteTextarea.addEventListener('input', function() {
         var note = this.value;
@@ -110,20 +110,13 @@
             this.value = note.substr(0, 1500); // Limita o valor do campo a 1500 caracteres
             noteLength = 1500; // Atualiza o comprimento do texto para 1500
             noteTextarea.style.color = 'red'; // Altera a cor do texto para vermelho
+            submitButton.disabled = true; // Desabilita o botão de envio
         } else {
             noteTextarea.style.color = ''; // Retorna à cor padrão do texto
+            submitButton.disabled = false; // Habilita o botão de envio
         }
         
         charCount.textContent = noteLength + ' caracteres';
     });
-
-    form.addEventListener('submit', function(event) {
-        var noteLength = noteTextarea.value.length;
-        
-        // Verifica se o número de caracteres excede o limite
-        if (noteLength > 1500) {
-            event.preventDefault(); // Impede o envio do formulário
-            alert('The NOTE field must have a maximum of 1500 characters.');
-        }
-    });
 </script>
+
