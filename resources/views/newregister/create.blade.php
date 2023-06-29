@@ -79,10 +79,11 @@
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="note" class="block font-medium text-sm text-gray-700">Note</label>
                             <textarea name="note" id="note" autocomplete="off" rows="10" class="form-input rounded-md shadow-sm mt-1 block w-full"></textarea>
+                            <span id="character-count" class="text-sm text-red-600"></span>
                             @error('note')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
-                            <div id="charCount"></div>
+                            
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -97,26 +98,21 @@
     </div>
 </x-app-layout>
 <script>
-    var noteTextarea = document.getElementById('note');
-    var charCount = document.getElementById('charCount');
-    var submitButton = document.getElementById('submitButton');
+    const noteTextarea = document.getElementById('note');
+    const characterCount = document.getElementById('character-count');
+    const createButton = document.querySelector('button[type="submit"]');
 
     noteTextarea.addEventListener('input', function() {
-        var note = this.value;
-        var noteLength = note.length;
-        
-        // Verifica se o número de caracteres excede o limite
-        if (noteLength > 1500) {
-            this.value = note.substr(0, 1500); // Limita o valor do campo a 1500 caracteres
-            noteLength = 1500; // Atualiza o comprimento do texto para 1500
-            noteTextarea.style.color = 'red'; // Altera a cor do texto para vermelho
-            submitButton.disabled = true; // Desabilita o botão de envio
+        const textLength = noteTextarea.value.length;
+        characterCount.textContent = textLength;
+
+        if (textLength > 1500) {
+            characterCount.style.color = 'red';
+            createButton.disabled = true;
         } else {
-            noteTextarea.style.color = ''; // Retorna à cor padrão do texto
-            submitButton.disabled = false; // Habilita o botão de envio
+            characterCount.style.color = '';
+            createButton.disabled = false;
         }
-        
-        charCount.textContent = noteLength + ' caracteres';
     });
 </script>
 
