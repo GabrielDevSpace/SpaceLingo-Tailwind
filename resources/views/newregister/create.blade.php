@@ -103,13 +103,15 @@
     const createButton = document.getElementById('submit');
     noteTextarea.addEventListener('input', function() {
         const textLength = noteTextarea.value.length;
-        characterCount.textContent = textLength;
+        characterCount.textContent = textLength+" Characters";
 
         if (textLength > 1500) {
             characterCount.style.color = 'red';
+            noteTextarea.style.color = 'red';
             createButton.disabled = true;
         } else {
-            characterCount.style.color = '';
+            noteTextarea.style.color = 'gray';
+            characterCount.style.color = 'gray';
             createButton.disabled = false;
         }
     });
