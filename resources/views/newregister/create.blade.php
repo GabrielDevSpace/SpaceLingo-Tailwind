@@ -103,12 +103,24 @@
     noteTextarea.addEventListener('input', function() {
         var note = this.value;
         var noteLength = note.length;
-        charCount.textContent = noteLength + ' caracteres';
+        charCount.textContent = noteLength + ' characters';
 
         if (noteLength > 1500) {
             noteTextarea.style.color = 'red';
         } else {
             noteTextarea.style.color = ''; // Retorna à cor padrão do texto
+        }
+    });
+
+    // Validar o campo "note" ao enviar o formulário
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        var note = noteTextarea.value;
+        var noteLength = note.length;
+
+        if (noteLength > 1500) {
+            event.preventDefault(); // Impede o envio do formulário
+            alert('The NOTE field must have a maximum of 1500 characters..');
         }
     });
 </script>
