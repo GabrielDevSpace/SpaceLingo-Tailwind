@@ -105,7 +105,7 @@
         var noteLength = note.length;
         charCount.textContent = noteLength + ' caracteres';
 
-        if (noteLength > 1000) {
+        if (noteLength > 1500) {
             noteTextarea.style.color = 'red';
         } else {
             noteTextarea.style.color = ''; // Retorna à cor padrão do texto
