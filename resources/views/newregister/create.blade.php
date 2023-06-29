@@ -82,6 +82,7 @@
                             @error('note')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
+                            <div id="charCount"></div>
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -95,3 +96,19 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    var noteTextarea = document.getElementById('note');
+    var charCount = document.getElementById('charCount');
+
+    noteTextarea.addEventListener('input', function() {
+        var note = this.value;
+        var noteLength = note.length;
+        charCount.textContent = noteLength + ' caracteres';
+
+        if (noteLength > 1000) {
+            noteTextarea.style.color = 'red';
+        } else {
+            noteTextarea.style.color = ''; // Retorna à cor padrão do texto
+        }
+    });
+</script>
