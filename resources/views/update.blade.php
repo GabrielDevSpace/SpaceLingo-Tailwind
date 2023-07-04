@@ -82,6 +82,32 @@
                             <div class="flex flex-col">
                                 <div class="w-full">
                                     <div class="border-b border-gray-200 shadow">
+                                        <span>Faltam: {{ $newregistersCounts }} Palavras</span>
+                                        <table class="divide-y divide-gray-300">
+                                            <thead class="bg-black">
+                                                <tr>
+                                                    <th class="px-6 py-2 text-xs text-white">
+                                                        Vocabulary
+                                                    </th>
+                                                    <th class="px-6 py-2 text-xs text-white">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="bg-white divide-y divide-gray-300">
+                                                @foreach ($newregisters as $newregister)
+                                                <tr class="whitespace-nowrap">
+                                                    <td class="px-6 py-4 text-sm text-gray-500">
+                                                        {{ $newregister->vocabulary }}
+                                                    </td>
+                                                    <td class="px-6 py-4">
+                                                        <a href="#" id="{{ $newregister->vocabulary }}" class="edit-button px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">Edit</a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        <hr>
                                         <span>Faltam: {{ $wordsCount }} Palavras</span>
                                         <table class="divide-y divide-gray-300">
                                             <thead class="bg-gray-200">

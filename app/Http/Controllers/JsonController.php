@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\five_thousand_vocabulary;
 use App\Models\Question;
 use App\Models\Answer;
+use App\Models\Newregister;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -46,6 +47,15 @@ class JsonController extends Controller
     $words = five_thousand_vocabulary::where('variation', '0')
     ->get();
 
+    $newregisters = Newregister::join('five_thousand_vocabulary', 'newregisters.vocabulary', '=', 'five_thousand_vocabulary.word')
+    ->where('newregisters.type', 'vocabulary')
+    ->where('five_thousand_vocabulary.variation', '0')
+    ->get();
+
+    $newregistersCounts = Newregister::join('five_thousand_vocabulary', 'newregisters.vocabulary', '=', 'five_thousand_vocabulary.word')
+    ->where('newregisters.type', 'vocabulary')
+    ->where('five_thousand_vocabulary.variation', '0')->count();
+
     $complete = five_thousand_vocabulary::join('questions', 'five_thousand_vocabulary.word', '=', 'questions.word')
     ->join('answers', 'questions.id', '=', 'answers.id_questions')
     ->select('five_thousand_vocabulary.*', 'questions.*', 'answers.*')
@@ -72,7 +82,9 @@ class JsonController extends Controller
         'complete' => $complete,
         'wordsCount' => $wordsCount,
         'completeCount' => $completeCount,
-        'registrationStats' => $registrationStats
+        'registrationStats' => $registrationStats,
+        'newregisters' => $newregisters,
+        'newregistersCounts' => $newregistersCounts
     ]);
     }
 
