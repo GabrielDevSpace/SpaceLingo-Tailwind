@@ -65,18 +65,26 @@ class SearchPagination extends Component
   
 
      public function render(){ 
+          $user_id = user_id();
           $newregister = Newregister::orderby($this->orderColumn,$this->sortOrder)->select('*');
           if(!empty($this->searchTerm)){
-
-               $newregister->orWhere('vocabulary','like',"%".$this->searchTerm."%");
-               $newregister->orWhere('translate','like',"%".$this->searchTerm."%");
+               $newregister->where('user_id', $user_id)
+               ->where(function ($query) {
+                    $query->where('vocabulary', 'like', '%' . $this->searchTerm . '%')
+                    ->orWhere(function ($query) {
+                    $user_id = user_id();
+                    $query->where('user_id', $user_id)
+                    ->where('translate', 'like', '%' . $this->searchTerm . '%');
+                    });
+               });
           }
           $countMonth = $this->countMonth();
           $countWeek = $this->countWeek();
-          $user_id = user_id();
+          
           $newregister->where('user_id', $user_id);
+          
           $newregister = $newregister->paginate(10);
-
+          //dd($newregister);
           return view('livewire.search-pagination', [
                'newregister' => $newregister,
                'countWeek' => $countWeek,

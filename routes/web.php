@@ -6,6 +6,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NewregisterController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MoviesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
