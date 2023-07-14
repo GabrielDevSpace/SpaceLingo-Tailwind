@@ -62,6 +62,16 @@ class SearchPagination extends Component
   
           return $countMonth;
        }
+
+       public function countAll(){
+          $user_id = user_id();
+
+          $countAll = Newregister::where('user_id', '=', $user_id)
+          ->count();
+  
+          return $countAll;
+       }
+  
   
 
      public function render(){ 
@@ -80,6 +90,7 @@ class SearchPagination extends Component
           }
           $countMonth = $this->countMonth();
           $countWeek = $this->countWeek();
+          $countAll = $this->countAll();
           
           $newregister->where('user_id', $user_id);
           
@@ -88,6 +99,7 @@ class SearchPagination extends Component
           return view('livewire.search-pagination', [
                'newregister' => $newregister,
                'countWeek' => $countWeek,
+               'countAll' => $countAll,
                'countMonth' => $countMonth
           ],);
 

@@ -1,27 +1,34 @@
 <div class="container mx-auto mt-5">
     <div class="flex justify-center">
         <div class="w-full px-4">
-            <div class="grid grid-cols-3 content-start">
-                <div><input type="text" class="form-input w-64 mb-5" placeholder="Search Vocabulary or Translate" wire:model="searchTerm"></div>
+            <div class="grid grid-cols-3 pb-3 content-start">
                 <div class="max-w-sm overflow-hidden">
                     <div class="px-6 py-1">
                         <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            This Week 
+                            This Week
                         </p>
                         <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countWeek }}</b> Learned Vocabulary</p>
                     </div>
-
                 </div>
                 <div class="max-w-sm overflow-hidden">
-                <div class="px-6 py-1">
+                    <div class="px-6 py-1">
                         <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            This Month 
+                            This Month
                         </p>
                         <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countMonth }}</b> Learned Vocabulary</p>
                     </div>
-
+                </div>
+                <div class="max-w-sm overflow-hidden">
+                    <div class="px-6 py-1">
+                        <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            All
+                        </p>
+                        <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countAll }}</b> Learned Vocabulary</p>
+                    </div>
                 </div>
             </div>
+            <div><input type="text" class="form-input w-64 mb-5" placeholder="Search Vocabulary or Translate" wire:model="searchTerm"></div>
+
             <table class="table-auto min-w-full divide-y divide-gray-200 w-full">
                 <thead>
                     <tr>
