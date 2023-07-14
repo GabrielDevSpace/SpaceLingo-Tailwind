@@ -43,3 +43,7 @@ Route::get('/five-thousand/update', [JsonController::class, 'showAllWords'])->na
 
 Route::get('/movie', [MoviesController::class, 'index']);
 
+
+Route::get('/movie/create', [MoviesController::class, 'create'])->name('movie.create');
+
+Route::post('/movie', [MoviesController::class, 'store'])->name('movie.store');
