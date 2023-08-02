@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -6,9 +7,31 @@ use App\Models\Exercise;
 
 class ExerciseController extends Controller
 {
+    
     public function showForm()
     {
-        return view('exercise_registration');
+        // Obter a lista de tópicos a partir do banco de dados
+        $topics = Exercise::distinct('topic')->pluck('topic');
+
+        // Definir $selectedTopic como nulo (ou algum valor padrão, se desejar)
+        $selectedTopic = null;
+
+        return view('exercise_registration', compact('topics', 'selectedTopic'));
+    }
+
+    public function showTopic($topic)
+    {
+        // Obter todas as perguntas do tópico selecionado
+        $questions = Exercise::where('topic', $topic)->get();
+
+        // Obter a lista de tópicos a partir do banco de dados
+        $topics = Exercise::distinct('topic')->pluck('topic');
+
+        // Definir $selectedTopic como o tópico selecionado
+        $selectedTopic = $topic;
+
+        // Passar o tópico selecionado e as perguntas para a view
+        return view('exercise_registration', compact('questions', 'topic', 'topics', 'selectedTopic'));
     }
 
     public function store(Request $request)

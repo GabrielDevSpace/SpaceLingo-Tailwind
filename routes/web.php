@@ -50,5 +50,6 @@ Route::get('/movie/create', [MoviesController::class, 'create'])->name('movie.cr
 Route::post('/movie', [MoviesController::class, 'store'])->name('movie.store');
 
 
-Route::get('/exercise-registration', [ExerciseController::class, 'showForm']);
-Route::post('/exercise-registration', [ExerciseController::class, 'store']);
+Route::get('/exercise-registration', [ExerciseController::class, 'showForm'])->name('showForm');
+Route::post('/exercise-registration', [ExerciseController::class, 'store'])->name('storeExercise');
+Route::get('/exercise-registration/{topic}', [ExerciseController::class, 'showTopic'])->name('showTopic');
