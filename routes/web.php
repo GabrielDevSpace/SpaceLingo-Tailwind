@@ -6,6 +6,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NewregisterController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\ExerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,7 @@ Route::get('/movie', [MoviesController::class, 'index']);
 Route::get('/movie/create', [MoviesController::class, 'create'])->name('movie.create');
 
 Route::post('/movie', [MoviesController::class, 'store'])->name('movie.store');
+
+
+Route::get('/exercise-registration', [ExerciseController::class, 'showForm']);
+Route::post('/exercise-registration', [ExerciseController::class, 'store']);
