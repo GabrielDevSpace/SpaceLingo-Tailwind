@@ -22,12 +22,12 @@
             <h3 class="mb-4 text-lg font-semibold">Add Exercise</h3>
             <!-- Display success message -->
             @if (session('success'))
-                <p style="color: green">{{ session('success') }}</p>
+            <p style="color: green">{{ session('success') }}</p>
             @endif
 
             <!-- Display error message -->
             @if (session('error'))
-                <p style="color: red">{{ session('error') }}</p>
+            <p style="color: red">{{ session('error') }}</p>
             @endif
 
             <form action="{{ route('storeExercise') }}" method="post">
@@ -68,26 +68,27 @@
 
             <!-- Exibição das Questões -->
             <div class="w-3/4 p-4 bg-white border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-lg">
-                <h3 class="mb-4 text-lg font-semibold">Questions</h3>
-                <div id="question-details">
-                    @if ($selectedTopic)
-                    @foreach ($questions as $question)
-                    <div class="mb-4 p-4 border border-gray-200 bg-gray-200 rounded-md">
-                        <h4 class="mb-2 font-semibold">{{ $question->question }}</h4>
-                        <ul class="mb-2">
-                            @foreach (json_decode($question->alternatives, true) as $alternative)
-                            <li class="{{ $question->answer === $alternative ? 'text-green-500 font-semibold' : '' }}">{{ $alternative }}</li>
-                            @endforeach
-                        </ul>
-                        <p class="text-sm text-gray-500" title="{{ $question->translation }}">Translation: {{ $question->translation }}</p>
-                    </div>
-                    @endforeach
-                    @else
-                    <p>Select a topic to display questions.</p>
-                    @endif
-                </div>
-            </div>
-
+    <h3 class="mb-4 text-lg font-semibold">Questions</h3>
+    <div id="question-details">
+        @if ($selectedTopic)
+        @foreach ($questions as $question)
+        <div class="mb-4 p-4 border border-gray-200 bg-gray-200 rounded-md">
+            <h4 class="mb-2 font-semibold">{{ $question->question }}</h4>
+            <ul class="mb-2">
+                @foreach (json_decode($question->alternatives, true) as $alternative)
+                <li class="{{ $question->answer === $alternative ? 'text-green-500 font-semibold' : '' }}">{{ $alternative }}</li>
+                @endforeach
+            </ul>
+            <p class="text-sm text-gray-500" title="{{ $question->translation }}">Translation: {{ $question->translation }}</p>
+        </div>
+        @endforeach
+        <!-- Display pagination links -->
+        {{ $questions->links() }}
+        @else
+        <p>Select a topic to display questions.</p>
+        @endif
+    </div>
+</div>
         </div>
     </div>
 

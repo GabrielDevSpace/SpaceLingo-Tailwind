@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Exercise;
 
 class ExerciseController extends Controller
 {
-    
+
     public function showForm()
     {
         // Obter a lista de tópicos a partir do banco de dados
@@ -19,20 +21,24 @@ class ExerciseController extends Controller
         return view('exercise_registration', compact('topics', 'selectedTopic'));
     }
 
-    public function showTopic($topic)
-    {
-        // Obter todas as perguntas do tópico selecionado
-        $questions = Exercise::where('topic', $topic)->get();
+   
+public function showTopic($topic)
+{
+    // Set the number of items per page (you can adjust this as needed)
+    $perPage = 10;
 
-        // Obter a lista de tópicos a partir do banco de dados
-        $topics = Exercise::distinct('topic')->pluck('topic');
+    // Obtain the paginated questions for the selected topic using Eloquent
+    $questions = Exercise::where('topic', $topic)->paginate($perPage);
 
-        // Definir $selectedTopic como o tópico selecionado
-        $selectedTopic = $topic;
+    // Obter a lista de tópicos a partir do banco de dados
+    $topics = Exercise::distinct('topic')->pluck('topic');
 
-        // Passar o tópico selecionado e as perguntas para a view
-        return view('exercise_registration', compact('questions', 'topic', 'topics', 'selectedTopic'));
-    }
+    // Definir $selectedTopic como o tópico selecionado
+    $selectedTopic = $topic;
+
+    // Passar o tópico selecionado e as perguntas para a view
+    return view('exercise_registration', compact('questions', 'topic', 'topics', 'selectedTopic'));
+}
 
     public function store(Request $request)
     {

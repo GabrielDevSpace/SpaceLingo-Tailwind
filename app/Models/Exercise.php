@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
 {
-    protected $table = 'exercises'; // Nome da tabela correta
+    protected $table = 'exercises';
 
     protected $fillable = [
         'topic',
