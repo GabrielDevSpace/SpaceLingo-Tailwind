@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -21,24 +22,24 @@ class ExerciseController extends Controller
         return view('exercise_registration', compact('topics', 'selectedTopic'));
     }
 
-   
-public function showTopic($topic)
-{
-    // Set the number of items per page (you can adjust this as needed)
-    $perPage = 10;
 
-    // Obtain the paginated questions for the selected topic using Eloquent
-    $questions = Exercise::where('topic', $topic)->paginate($perPage);
+    public function showTopic($topic)
+    {
+        // Set the number of items per page (you can adjust this as needed)
+        $perPage = 10;
 
-    // Obter a lista de tópicos a partir do banco de dados
-    $topics = Exercise::distinct('topic')->pluck('topic');
+        // Obtain the paginated questions for the selected topic using Eloquent
+        $questions = Exercise::where('topic', $topic)->paginate($perPage);
 
-    // Definir $selectedTopic como o tópico selecionado
-    $selectedTopic = $topic;
+        // Obter a lista de tópicos a partir do banco de dados
+        $topics = Exercise::distinct('topic')->pluck('topic');
 
-    // Passar o tópico selecionado e as perguntas para a view
-    return view('exercise_registration', compact('questions', 'topic', 'topics', 'selectedTopic'));
-}
+        // Definir $selectedTopic como o tópico selecionado
+        $selectedTopic = $topic;
+
+        // Passar o tópico selecionado e as perguntas para a view
+        return view('exercise_registration', compact('questions', 'topic', 'topics', 'selectedTopic'));
+    }
 
     public function store(Request $request)
     {
@@ -70,5 +71,50 @@ public function showTopic($topic)
         } else {
             return redirect('/exercise-registration')->with('error', 'Invalid JSON format. Please check and try again.');
         }
+    }
+    public function editQuestion($id)
+    {
+        $question = Exercise::findOrFail($id);
+        return view('edit_question', compact('question'));
+    }
+
+    public function updateQuestion(Request $request, $id)
+    {
+        // Retrieve the question from the database using the $id
+        $question = Exercise::findOrFail($id);
+
+        // Validate the form data
+        $validator = Validator::make($request->all(), [
+            'question' => 'required|string',
+            'alternatives' => 'required|array',
+            'answer' => 'required|string',
+            'translation' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Convert the alternatives to JSON format
+        $alternatives = json_encode($request->input('alternatives'));
+
+        // Update the question with the validated data
+        $question->update([
+            'question' => $request->input('question'),
+            'alternatives' => $alternatives,
+            'answer' => $request->input('answer'),
+            'translation' => $request->input('translation'),
+            // Add other fields as needed
+        ]);
+
+        return redirect('/exercise-registration')->with('success', 'Question updated successfully!');
+    }
+
+    public function deleteQuestion($id)
+    {
+        $question = Exercise::findOrFail($id);
+        $question->delete();
+
+        return redirect('/exercise-registration')->with('success', 'Question deleted successfully!');
     }
 }

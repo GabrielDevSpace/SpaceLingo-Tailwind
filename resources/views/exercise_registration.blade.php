@@ -5,6 +5,7 @@
     <title>Exercise Registration</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -65,30 +66,49 @@
                     @endforeach
                 </ul>
             </div>
-
             <!-- Exibição das Questões -->
             <div class="w-3/4 p-4 bg-white border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-lg">
-    <h3 class="mb-4 text-lg font-semibold">Questions</h3>
-    <div id="question-details">
-        @if ($selectedTopic)
-        @foreach ($questions as $question)
-        <div class="mb-4 p-4 border border-gray-200 bg-gray-200 rounded-md">
-            <h4 class="mb-2 font-semibold">{{ $question->question }}</h4>
-            <ul class="mb-2">
-                @foreach (json_decode($question->alternatives, true) as $alternative)
-                <li class="{{ $question->answer === $alternative ? 'text-green-500 font-semibold' : '' }}">{{ $alternative }}</li>
-                @endforeach
-            </ul>
-            <p class="text-sm text-gray-500" title="{{ $question->translation }}">Translation: {{ $question->translation }}</p>
-        </div>
-        @endforeach
-        <!-- Display pagination links -->
-        {{ $questions->links() }}
-        @else
-        <p>Select a topic to display questions.</p>
-        @endif
-    </div>
-</div>
+                <h3 class="mb-4 text-lg font-semibold">Questions</h3>
+                <div id="question-details">
+                    @if ($selectedTopic)
+                    @foreach ($questions as $question)
+                    <div class="mb-4 p-4 border border-gray-200 bg-gray-200 rounded-md">
+                        <h4 class="mb-2 font-semibold">
+                            <b class="text-sm text-gray-500">
+                                <i class="fas fa-info-circle text-yellow-500 hover:text-yellow-600 text-base" title="{{ $question->translation }}"></i>
+                            </b>
+                            {{ $question->question }}
+                        </h4>
+                        <ul class="mb-2 ml-5">
+                            @foreach (json_decode($question->alternatives, true) as $key => $alternative)
+                            <li class="{{ $question->answer === $alternative ? 'text-green-500 font-semibold' : '' }}">
+                                {{ $loop->iteration }}.
+                                @if ($question->answer === $alternative)
+                                
+                                @endif
+                                {{ $alternative }}
+                            </li>
+                            @endforeach
+                        </ul>
+                        <div class="text-right">
+                            <!-- Edit button -->
+                            <a href="{{ route('editQuestion', ['id' => $question->id]) }}" class="inline-block mt-1 px-1 py-1 text-sm font-bold text-blue-600 border border-blue-600 rounded hover:bg-blue-600 hover:text-white">Edit</a>
+                            <!-- Delete button -->
+                            <form action="{{ route('deleteQuestion', ['id' => $question->id]) }}" method="post" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this question?');" class="inline-block mt-1 px-1 py-1 text-sm font-bold text-red-600 border border-red-600 rounded hover:bg-red-600 hover:text-white">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    @endforeach
+                    <!-- Display pagination links -->
+                    {{ $questions->links() }}
+                    @else
+                    <p>Select a topic to display questions.</p>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 

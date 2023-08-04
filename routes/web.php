@@ -50,6 +50,11 @@ Route::get('/movie/create', [MoviesController::class, 'create'])->name('movie.cr
 Route::post('/movie', [MoviesController::class, 'store'])->name('movie.store');
 
 
+
 Route::get('/exercise-registration', [ExerciseController::class, 'showForm'])->name('showForm');
 Route::post('/exercise-registration', [ExerciseController::class, 'store'])->name('storeExercise');
 Route::get('/exercise-registration/{topic}', [ExerciseController::class, 'showTopic'])->name('showTopic');
+
+Route::get('/edit-question/{id}', [ExerciseController::class, 'editQuestion'])->name('editQuestion');
+Route::put('/update-question/{id}', [ExerciseController::class, 'updateQuestion'])->name('updateQuestion');
+Route::delete('/delete-question/{id}', [ExerciseController::class, 'deleteQuestion'])->name('deleteQuestion');
