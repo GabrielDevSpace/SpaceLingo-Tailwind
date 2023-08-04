@@ -58,3 +58,9 @@ Route::get('/exercise-registration/{topic}', [ExerciseController::class, 'showTo
 Route::get('/edit-question/{id}', [ExerciseController::class, 'editQuestion'])->name('editQuestion');
 Route::put('/update-question/{id}', [ExerciseController::class, 'updateQuestion'])->name('updateQuestion');
 Route::delete('/delete-question/{id}', [ExerciseController::class, 'deleteQuestion'])->name('deleteQuestion');
+
+// Route to handle editing a topic
+Route::post('/edit-topic', [ExerciseController::class, 'editTopic'])->name('editTopic');
+
+// Route to handle deleting a topic and its associated exercises
+Route::get('/delete-topic', [ExerciseController::class, 'deleteTopic'])->name('deleteTopic');

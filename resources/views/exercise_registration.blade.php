@@ -57,15 +57,33 @@
         <div class="container mx-auto mt-4 flex">
             <!-- Barra lateral esquerda - Lista de Tópicos -->
             <div class="w-1/4 p-4 bg-white rounded-l-lg border-l-2 border-t-2 border-b-2 border-gray-300">
-                <h3 class="mb-2 text-lg font-semibold">Topics</h3>
-                <ul>
-                    @foreach ($topics as $topic)
-                    <li class="mb-2">
-                        <a href="{{ route('showTopic', ['topic' => $topic]) }}" class="text-blue-600 hover:text-blue-800">{{ $topic }}</a>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
+    <h3 class="mb-2 text-lg font-semibold">Topics</h3>
+    <ul>
+        @foreach ($topics as $topic)
+        <li class="mb-2">
+            <i class="fas fa-edit text-blue-600 cursor-pointer" title="Edit" onclick="editTopic('{{ $topic }}')"></i>
+            <i class="fas fa-trash text-red-600 cursor-pointer ml-2" title="Delete" onclick="confirmDeleteTopic('{{ $topic }}')"></i>
+            <span class="text-blue-600 hover:text-blue-800"><a href="{{ route('showTopic', ['topic' => $topic]) }}" class="text-blue-600 hover:text-blue-800">{{ $topic }}</a></span>
+        </li>
+        @endforeach
+    </ul>
+</div>
+
+<div id="edit-topic-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-4 rounded-lg border-2 border-gray-300">
+        <h3 class="mb-4 text-lg font-semibold">Edit Topic</h3>
+        <form id="edit-topic-form" action="{{ route('editTopic') }}" method="post">
+            @csrf
+            <input type="hidden" name="old_topic" id="old_topic">
+            <label for="new_topic">New Topic Name:</label>
+            <br>
+            <input type="text" name="new_topic" id="new_topic" class="w-full px-4 py-2 rounded-md border-gray-300 text-blue-500" required >
+            <br>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-4">Save Changes</button>
+        </form>
+    </div>
+</div>
+
             <!-- Exibição das Questões -->
             <div class="w-3/4 p-4 bg-white border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-lg">
                 <h3 class="mb-4 text-lg font-semibold">Questions</h3>
@@ -118,7 +136,26 @@
             <p>Exercise Registration &copy; {{ date('Y') }}</p>
         </div>
     </footer>
+    <script>
+    // Function to open the Edit Topic Modal
+    function editTopic(topic) {
+        document.getElementById('old_topic').value = topic;
+        document.getElementById('new_topic').value = topic;
+        document.getElementById('edit-topic-modal').classList.remove('hidden');
+    }
 
+    // Function to close the Edit Topic Modal
+    function closeEditTopicModal() {
+        document.getElementById('edit-topic-modal').classList.add('hidden');
+    }
+
+    // Function to confirm topic deletion
+    function confirmDeleteTopic(topic) {
+        if (confirm('Are you sure you want to delete the topic "' + topic + '"?')) {
+            window.location.href = "{{ route('deleteTopic') }}?topic=" + encodeURIComponent(topic);
+        }
+    }
+</script>
 </body>
 
 </html>

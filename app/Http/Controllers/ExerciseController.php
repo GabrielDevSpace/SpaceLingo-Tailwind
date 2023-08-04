@@ -117,4 +117,28 @@ class ExerciseController extends Controller
 
         return redirect('/exercise-registration')->with('success', 'Question deleted successfully!');
     }
+
+
+    public function editTopic(Request $request)
+    {
+        // Get the old and new topic names from the form submission
+        $oldTopic = $request->input('old_topic');
+        $newTopic = $request->input('new_topic');
+    
+        // Update all exercises with the old topic name to the new topic name
+        Exercise::where('topic', $oldTopic)->update(['topic' => $newTopic]);
+    
+        return redirect('/exercise-registration')->with('success', 'Topic updated successfully!');
+    }
+
+
+    public function deleteTopic(Request $request)
+    {
+        $topic = $request->input('topic');
+    
+        // Delete all exercises with the selected topic
+        Exercise::where('topic', $topic)->delete();
+    
+        return redirect('/exercise-registration')->with('success', 'Topic and associated exercises deleted successfully!');
+    }
 }
