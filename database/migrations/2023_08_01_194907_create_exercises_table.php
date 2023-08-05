@@ -9,6 +9,7 @@ class CreateExercisesTable extends Migration
     {
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
+            $table->string('level');
             $table->string('topic');
             $table->string('description');
             $table->string('question');

@@ -18,6 +18,7 @@ class ExerciseController extends Controller
 
         // Definir $selectedTopic como nulo (ou algum valor padrão, se desejar)
         $selectedTopic = null;
+        
 
         return view('exercise_registration', compact('topics', 'selectedTopic'));
     }
@@ -30,6 +31,9 @@ class ExerciseController extends Controller
 
         // Obtain the paginated questions for the selected topic using Eloquent
         $questions = Exercise::where('topic', $topic)->paginate($perPage);
+        
+        $level = Exercise::where('topic', $topic)->first();
+        
 
         // Obter a lista de tópicos a partir do banco de dados
         $topics = Exercise::distinct('topic')->pluck('topic');
@@ -38,7 +42,7 @@ class ExerciseController extends Controller
         $selectedTopic = $topic;
 
         // Passar o tópico selecionado e as perguntas para a view
-        return view('exercise_registration', compact('questions', 'topic', 'topics', 'selectedTopic'));
+    return view('exercise_registration', compact('questions','level','topic', 'topics', 'selectedTopic'));
     }
 
     public function store(Request $request)
@@ -57,6 +61,7 @@ class ExerciseController extends Controller
             }
 
             $exercise = new Exercise([
+                'level' => $exerciseData['Level'],
                 'topic' => $exerciseData['Topic'],
                 'description' => $exerciseData['Description'],
                 'question' => $exerciseData['Question'],
@@ -85,6 +90,7 @@ class ExerciseController extends Controller
 
         // Validate the form data
         $validator = Validator::make($request->all(), [
+            'level' => 'required|string',
             'question' => 'required|string',
             'alternatives' => 'required|array',
             'answer' => 'required|string',
@@ -100,6 +106,7 @@ class ExerciseController extends Controller
 
         // Update the question with the validated data
         $question->update([
+            'level' => $request->input('level'),
             'question' => $request->input('question'),
             'alternatives' => $alternatives,
             'answer' => $request->input('answer'),

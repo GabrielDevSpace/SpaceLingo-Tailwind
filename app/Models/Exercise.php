@@ -8,6 +8,7 @@ class Exercise extends Model
     protected $table = 'exercises';
 
     protected $fillable = [
+        'level',
         'topic',
         'description',
         'question',
