@@ -28,6 +28,7 @@
    </head>
    <body>
 
+
         <livewire:search-pagination />
         
 

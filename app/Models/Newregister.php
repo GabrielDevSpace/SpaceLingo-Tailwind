@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Newregister extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['vocabulary','translate','note','user_id','type'];
+    public function lang()
+    {
+        return $this->belongsTo(Lang::class);
+    }
 
 }

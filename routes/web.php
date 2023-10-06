@@ -7,6 +7,7 @@ use App\Http\Controllers\NewregisterController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Livewire\Languages;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::controller(GoogleController::class)->group(function(){
 });
 
 Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
+
+Route::get('/languages', Languages::class);
 
 Route::get('/paginacao', [NewregisterController::class, 'index_page']);
 
