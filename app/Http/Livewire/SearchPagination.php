@@ -16,7 +16,7 @@ class SearchPagination extends Component
      public $orderColumn = "vocabulary";
      public $sortOrder = "asc";
      public $sortLink = '<i class="sorticon fa-solid fa-caret-up"></i>';
-
+     public $lang_id;
      public $searchTerm = "";
 
      public function updated(){
@@ -92,7 +92,9 @@ class SearchPagination extends Component
           $countWeek = $this->countWeek();
           $countAll = $this->countAll();
           
-          $newregister->where('user_id', $user_id);
+          $newregister
+          ->where('user_id', $user_id)
+          ->where('lang_id', $this->lang_id);
           
           $newregister = $newregister->paginate(10);
           //dd($newregister);
@@ -104,4 +106,6 @@ class SearchPagination extends Component
           ],);
 
      }
+
+     
 }

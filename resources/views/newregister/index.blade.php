@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Register Lists
+            Register Lists {{ $lang_id }}
         </h2>
     </x-slot>
 
@@ -15,7 +15,7 @@
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <!-- INICIO PAGINATION -->
-                            <livewire:search-pagination />
+                            <livewire:search-pagination :lang_id="$lang_id"  />
                             <!-- FIM PAGINAÇÂO -->
                     
                         </div>

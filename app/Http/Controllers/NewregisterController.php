@@ -22,7 +22,7 @@ class NewregisterController extends Controller
                                    ->where('lang_id', '=', $id)
                                    ->get();
      
-         return view('newregister.index', compact('newregister'));
+         return view('newregister.index', compact('newregister'), ['lang_id'=> $id]);
          return view('livewire.search-pagination', compact('newregister'));
      }
 
