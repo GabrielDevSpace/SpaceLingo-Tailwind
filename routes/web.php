@@ -32,7 +32,7 @@ Route::controller(GoogleController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
-
+Route::get('newregister/{id}', [NewregisterController::class, 'lang'])->name('newregister');
 Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
 
 Route::get('/languages', Languages::class);

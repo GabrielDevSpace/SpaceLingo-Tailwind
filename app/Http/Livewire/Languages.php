@@ -10,6 +10,9 @@ class Languages extends Component
     public $showAddLanguageModal = false;
     public $newLanguage = '';
     public $newLanguageSrcImg = ''; // Adicione este campo para capturar a URL da imagem
+    public $confirmingDelete = false;
+    public $languageToDelete = null;
+
 
     public function render()
     {
@@ -44,5 +47,24 @@ class Languages extends Component
 
         $this->languages = Lang::all();
         $this->closeAddLanguageModal();
+    }
+    
+    public function confirmDelete($languageId)
+    {
+        $this->confirmingDelete = true;
+        $this->languageToDelete = $languageId;
+    }
+
+    public function cancelDelete()
+    {
+        $this->confirmingDelete = false;
+        $this->languageToDelete = null;
+    }
+
+    public function deleteLanguage()
+    {
+        Lang::find($this->languageToDelete)->delete();
+        $this->languages = Lang::all();
+        $this->cancelDelete();
     }
 }

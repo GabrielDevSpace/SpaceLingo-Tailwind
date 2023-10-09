@@ -14,6 +14,18 @@ class NewregisterController extends Controller
      * Display a listing of the resource.
      */
 
+     public function lang($id)
+     {
+
+         $user_id = user_id();
+         $newregister = Newregister::where('user_id', '=', $user_id)
+                                   ->where('lang_id', '=', $id)
+                                   ->get();
+     
+         return view('newregister.index', compact('newregister'));
+         return view('livewire.search-pagination', compact('newregister'));
+     }
+
 
     public function index()
     {
