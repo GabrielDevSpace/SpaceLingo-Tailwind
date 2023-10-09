@@ -14,9 +14,9 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: http://185.211.7.218
-        username: u237653964
-        password: Ftp@gabriel1
+        server: ftp.developerspace.com.br
+        username: ${{ secrets.ftp_user }}
+        password: ${{ secrets.ftp_password }}
         server-dir: public_html/spacelingo_web/
         port: 21
         exclude: |
