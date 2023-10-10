@@ -32,8 +32,15 @@ Route::controller(GoogleController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
+Route::get('newregister', [NewregisterController::class, 'index'])->name('newregister.index');
 Route::get('newregister/{id}', [NewregisterController::class, 'lang'])->name('newregister');
-Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
+Route::get('newregister/create/{lang_id}', [NewregisterController::class, 'create'])->name('newregister.create');
+Route::post('newregister/store/{lang_id}', [NewregisterController::class, 'store'])->name('newregister.store');
+Route::put('newregister/update/{lang_id}/{register_id}', [NewregisterController::class, 'update'])->name('newregister.update');
+Route::get('newregister/edit/{lang_id}/{register_id}', [NewregisterController::class, 'edit'])->name('newregister.edit');
+Route::delete('newregister/destroy/{lang_id}/{destroy_id}', [NewregisterController::class, 'destroy'])->name('newregister.destroy');
+
+//Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
 
 Route::get('/languages', Languages::class);
 

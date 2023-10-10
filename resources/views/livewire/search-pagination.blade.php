@@ -67,8 +67,8 @@
 
                         <td class="border px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <a href="#" onclick="ShowModal('myModal-{{ $register->id }}')" class="focus:outline-none myBtn text-white text-sm py-2 px-2 mt-1 mx-1 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg">Note</a>
-                            <a href="{{ route('newregister.edit', $register->id) }}" class="focus:outline-none text-white text-sm py-2 px-2 mt-1 mx-1 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg">Edit</a>
-                            <form class="inline-block" action="{{ route('newregister.destroy', $register->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                            <a href="{{ route('newregister.edit',['lang_id' => $lang_id, 'register_id'=> $register->id]) }}" class="focus:outline-none text-white text-sm py-2 px-2 mt-1 mx-1 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg">Edit</a>
+                            <form class="inline-block" action="{{ route('newregister.destroy', ['lang_id' => $lang_id ,'destroy_id' => $register->id]) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="focus:outline-none text-white text-sm py-1.5 px-2 mt-1 mx-1 rounded-md bg-red-500 hover:bg-red-600 hover:shadow-lg" value="Delete">

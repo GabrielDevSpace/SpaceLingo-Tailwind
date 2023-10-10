@@ -8,7 +8,7 @@
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('newregister.update', $newregister->id) }}">
+                <form method="post" action="{{ route('newregister.update', ['lang_id'=> $lang_id ,'register_id' => $register_id]) }}">
                     @csrf
                     @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md">
@@ -20,15 +20,14 @@
                                 $expression = '';
                                 $contractions = '';
 
-                                if (old('type', $newregister->type) === 'vocabulary') {
+                                if ($newregister->type === 'vocabulary') {
                                 $vocabulary = 'checked';
-                                } elseif (old('type', $newregister->type) === 'expression') {
+                                } elseif ($newregister->type === 'expression') {
                                 $expression = 'checked';
                                 } else {
                                 $contractions = 'checked';
                                 }
                                 @endphp
-
 
                                 <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                     <div class="flex items-center pl-3">
@@ -84,7 +83,7 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="translate" class="block font-medium text-sm text-gray-700">Translate</label>
+                            <label for="translate" class="block font-medium text-sm text-gray-700">Translate </label>
                             <input type="text" name="translate" id="translate" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('translate', $newregister->translate) }}" />
                             @error('translate')
                             <p class="text-sm text-red-600">{{ $message }}</p>

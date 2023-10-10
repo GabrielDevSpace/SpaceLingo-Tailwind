@@ -10,92 +10,90 @@ use App\Models\Newregister;
 
 class NewregisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
-     public function lang($id)
-     {
-
-         $user_id = user_id();
-         $newregister = Newregister::where('user_id', '=', $user_id)
-                                   ->where('lang_id', '=', $id)
-                                   ->get();
-     
-         return view('newregister.index', compact('newregister'), ['lang_id'=> $id]);
-         return view('livewire.search-pagination', compact('newregister'));
-     }
-
-
-    public function index()
+    public function lang($id)
     {
+        $lang_id = $id;
         $user_id = user_id();
-        //$newregister = Newregister::all();
-        $newregister = Newregister::where('user_id', '=', $user_id)->get();
+        $newregister = Newregister::where('user_id', '=', $user_id)
+            ->where('lang_id', '=', $id)
+            ->get();
 
-        
-        //dd($count);
-
-        return view('newregister.index');
+        return view('newregister.index', compact('newregister', 'lang_id'));
         return view('livewire.search-pagination', compact('newregister'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create($id)
     {
-        return view('newregister.create');
+        $lang_id = $id;
+        return view('newregister.create', compact('lang_id'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreNewregisterRequest $request)
+
+    public function store(StoreNewregisterRequest $request, $lang_id)
     {
         $userId = user_id();
-        $data = array_merge($request->validated(), ['user_id' => $userId]);
+        $id = $lang_id;
+        $data = array_merge($request->validated(), [
+            'user_id' => $userId,
+            'lang_id' => $id
+        ]);
 
         Newregister::create($data);
 
-        return redirect()->route('newregister.index');
+        return redirect()->route('newregister', compact('id'));
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Newregister $newregister)
     {
         return view('newregister.show', compact('newregister'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Newregister $newregister)
+    public function edit($lang_id, $register_id)
     {
-        return view('newregister.edit', compact('newregister'));
+        $lang_id = $lang_id;
+        $user_id = user_id();
+        $newregister = Newregister::where('user_id', $user_id)
+            ->where('id', $register_id)
+            ->first();
+
+        if (!$newregister) {
+            return redirect()->route('error.page');
+        }
+
+        return view('newregister.edit', compact('newregister', 'register_id', 'lang_id'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNewregisterRequest $request, Newregister $newregister)
+    public function update(UpdateNewregisterRequest $request, Newregister $newregister, $lang_id, $register_id)
     {
-        //$newregister->update($request->validated());
         $userId = user_id();
-        $data = array_merge($request->validated(), ['user_id' => $userId]);
+        $id = $lang_id;
+        $newregister = Newregister::where('user_id', $userId)
+            ->where('lang_id', $lang_id)
+            ->where('id', $register_id)
+            ->firstOrFail();
+
+        $data = array_merge($request->validated(), [
+            'user_id' => $userId,
+            'lang_id' => $lang_id,
+        ]);
+
         $newregister->update($data);
-        return redirect()->route('newregister.index');
+        return redirect()->route('newregister', compact('id'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Newregister $newregister)
-    {
-        $newregister->delete();
 
-        return redirect()->route('newregister.index');
+    public function destroy(Newregister $newregister, $lang_id, $destroy_id)
+    {
+        $id = $lang_id;
+        $user_id = user_id();
+        $newregister = Newregister::where('lang_id', $lang_id)
+            ->where('user_id', $user_id)
+            ->where('id', $destroy_id)
+            ->firstOrFail();
+
+        $newregister->delete();
+        return redirect()->route('newregister', compact('id'));
     }
 }

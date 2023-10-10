@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create New Register
+            Create New Register {{ $lang_id }}
         </h2>
     </x-slot>
 
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('newregister.store') }}">
+                <form method="post" action="{{ route('newregister.store', ['lang_id' => $lang_id]) }}">
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
@@ -83,7 +83,7 @@
                             @error('note')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
-                            
+
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -103,7 +103,7 @@
     const createButton = document.getElementById('submitbutton');
     noteTextarea.addEventListener('input', function() {
         const textLength = noteTextarea.value.length;
-        characterCount.textContent = textLength+" Characters";
+        characterCount.textContent = textLength + " Characters";
 
         if (textLength > 1500) {
             characterCount.style.color = 'red';
@@ -116,4 +116,3 @@
         }
     });
 </script>
-

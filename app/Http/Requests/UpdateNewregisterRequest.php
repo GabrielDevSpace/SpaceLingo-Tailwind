@@ -37,6 +37,9 @@ class UpdateNewregisterRequest extends FormRequest
             'user_id' => [
                
             ],
+            'lang_id' => [
+               
+            ],
         ];
     }
 }
