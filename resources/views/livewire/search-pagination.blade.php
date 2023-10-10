@@ -27,8 +27,14 @@
                     </div>
                 </div>
             </div>
-            <div><input type="text" class="form-input w-64 mb-5" placeholder="Search Vocabulary or Translate" wire:model="searchTerm"></div>
-
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                <input type="text" class="w-64 px-4 py-2 rounded-full border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
+                </div>
+                <div class="content-right">
+                    <a href="{{ route('newregister.create', ['lang_id' => $lang_id]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Add New Vocabulary</a>
+                </div>
+            </div>
             <table class="table-auto min-w-full divide-y divide-gray-200 w-full">
                 <thead>
                     <tr>
@@ -66,12 +72,12 @@
                         </td>
 
                         <td class="border px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="#" onclick="ShowModal('myModal-{{ $register->id }}')" class="focus:outline-none myBtn text-white text-sm py-2 px-2 mt-1 mx-1 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg">Note</a>
-                            <a href="{{ route('newregister.edit',['lang_id' => $lang_id, 'register_id'=> $register->id]) }}" class="focus:outline-none text-white text-sm py-2 px-2 mt-1 mx-1 rounded-md bg-blue-500 hover:bg-blue-600 hover:shadow-lg">Edit</a>
+                            <a href="#" onclick="ShowModal('myModal-{{ $register->id }}')" class="focus:outline-none myBtn text-white text-sm py-2 px-2 mt-1 mx-1 rounded-full bg-green-500 hover:bg-green-600 hover:shadow-lg">Note</a>
+                            <a href="{{ route('newregister.edit',['lang_id' => $lang_id, 'register_id'=> $register->id]) }}" class="focus:outline-none text-white text-sm py-2 px-2 mt-1 mx-1 rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg">Edit</a>
                             <form class="inline-block" action="{{ route('newregister.destroy', ['lang_id' => $lang_id ,'destroy_id' => $register->id]) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="focus:outline-none text-white text-sm py-1.5 px-2 mt-1 mx-1 rounded-md bg-red-500 hover:bg-red-600 hover:shadow-lg" value="Delete">
+                                <input type="submit" class="focus:outline-none text-white text-sm py-1.5 px-2 mt-1 mx-1 rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg" value="Delete">
                             </form>
                         </td>
                     </tr>

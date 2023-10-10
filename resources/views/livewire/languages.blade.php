@@ -40,7 +40,6 @@
                         $imageName = 'russia.png';
                         }
                         @endphp
-
                         <div class="relative">
                             <img src="{{ asset('images/countries/'.$imageName) }}" alt="{{ $language->name }}" class="w-12 h-12 ml-5 mr-3">
                         </div>

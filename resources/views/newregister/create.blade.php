@@ -1,8 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create New Register {{ $lang_id }}
-        </h2>
+        <div class="flex items-center justify-center h-screen">
+            @php
+            $languageName = \App\Helpers\LanguageImageHelper::getLanguageName($lang_id);
+            $imageName = \App\Helpers\LanguageImageHelper::getLanguageImage($lang_id);
+            @endphp
+
+            <img src="{{ asset('images/countries/'.$imageName) }}" alt="{{ $languageName }}" class="w-12 h-12 ml-5 mr-3">
+
+            @if (!empty($languageName))
+            <span class="font-semibold">{{ $languageName }} - Create Register</span>
+            @endif
+        </div>
     </x-slot>
 
     <div>
