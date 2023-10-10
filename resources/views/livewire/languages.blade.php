@@ -75,16 +75,15 @@
     </div>
     <!-- Modal -->
     @if($showAddLanguageModal)
-    <div class="fixed inset-0 flex items-center justify-center z-50">
-        <!-- Elemento de fundo semi-transparente -->
-        <div class="fixed inset-0 bg-black opacity-50"></div>
-        <!-- Modal -->
-        <div class="modal-container bg-white rounded-lg shadow p-4" style="z-index: 9999;"> <!-- Defina um valor alto para o z-index -->
-            <h2 class="ml-4 text-xl font-semibold text-gray-900">
-                Add Language
-            </h2>
-            <select wire:model.defer="newLanguage" id="languageSelect" class="selected-option">
-                <option value="" disabled selected>Select a Language</option>
+<div class="fixed inset-0 flex items-center justify-center z-50">
+    <!-- Elemento de fundo semi-transparente -->
+    <div class="fixed inset-0 bg-gray-900 opacity-50"></div>
+    <!-- Modal -->
+    <div class="modal-container fixed inset-0 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Add Language</h2>
+            <select wire:model.defer="newLanguage" id="languageSelect" class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400">
+            <option value="" disabled selected>Select a Language</option>
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
                 <option value="French">French</option>
@@ -98,11 +97,12 @@
                 <option value="Hindi">Hindi</option>
                 <option value="Russian">Russian</option>
             </select>
-            <div class="flex justify-end">
-                <button wire:click="closeAddLanguageModal" class="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm">Cancel</button>
-                <button wire:click="addLanguage" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm ml-2">Add</button>
+            <div class="mt-4 flex justify-end">
+                <button wire:click="closeAddLanguageModal" class="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm">Cancel</button>
+                <button wire:click="addLanguage" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm ml-2">Add</button>
             </div>
         </div>
     </div>
-    @endif
+</div>
+@endif
 </div>
