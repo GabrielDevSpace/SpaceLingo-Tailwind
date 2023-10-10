@@ -1,6 +1,6 @@
 <div>
     <div class="p-6 lg:p-6 bg-white border-b border-gray-200">
-        <h1 class="mt-8 text-2xl font-medium text-gray-900">
+        <h1 class="ml-4 pb-4 text-2xl font-medium text-gray-900">
             Your Langs:
         </h1>
 
@@ -68,7 +68,7 @@
         </div>
     </div>
     @endif
-    <div class="mt-4">
+    <div class="ml-2 p-2">
         <!-- Button to open modal -->
         <button wire:click="openAddLanguageModal" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm" type="button">
             Add Language
@@ -81,7 +81,7 @@
         <div class="fixed inset-0 bg-black opacity-50"></div>
         <!-- Modal -->
         <div class="modal-container bg-white rounded-lg shadow p-4" style="z-index: 9999;"> <!-- Defina um valor alto para o z-index -->
-            <h2 class="text-xl font-semibold text-gray-900">
+            <h2 class="ml-4 text-xl font-semibold text-gray-900">
                 Add Language
             </h2>
             <select wire:model.defer="newLanguage" id="languageSelect" class="selected-option">
