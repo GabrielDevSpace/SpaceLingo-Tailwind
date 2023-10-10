@@ -80,10 +80,10 @@
     <div class="fixed inset-0 bg-gray-900 opacity-50"></div>
     <!-- Modal -->
     <div class="modal-container fixed inset-0 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto" style="max-height: 33vh;">
             <h2 class="text-xl font-semibold text-gray-900 mb-4">Add Language</h2>
             <select wire:model.defer="newLanguage" id="languageSelect" class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400">
-            <option value="" disabled selected>Select a Language</option>
+                <option value="" disabled selected>Select a Language</option>
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
                 <option value="French">French</option>

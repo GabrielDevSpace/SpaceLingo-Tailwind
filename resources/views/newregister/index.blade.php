@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-center h-screen">
+        <div class="flex items-center justify-center">
             @php
             $languageName = \App\Helpers\LanguageImageHelper::getLanguageName($lang_id);
             $imageName = \App\Helpers\LanguageImageHelper::getLanguageImage($lang_id);
