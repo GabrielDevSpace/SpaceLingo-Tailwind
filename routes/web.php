@@ -75,6 +75,3 @@ Route::post('/edit-topic', [ExerciseController::class, 'editTopic'])->name('edit
 
 // Route to handle deleting a topic and its associated exercises
 Route::get('/delete-topic', [ExerciseController::class, 'deleteTopic'])->name('deleteTopic');
-
-
-Route::get('/combined-component', CombinedComponent::class);
