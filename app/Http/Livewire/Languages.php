@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Livewire;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Lang;
 
@@ -16,7 +16,8 @@ class Languages extends Component
 
     public function render()
     {
-        $this->languages = Lang::all();
+        $user_id = user_id();
+        $this->languages = Lang::where('user_id', $user_id)->get();
 
         return view('livewire.languages');
     }
@@ -66,7 +67,8 @@ class Languages extends Component
 
     public function deleteLanguage()
     {
-        $language = Lang::find($this->languageToDelete);
+        $user_id = user_id();
+        $language = Lang::where('user_id', $user_id)->find($this->languageToDelete);
     
         if ($language) {
             // Use o método delete em cascata para excluir registros relacionados
