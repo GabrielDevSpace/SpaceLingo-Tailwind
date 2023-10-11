@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseOrStudyPlan extends Model
 {
-    use HasFactory;
+    public function lang()
+    {
+        return $this->belongsTo(Lang::class, 'lang_id');
+    }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class, 'course_or_study_plan_id');
+    }
 }

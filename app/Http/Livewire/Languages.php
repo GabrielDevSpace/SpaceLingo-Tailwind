@@ -66,8 +66,23 @@ class Languages extends Component
 
     public function deleteLanguage()
     {
-        Lang::find($this->languageToDelete)->delete();
+        $language = Lang::find($this->languageToDelete);
+    
+        if ($language) {
+            // Use o método delete em cascata para excluir registros relacionados
+            $language->courseOrStudyPlans->each(function ($courseOrStudyPlan) {
+                $courseOrStudyPlan->topics->each(function ($topic) {
+                    $topic->notes()->delete();
+                });
+                $courseOrStudyPlan->topics()->delete();
+            });
+            $language->courseOrStudyPlans()->delete();
+            $language->delete();
+        }
+    
         $this->languages = Lang::all();
         $this->cancelDelete();
     }
+    
+    
 }
