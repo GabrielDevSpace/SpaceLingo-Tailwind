@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('langs', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('name');
             $table->string('src_img');
             $table->timestamps();

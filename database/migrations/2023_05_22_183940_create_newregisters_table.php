@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('newregisters', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('lang_id');
-            $table->foreign('lang_id')->references('id')->on('langs')->nullable();
             $table->string('vocabulary');
             $table->string('translate');
             $table->string('note');

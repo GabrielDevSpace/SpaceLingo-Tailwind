@@ -36,11 +36,14 @@ class Languages extends Component
 
     public function addLanguage()
     {
+
+        $user_id = user_id();
         $this->validate([
             'newLanguage' => 'required|unique:langs,name',
         ]);
 
         Lang::create([
+            'user_id' => $user_id,
             'name' => $this->newLanguage,
             'src_img' => $this->newLanguageSrcImg, // Adicione a URL da imagem ao criar o novo idioma
         ]);

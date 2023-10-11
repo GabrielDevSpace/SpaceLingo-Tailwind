@@ -16,3 +16,7 @@
         4
     </div>
 </div>
+
+<div class="">
+    @livewire('combined-component')
+</div>

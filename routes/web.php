@@ -8,6 +8,7 @@ use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Livewire\Languages;
+use App\Http\Livewire\CombinedComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,6 @@ Route::post('/edit-topic', [ExerciseController::class, 'editTopic'])->name('edit
 
 // Route to handle deleting a topic and its associated exercises
 Route::get('/delete-topic', [ExerciseController::class, 'deleteTopic'])->name('deleteTopic');
+
+
+Route::get('/combined-component', CombinedComponent::class);
