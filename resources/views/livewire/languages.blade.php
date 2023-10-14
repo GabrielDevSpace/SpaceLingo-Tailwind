@@ -3,63 +3,69 @@
         <h1 class="ml-4 pb-4 text-2xl font-medium text-gray-900">
             Your Langs:
         </h1>
-
-        <div class="flex flex-wrap -mx-4">
+        <div class="flex flex-wrap justify-center">
             @foreach($languages as $language)
-            <div class="relative w-1/4 sm:w-1/2 mb-4 border-2 border-violet-300 border-dashed rounded-md m-1">
-                <div class="bg-violet-100 p-2 text-center">
-                    <button wire:click="confirmDelete('{{ $language->id }}')" class="absolute top-1 left-1 px-2 py-0 bg-violet-500 text-white rounded-full hover:bg-violet-900 focus:ring-red-300 text-sm ml-0">
+            @php
+            $imageName = '';
+            if ($language->name === 'English') {
+            $imageName = 'usa.png';
+            } elseif ($language->name === 'Spanish') {
+            $imageName = 'spain.png';
+            } elseif ($language->name === 'French') {
+            $imageName = 'france.png';
+            } elseif ($language->name === 'German') {
+            $imageName = 'germany.png';
+            } elseif ($language->name === 'Japanese') {
+            $imageName = 'japan.png';
+            } elseif ($language->name === 'Italian') {
+            $imageName = 'italy.png';
+            } elseif ($language->name === 'Korean') {
+            $imageName = 'korea.png';
+            } elseif ($language->name === 'Portuguese-Brazil') {
+            $imageName = 'brazil.png';
+            } elseif ($language->name === 'Portuguese-Portugal') {
+            $imageName = 'portugal.png';
+            } elseif ($language->name === 'Chinese') {
+            $imageName = 'china.png';
+            } elseif ($language->name === 'Hindi') {
+            $imageName = 'india.png';
+            } elseif ($language->name === 'Russian') {
+            $imageName = 'russia.png';
+            }
+            @endphp
+            <div class="max-w-sm rounded overflow-hidden shadow-lg m-2 border-2 border-dashed border-violet-300">
+                <div class="bg-violet-100">
+                    <button wire:click="confirmDelete('{{ $language->id }}')" class="ml-2 mt-2 px-2 py-0 bg-violet-500 text-white rounded-full hover:bg-violet-900 focus:ring-red-300 text-sm ml-0">
                         <i class="fa fa-trash"></i>
                     </button>
-                    <a href="{{ route('newregister', ['id' => $language->id]) }}" class="block">
-                        <div class="flex justify-center items-center">
-                            @php
-                            $imageName = '';
-                            if ($language->name === 'English') {
-                            $imageName = 'usa.png';
-                            } elseif ($language->name === 'Spanish') {
-                            $imageName = 'spain.png';
-                            } elseif ($language->name === 'French') {
-                            $imageName = 'france.png';
-                            } elseif ($language->name === 'German') {
-                            $imageName = 'germany.png';
-                            } elseif ($language->name === 'Japanese') {
-                            $imageName = 'japan.png';
-                            } elseif ($language->name === 'Italian') {
-                            $imageName = 'italy.png';
-                            } elseif ($language->name === 'Korean') {
-                            $imageName = 'korea.png';
-                            } elseif ($language->name === 'Portuguese-Brazil') {
-                            $imageName = 'brazil.png';
-                            } elseif ($language->name === 'Portuguese-Portugal') {
-                            $imageName = 'portugal.png';
-                            } elseif ($language->name === 'Chinese') {
-                            $imageName = 'china.png';
-                            } elseif ($language->name === 'Hindi') {
-                            $imageName = 'india.png';
-                            } elseif ($language->name === 'Russian') {
-                            $imageName = 'russia.png';
-                            }
-                            @endphp
-                            <div class="text-center">
-                                <img src="{{ asset('images/countries/'.$imageName) }}" alt="{{ $language->name }}" class="w-12 h-12 align-center">
-                            </div>
+                    <div class="flex justify-center">
+                        <img src="{{ asset('images/countries/'.$imageName) }}" alt="{{ $language->name }}" class="w-16 h-16 align-center">
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2 flex justify-center">
+                            <span class="text-violet-700">{{ $language->name }}</span>
                         </div>
-                        <div>
-                            <span class="text-base text-gray-600">{{ $language->name }}</span>
-                        </div>
-                    </a>
+                        <p class="text-gray-700 text-base">
+                            <a href="{{ route('newregister', ['id' => $language->id]) }}" class="block">
+                                <div class="flex justify-center">
+                                    <div class="text-center">
+
+                                    </div>
+                                </div>
+                            </a>
+                        </p>
+                    </div>
                 </div>
 
-                <div class="bg-violet-200 p-2 ">
-                    <div class="grid grid-cols-2 gap-8">
-                        <div>
-                            <button wire:click="#" class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 text-sm" type="button">
+                <div class="px-6 pt-4 pb-2 bg-violet-200">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="flex justify-center">
+                            <button wire:click="#" class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
                                 Vocabulary
                             </button>
                         </div>
-                        <div>
-                            <button wire:click="#" class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 text-sm" type="button">
+                        <div class="flex justify-center">
+                            <button wire:click="#" class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
                                 Notes
                             </button>
                         </div>
@@ -68,52 +74,7 @@
             </div>
             @endforeach
         </div>
-        <!--
-        <div class="flex flex-wrap -mx-4">
-            @foreach($languages as $language)
-            <div class="relative w-1/4 px-4 mb-4">
-                <button wire:click="confirmDelete('{{ $language->id }}')" class="absolute top-0 left-0 px-1 py-0 bg-gray-700 text-white rounded-full hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium text-xs ml-0">
-                    x
-                </button>
-                <a href="{{ route('newregister', ['id' => $language->id]) }}" class="block">
-                    <div class="flex items-center">
-                        @php
-                        $imageName = '';
-                        if ($language->name === 'English') {
-                        $imageName = 'usa.png';
-                        } elseif ($language->name === 'Spanish') {
-                        $imageName = 'spain.png';
-                        } elseif ($language->name === 'French') {
-                        $imageName = 'france.png';
-                        } elseif ($language->name === 'German') {
-                        $imageName = 'germany.png';
-                        } elseif ($language->name === 'Japanese') {
-                        $imageName = 'japan.png';
-                        } elseif ($language->name === 'Italian') {
-                        $imageName = 'italy.png';
-                        } elseif ($language->name === 'Korean') {
-                        $imageName = 'korea.png';
-                        } elseif ($language->name === 'Portuguese-Brazil') {
-                        $imageName = 'brazil.png';
-                        } elseif ($language->name === 'Portuguese-Portugal') {
-                        $imageName = 'portugal.png';
-                        } elseif ($language->name === 'Chinese') {
-                        $imageName = 'china.png';
-                        } elseif ($language->name === 'Hindi') {
-                        $imageName = 'india.png';
-                        } elseif ($language->name === 'Russian') {
-                        $imageName = 'russia.png';
-                        }
-                        @endphp
-                        <div class="relative">
-                            <img src="{{ asset('images/countries/'.$imageName) }}" alt="{{ $language->name }}" class="w-12 h-12 ml-5 mr-3">
-                        </div>
-                        <span class="text-base text-gray-600">{{ $language->name }}</span>
-                    </div>
-                </a>
-            </div>
-            @endforeach
-        </div> -->
+
     </div>
     @if($confirmingDelete)
     <div class="fixed inset-0 flex items-center justify-center z-50">
