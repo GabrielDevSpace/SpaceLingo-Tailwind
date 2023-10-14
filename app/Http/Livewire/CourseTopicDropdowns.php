@@ -19,10 +19,11 @@ class CourseTopicDropdowns extends Component
     public function render()
     {
         $user_id = auth()->id();
-        $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->get();
+        $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
         return view('livewire.course-topic-dropdowns');
     }
 
+    
     public function updatedSelectedCourse($courseId)
     {
         $user_id = auth()->id();
@@ -31,8 +32,6 @@ class CourseTopicDropdowns extends Component
 
     public function fetchNotes()
     {
-        // Realize a consulta na tabela 'notes' com base nas seleções do usuário.
-        // Suponhamos que 'lang_id', 'course_id' e 'topic_id' estejam disponíveis como propriedades do componente.
         $user_id = auth()->id();
         $notes = Notes::where('user_id', $user_id)
             ->where('lang_id', $this->lang_id)
