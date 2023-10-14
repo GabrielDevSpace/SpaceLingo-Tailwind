@@ -7,8 +7,9 @@ use App\Http\Controllers\NewregisterController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\CourseNotesController;
 use App\Http\Livewire\Languages;
-use App\Http\Livewire\CombinedComponent;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::put('newregister/update/{lang_id}/{register_id}', [NewregisterController:
 Route::get('newregister/edit/{lang_id}/{register_id}', [NewregisterController::class, 'edit'])->name('newregister.edit');
 Route::delete('newregister/destroy/{lang_id}/{destroy_id}', [NewregisterController::class, 'destroy'])->name('newregister.destroy');
 
+Route::get('coursenotes/{id}', [CourseNotesController::class, 'index'])->name('coursenotes');
 //Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
 
 Route::get('/languages', Languages::class);
