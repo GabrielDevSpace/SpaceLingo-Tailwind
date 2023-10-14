@@ -23,7 +23,15 @@ class LanguageImageHelper
             'Spanish' => 'spain.png',
             'French' => 'france.png',
             'German' => 'germany.png',
-            // ...
+            'Japanese' => 'japan.png',
+            'Italian' => 'italy.png',
+            'korean' => 'korea.png',
+            'Portuguese-Brazil' => 'brazil.png',
+            'Portuguese-Portugal' => 'portugal.png',
+            'Chinese' => 'china.png',
+            'Hindi' => 'india.png',
+            'Russian' => 'russia.png',
+  
         ];
 
         return $languageImages[$languageName] ?? ''; // Retorna o nome da imagem ou uma string vazia se não houver correspondência.

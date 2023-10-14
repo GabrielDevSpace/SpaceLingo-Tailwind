@@ -1,7 +1,7 @@
 <div>
     <div class="p-6 lg:p-6 bg-white border-b border-gray-200">
-        <h1 class="ml-4 pb-4 text-2xl font-medium text-gray-900">
-            Your Langs:
+        <h1 class="ml-4 pb-4 text-2xl text-violet-800">
+            <b>Your Langs</b>
         </h1>
         <div class="flex flex-wrap justify-center">
             @foreach($languages as $language)
@@ -45,29 +45,23 @@
                         <div class="font-bold text-xl mb-2 flex justify-center">
                             <span class="text-violet-700">{{ $language->name }}</span>
                         </div>
-                        <p class="text-gray-700 text-base">
-                            <a href="{{ route('newregister', ['id' => $language->id]) }}" class="block">
-                                <div class="flex justify-center">
-                                    <div class="text-center">
-
-                                    </div>
-                                </div>
-                            </a>
-                        </p>
                     </div>
                 </div>
-
                 <div class="px-6 pt-4 pb-2 bg-violet-200">
                     <div class="grid grid-cols-2 gap-2">
                         <div class="flex justify-center">
-                            <button wire:click="#" class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
-                                Vocabulary
-                            </button>
+                            <a href="{{ route('newregister', ['id' => $language->id]) }}" class="block">
+                                <button class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
+                                    <i class="fa fa-language"></i> Vocabulary
+                                </button>
+                            </a>
                         </div>
                         <div class="flex justify-center">
-                            <button wire:click="#" class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
-                                Notes
-                            </button>
+                            <a href="{{ route('newregister', ['id' => $language->id]) }}" class="block">
+                                <button class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
+                                    <i class="fa fa-pencil-square-o"></i> Notes
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -95,8 +89,8 @@
     @endif
     <div class="ml-2 p-2">
         <!-- Button to open modal -->
-        <button wire:click="openAddLanguageModal" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm" type="button">
-            Add Language
+        <button wire:click="openAddLanguageModal" class="px-4 py-2 bg-violet-700 text-white rounded-full hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
+            Add New Language
         </button>
     </div>
     <!-- Modal -->
