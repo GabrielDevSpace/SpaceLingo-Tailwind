@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseOrStudyPlan extends Model
 {
+    protected $fillable = [
+        'name',
+        'lang_id',
+        'user_id',
+    ];
     public function lang()
     {
         return $this->belongsTo(Lang::class, 'lang_id');
