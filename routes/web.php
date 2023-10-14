@@ -11,6 +11,7 @@ use App\Http\Controllers\CourseNotesController;
 use App\Http\Livewire\Languages;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

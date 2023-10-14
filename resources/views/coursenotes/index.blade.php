@@ -9,7 +9,7 @@
             <img src="{{ asset('images/countries/'.$imageName) }}" alt="{{ $languageName }}" class="w-12 h-12 ml-5 mr-3">
 
             @if (!empty($languageName))
-            <span class="font-semibold text-violet-800">{{ $languageName }} - Vocabulary List</span>
+                <span class="font-semibold text-violet-800">{{ $languageName }} - Vocabulary List</span>
             @endif
         </div>
     </x-slot>
@@ -21,13 +21,9 @@
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                <!-- INICIO PAGINATION -->
-                                <div>
-                                    @foreach($courses as $course)
-                                    {{ $course->name }}
-                                    @endforeach
-                                </div>
-                                <!-- FIM PAGINAÇÂO -->
+                                <!-- INICIO LIVEWIRE -->
+                                <livewire:course-topic-dropdowns :lang_id="$lang_id"/>
+                                <!-- FIM LIVEWIRE -->
                             </div>
                         </div>
                     </div>

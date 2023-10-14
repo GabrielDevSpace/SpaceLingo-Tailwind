@@ -16,9 +16,10 @@ class CourseNotesController extends Controller
 
     public function index($id)
     {
-        $lang_id = $id;
+        $lang_id = '7';
         $user_id = user_id();
         $courses = CourseOrStudyPlan::where('lang_id', '=', $lang_id)
+        ->where('user_id', '=', $user_id)
             ->get();
 
         return view('coursenotes.index', compact('lang_id', 'courses'));
