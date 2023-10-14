@@ -6,7 +6,7 @@
 
         <div class="flex flex-wrap -mx-4">
             @foreach($languages as $language)
-            <div class="relative w-1/4 mb-4 border-2 border-violet-300 border-dashed rounded-md m-1">
+            <div class="relative w-1/4 sm:w-1/2 mb-4 border-2 border-violet-300 border-dashed rounded-md m-1">
                 <div class="bg-violet-100 p-2 text-center">
                     <button wire:click="confirmDelete('{{ $language->id }}')" class="absolute top-1 left-1 px-2 py-0 bg-violet-500 text-white rounded-full hover:bg-violet-900 focus:ring-red-300 text-sm ml-0">
                         <i class="fa fa-trash"></i>
