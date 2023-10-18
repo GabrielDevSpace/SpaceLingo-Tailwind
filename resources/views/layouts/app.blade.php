@@ -7,6 +7,7 @@
 
         <title>{{ config('app.name', 'SpaceLingo') }}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -55,4 +56,5 @@
 
         @livewireScripts
     </body>
+    
 </html>
