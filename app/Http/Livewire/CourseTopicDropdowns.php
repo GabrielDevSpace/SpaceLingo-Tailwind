@@ -23,7 +23,6 @@ class CourseTopicDropdowns extends Component
     {
         $user_id = auth()->id();
         $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
-        $this->fetchNotes();
         return view('livewire.course-topic-dropdowns');
     }
 
