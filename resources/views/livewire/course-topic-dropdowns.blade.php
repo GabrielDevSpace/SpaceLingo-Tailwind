@@ -55,7 +55,7 @@
     @if ($selectedCourse && $selectedTopic)
     <div class="m-1 p-4 md:w-2/2 bg-violet-100 border-2 border-violet-300 border-dashed rounded-md">
         <label for="notes" class="block font-bold text-violet-800">Notes</label>
-        <textarea id="notes" class="border p-2 w-full rounded" rows="8" wire:model="notes"></textarea>
+        <textarea id="notes" class="border p-2 w-full rounded" rows="12" wire:model="notes"></textarea>
         <div class="p-4 text-right">
             <button wire:click="saveNotes" class="bg-violet-600 hover:bg-violet-900 text-white px-4 py-2 rounded-full">
                 <i class="fa fa-save mr-2"></i>
@@ -66,12 +66,3 @@
     @endif
     @endif
 </div>
-<script>
-    $(document).ready(function() {
-        // Seletor para o botão
-        var buttonSelector = '#fetchNotesButton';
-
-        // Acione o clique no botão automaticamente quando o documento estiver pronto
-        $(buttonSelector).trigger('click');
-    });
-</script>
