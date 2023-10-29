@@ -59,7 +59,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex flex-wrap space-x-1 justify-center">
 
-                                    <a href="#" onclick="ShowModal('myModal-{{ $register->id }}')" class="w-8 h-8 flex items-center justify-center focus:outline-none myBtn text-white text-lg py-2 px-4 rounded-full bg-yellow-500 hover:bg-yellow-600 hover:shadow-lg">
+                                    <a href="#" onclick="ShowMobileModal('myMobileModal-{{ $register->id }}')" class="w-8 h-8 flex items-center justify-center focus:outline-none myBtn text-white text-lg py-2 px-4 rounded-full bg-yellow-500 hover:bg-yellow-600 hover:shadow-lg">
                                         <i class="fa fa-info"></i>
                                     </a>
 
@@ -83,7 +83,7 @@
                         $svg = getSvgHelper($register->type);
                         @endphp
                         <!-- Modal -->
-                        <div class="fixed z-10 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal-{{ $register->id }}">
+                        <div class="fixed z-10 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myMobileModal-{{ $register->id }}">
                             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                                 <!-- Background overlay -->
                                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
                                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="HiddenModal('myModal-{{ $register->id }}')">
+                                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="HiddenMobileModal('myMobileModal-{{ $register->id }}')">
                                             Close
                                         </button>
                                     </div>
@@ -297,4 +297,15 @@
         var modal = document.getElementById(id);
         modal.style.display = "";
     }
+
+    function ShowMobileModal(id) {
+        var modalMobile = document.getElementById(id);
+        modalMobile.style.display = "block";
+    }
+
+    function HiddenMobileModal(id) {
+        var modalMobile = document.getElementById(id);
+        modalMobile.style.display = "";
+    }
+  
 </script>
