@@ -6,12 +6,12 @@
                 <div class="w-full mx-auto p-1 grid gap-4 grid-cols-3">
                     <div class="bg-gray-100 p-4 text-center">
                         <i class="fa fa-calendar fa-2x text-green-600"></i>
-                        <p class="text-xs font-bold text-gray-500 uppercase mt-2">Semana</p>
+                        <p class="text-xs font-bold text-gray-500 uppercase mt-2">Week</p>
                         <p class="font-bold text-violet-800 text-base">{{ $countWeek }}</p>
                     </div>
                     <div class="bg-gray-100 p-4 text-center">
                         <i class="fa fa-calendar fa-2x text-green-600"></i>
-                        <p class="text-xs font-bold text-gray-500 uppercase mt-2">Mês</p>
+                        <p class="text-xs font-bold text-gray-500 uppercase mt-2">Month</p>
                         <p class="font-bold text-violet-800 text-base">{{ $countMonth }}</p>
                     </div>
                     <div class="bg-gray-100 p-4 text-center">
