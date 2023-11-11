@@ -22,7 +22,10 @@ class CourseTopicDropdowns extends Component
     public function render()
     {
         $user_id = auth()->id();
-        $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
+        // $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
+
+        $this->courses = CourseOrStudyPlan::with('topics')->where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
+
         return view('livewire.course-topic-dropdowns');
     }
 
