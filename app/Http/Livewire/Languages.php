@@ -39,7 +39,10 @@ class Languages extends Component
     {
 
         $user_id = user_id();
-        
+        $this->validate([
+            'newLanguage' => 'required|unique:langs,name,NULL,id,user_id,' . Auth::id(),
+        ]);
+
         Lang::create([
             'user_id' => $user_id,
             'name' => $this->newLanguage,
