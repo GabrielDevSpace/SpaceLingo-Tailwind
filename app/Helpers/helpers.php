@@ -2,14 +2,17 @@
 
 use Illuminate\Support\Facades\Auth;
 
-if (!function_exists('user_id')){
+if (!function_exists('user_id')) {
     function user_id()
     {
-        $user = Auth::user();
-        return $user->id;
+        if (Auth::check()) {
+            $user = Auth::user();
+            return $user->id;
+        } else {
+            return redirect()->route('login');
+        }
     }
 }
-
 
 function getSvgSmall($resultLoop) {
     if ($resultLoop == 'vocabulary') {
