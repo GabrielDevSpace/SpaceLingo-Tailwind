@@ -39,7 +39,8 @@ class CourseTopicDropdowns extends Component
                 'lang_id' => $this->lang_id,
                 'name' => $this->newCourse,
             ]);
-    
+
+            flashMessage('success', 'Course Created.');
             // Atualizar a lista de cursos
             $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
         } else {

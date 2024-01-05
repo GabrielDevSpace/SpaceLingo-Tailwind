@@ -31,7 +31,8 @@
         },
         "files":[
             "app/Helpers/helpers.php",
-            "app/Helpers/LanguageImageHelper.php"
+            "app/Helpers/LanguageImageHelper.php",
+            "app/Helpers/AlertMessageHelper.php"
         ]
     },
     "autoload-dev": {

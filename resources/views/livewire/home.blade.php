@@ -30,8 +30,6 @@
 
 
         <livewire:search-pagination />
-        
-
         @livewireScripts
 
    </body>
