@@ -44,9 +44,7 @@ class CourseTopicDropdowns extends Component
             // Atualizar a lista de cursos
             $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
         } else {
-            // Adicionar uma mensagem de erro ou lidar de outra forma com o cenário de nome nulo
-            // Por exemplo, você pode definir uma mensagem de erro para ser exibida na interface do usuário.
-            // $this->addError('newCourse', 'O nome do curso não pode ser nulo.');
+            flashMessage('error', 'Course Not Created.');
         }
     }
 
@@ -60,18 +58,11 @@ class CourseTopicDropdowns extends Component
                 'course_or_study_plan_id' => $this->selectedCourse,
                 'name' => $this->newTopic,
             ]);
-    
+            flashMessage('success', 'Topic Created.');
             // Atualizar a lista de tópicos
             $this->topics = Topic::where('user_id', $user_id)->where('course_or_study_plan_id', $this->selectedCourse)->get();
         } else {
-            // Adicionar uma mensagem de erro ou lidar de outra forma com o cenário de curso ou tópico nulo
-            // Por exemplo, você pode definir mensagens de erro para serem exibidas na interface do usuário.
-            // if (!$this->selectedCourse) {
-            //     $this->addError('selectedCourse', 'Selecione um curso.');
-            // }
-            // if (empty($this->newTopic)) {
-            //     $this->addError('newTopic', 'O nome do tópico não pode ser nulo.');
-            // }
+            flashMessage('error', 'Topic Not Created.');
         }
     }
 
@@ -90,6 +81,7 @@ class CourseTopicDropdowns extends Component
         $existingNotes->update([
             'notes' => $this->notes,
         ]);
+        flashMessage('success', 'Notes Saved.');
     } else {
         // Caso contrário, crie um novo registro de notas
         Notes::create([
@@ -99,6 +91,7 @@ class CourseTopicDropdowns extends Component
             'topic_id' => $this->selectedTopic,
             'notes' => $this->notes,
         ]);
+        flashMessage('success', 'Notes Saved.');
     }
 }
 

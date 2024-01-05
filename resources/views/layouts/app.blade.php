@@ -56,5 +56,4 @@
 
         @livewireScripts
     </body>
-    
 </html>
