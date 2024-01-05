@@ -42,13 +42,14 @@ class Languages extends Component
         $this->validate([
             'newLanguage' => 'required|unique:langs,name,NULL,id,user_id,' . Auth::id(),
         ]);
-
+       
         Lang::create([
             'user_id' => $user_id,
             'name' => $this->newLanguage,
             'src_img' => $this->newLanguageSrcImg, // Adicione a URL da imagem ao criar o novo idioma
         ]);
 
+        flashMessage('success', 'Created New Language.');
         $this->languages = Lang::all();
         $this->closeAddLanguageModal();
     }
@@ -80,6 +81,7 @@ class Languages extends Component
             });
             $language->courseOrStudyPlans()->delete();
             $language->delete();
+            flashMessage('success', 'Deleted Lang.');
         }
     
         $this->languages = Lang::all();

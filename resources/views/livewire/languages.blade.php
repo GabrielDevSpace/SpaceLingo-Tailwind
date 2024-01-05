@@ -1,4 +1,5 @@
 <div>
+<x-alert-message />
     <div class="p-6 lg:p-6 bg-white border-b border-gray-200">
         <h1 class="ml-4 pb-4 text-2xl text-violet-800">
             <b>Your Langs</b>
