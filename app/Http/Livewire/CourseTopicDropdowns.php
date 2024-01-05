@@ -31,22 +31,27 @@ class CourseTopicDropdowns extends Component
 
     public function addCourse()
     {
-        // Adicionar o novo curso à base de dados (por exemplo, usando o Eloquent)
-        $user_id = auth()->id();
-        CourseOrStudyPlan::create([
-            'user_id' => $user_id,
-            'lang_id' => $this->lang_id,
-            'name' => $this->newCourse,
-        ]);
-
-        // Atualizar a lista de cursos
-        $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
+        if (!empty($this->newCourse)) {
+            // Adicionar o novo curso à base de dados (por exemplo, usando o Eloquent)
+            $user_id = auth()->id();
+            CourseOrStudyPlan::create([
+                'user_id' => $user_id,
+                'lang_id' => $this->lang_id,
+                'name' => $this->newCourse,
+            ]);
+    
+            // Atualizar a lista de cursos
+            $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
+        } else {
+            // Adicionar uma mensagem de erro ou lidar de outra forma com o cenário de nome nulo
+            // Por exemplo, você pode definir uma mensagem de erro para ser exibida na interface do usuário.
+            // $this->addError('newCourse', 'O nome do curso não pode ser nulo.');
+        }
     }
 
     public function addTopic()
     {
-        // Verificar se um curso foi selecionado
-        if ($this->selectedCourse) {
+        if ($this->selectedCourse && !empty($this->newTopic)) {
             // Adicionar o novo tópico à base de dados (por exemplo, usando o Eloquent)
             $user_id = auth()->id();
             Topic::create([
@@ -54,9 +59,18 @@ class CourseTopicDropdowns extends Component
                 'course_or_study_plan_id' => $this->selectedCourse,
                 'name' => $this->newTopic,
             ]);
-
+    
             // Atualizar a lista de tópicos
             $this->topics = Topic::where('user_id', $user_id)->where('course_or_study_plan_id', $this->selectedCourse)->get();
+        } else {
+            // Adicionar uma mensagem de erro ou lidar de outra forma com o cenário de curso ou tópico nulo
+            // Por exemplo, você pode definir mensagens de erro para serem exibidas na interface do usuário.
+            // if (!$this->selectedCourse) {
+            //     $this->addError('selectedCourse', 'Selecione um curso.');
+            // }
+            // if (empty($this->newTopic)) {
+            //     $this->addError('newTopic', 'O nome do tópico não pode ser nulo.');
+            // }
         }
     }
 
