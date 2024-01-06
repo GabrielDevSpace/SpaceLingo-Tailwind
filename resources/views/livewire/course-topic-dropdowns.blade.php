@@ -53,7 +53,7 @@
         <button wire:click="fetchNotes" id="fetchNotesButton" class="bg-violet-700 hover:bg-violet-900 text-white px-4 py-2 rounded-full"> <i class="fa fa-search mr-2"></i>Search Notes</button>
     </div>
     @endif
-
+    @if ($notes)
 
         @if ($selectedCourse && $selectedTopic)
         <div class="m-1 p-4 md:w-2/2 bg-violet-100 border-2 border-violet-300 border-dashed rounded-md">
@@ -66,5 +66,6 @@
                 </button>
             </div>
         </div>
+        @endif
         @endif
 </div>
