@@ -32,17 +32,31 @@ class CourseTopicDropdowns extends Component
     public function addCourse()
     {
         if (!empty($this->newCourse)) {
-            // Adicionar o novo curso à base de dados (por exemplo, usando o Eloquent)
             $user_id = auth()->id();
-            CourseOrStudyPlan::create([
-                'user_id' => $user_id,
-                'lang_id' => $this->lang_id,
-                'name' => $this->newCourse,
-            ]);
 
-            flashMessage('success', 'Course Created.');
-            // Atualizar a lista de cursos
-            $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
+            // Verificar se o curso já existe para o usuário atual e o ID do idioma
+            $existingCourse = CourseOrStudyPlan::where('user_id', $user_id)
+                ->where('lang_id', $this->lang_id)
+                ->where('name', $this->newCourse)
+                ->first();
+
+            if (!$existingCourse) {
+                // Se o curso ainda não existe, adicione-o à base de dados
+                CourseOrStudyPlan::create([
+                    'user_id' => $user_id,
+                    'lang_id' => $this->lang_id,
+                    'name' => $this->newCourse,
+                ]);
+
+                flashMessage('success', 'Course Created.');
+
+                // Atualizar a lista de cursos
+                $this->courses = CourseOrStudyPlan::where('user_id', $user_id)
+                    ->where('lang_id', $this->lang_id)
+                    ->get();
+            } else {
+                flashMessage('error', 'Course Already Exists.');
+            }
         } else {
             flashMessage('error', 'Course Not Created.');
         }
@@ -51,49 +65,64 @@ class CourseTopicDropdowns extends Component
     public function addTopic()
     {
         if ($this->selectedCourse && !empty($this->newTopic)) {
-            // Adicionar o novo tópico à base de dados (por exemplo, usando o Eloquent)
             $user_id = auth()->id();
-            Topic::create([
-                'user_id' => $user_id,
-                'course_or_study_plan_id' => $this->selectedCourse,
-                'name' => $this->newTopic,
-            ]);
-            flashMessage('success', 'Topic Created.');
-            // Atualizar a lista de tópicos
-            $this->topics = Topic::where('user_id', $user_id)->where('course_or_study_plan_id', $this->selectedCourse)->get();
+
+            // Verificar se o tópico já existe para o usuário atual e o curso selecionado
+            $existingTopic = Topic::where('user_id', $user_id)
+                ->where('course_or_study_plan_id', $this->selectedCourse)
+                ->where('name', $this->newTopic)
+                ->first();
+
+            if (!$existingTopic) {
+                // Se o tópico ainda não existe, adicione-o à base de dados
+                Topic::create([
+                    'user_id' => $user_id,
+                    'course_or_study_plan_id' => $this->selectedCourse,
+                    'name' => $this->newTopic,
+                ]);
+
+                flashMessage('success', 'Topic Created.');
+
+                // Atualizar a lista de tópicos
+                $this->topics = Topic::where('user_id', $user_id)
+                    ->where('course_or_study_plan_id', $this->selectedCourse)
+                    ->get();
+            } else {
+                flashMessage('error', 'Topic Already Exists.');
+            }
         } else {
             flashMessage('error', 'Topic Not Created.');
         }
     }
 
     public function saveNotes()
-{
-    $user_id = auth()->id();
+    {
+        $user_id = auth()->id();
 
-    $existingNotes = Notes::where('user_id', $user_id)
-        ->where('lang_id', $this->lang_id)
-        ->where('course_or_study_plan_id', $this->selectedCourse)
-        ->where('topic_id', $this->selectedTopic)
-        ->first();
+        $existingNotes = Notes::where('user_id', $user_id)
+            ->where('lang_id', $this->lang_id)
+            ->where('course_or_study_plan_id', $this->selectedCourse)
+            ->where('topic_id', $this->selectedTopic)
+            ->first();
 
-    if ($existingNotes) {
-        // Se as notas já existirem, atualize-as
-        $existingNotes->update([
-            'notes' => $this->notes,
-        ]);
-        flashMessage('success', 'Notes Saved.');
-    } else {
-        // Caso contrário, crie um novo registro de notas
-        Notes::create([
-            'user_id' => $user_id,
-            'lang_id' => $this->lang_id,
-            'course_or_study_plan_id' => $this->selectedCourse,
-            'topic_id' => $this->selectedTopic,
-            'notes' => $this->notes,
-        ]);
-        flashMessage('success', 'Notes Saved.');
+        if ($existingNotes) {
+            // Se as notas já existirem, atualize-as
+            $existingNotes->update([
+                'notes' => $this->notes,
+            ]);
+            flashMessage('success', 'Notes Saved.');
+        } else {
+            // Caso contrário, crie um novo registro de notas
+            Notes::create([
+                'user_id' => $user_id,
+                'lang_id' => $this->lang_id,
+                'course_or_study_plan_id' => $this->selectedCourse,
+                'topic_id' => $this->selectedTopic,
+                'notes' => $this->notes,
+            ]);
+            flashMessage('success', 'Notes Saved.');
+        }
     }
-}
 
     public function updatedSelectedCourse($courseId)
     {
