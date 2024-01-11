@@ -61,17 +61,17 @@ class CourseTopicDropdowns extends Component
                     'name' => $this->newCourse,
                 ]);
 
-                alertMessage('success', 'Course Added Successfully!');
+                $this->alertMessage('success', 'Course Added Successfully!');
 
                 // Atualizar a lista de cursos
                 $this->courses = CourseOrStudyPlan::where('user_id', $user_id)
                     ->where('lang_id', $this->lang_id)
                     ->get();
             } else {
-                alertMessage('error', 'Course Already Exists!');
+                $this->alertMessage('error', 'Course Already Exists!');
             }
         } else {
-            alertMessage('error', 'Course Not Created!');
+            $this->alertMessage('error', 'Course Not Created!');
         }
     }
 
@@ -93,17 +93,17 @@ class CourseTopicDropdowns extends Component
                     'course_or_study_plan_id' => $this->selectedCourse,
                     'name' => $this->newTopic,
                 ]);
-                alertMessage('success', 'Topic Created Successfully!');
+                $this->alertMessage('success', 'Topic Created Successfully!');
 
                 // Atualizar a lista de tópicos
                 $this->topics = Topic::where('user_id', $user_id)
                     ->where('course_or_study_plan_id', $this->selectedCourse)
                     ->get();
             } else {
-                alertMessage('error', 'Topic Already Exists.');
+                $this->alertMessage('error', 'Topic Already Exists.');
             }
         } else {
-            alertMessage('error', 'Topic Not Created.');
+            $this->alertMessage('error', 'Topic Not Created.');
         }
     }
 
@@ -122,7 +122,7 @@ class CourseTopicDropdowns extends Component
             $existingNotes->update([
                 'notes' => $this->notes,
             ]);
-            alertMessage('success', 'Notes Saved.');
+            $this->alertMessage('success', 'Notes Saved.');
         } else {
             // Caso contrário, crie um novo registro de notas
             Notes::create([
@@ -132,7 +132,7 @@ class CourseTopicDropdowns extends Component
                 'topic_id' => $this->selectedTopic,
                 'notes' => $this->notes,
             ]);
-            alertMessage('success', 'Notes Saved.');
+            $this->alertMessage('success', 'Notes Saved.');
         }
     }
 
