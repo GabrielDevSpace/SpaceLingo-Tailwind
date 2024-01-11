@@ -4,7 +4,6 @@
     <h1 class="ml-4 pb-4 text-2xl text-violet-800">
         <b>Course Notes</b>
     </h1>
-    <x-alert-message />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center">
         <div class="w-full m-1 bg-violet-100 border-2 border-violet-300 border-dashed rounded-md">
             <div class="p-4 rounded-md"> <!-- Add a card for the Course section -->

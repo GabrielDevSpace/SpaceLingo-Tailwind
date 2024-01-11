@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Notification;
 use Livewire\Component;
 use App\Models\CourseOrStudyPlan;
 use App\Models\Topic;
@@ -29,6 +30,18 @@ class CourseTopicDropdowns extends Component
         return view('livewire.course-topic-dropdowns');
     }
 
+    /* 
+    Alert Messages ajax toastr
+    Types: success, error, info
+    */
+    public function alertMessage($type, $message)
+    {
+        $this->dispatchBrowserEvent(
+            'alert',
+            ['type' => $type,  'message' => $message]
+        );
+    }
+
     public function addCourse()
     {
         if (!empty($this->newCourse)) {
@@ -48,17 +61,17 @@ class CourseTopicDropdowns extends Component
                     'name' => $this->newCourse,
                 ]);
 
-                flashMessage('success', 'Course Created.');
+                alertMessage('success', 'Course Added Successfully!');
 
                 // Atualizar a lista de cursos
                 $this->courses = CourseOrStudyPlan::where('user_id', $user_id)
                     ->where('lang_id', $this->lang_id)
                     ->get();
             } else {
-                flashMessage('error', 'Course Already Exists.');
+                alertMessage('error', 'Course Already Exists!');
             }
         } else {
-            flashMessage('error', 'Course Not Created.');
+            alertMessage('error', 'Course Not Created!');
         }
     }
 
@@ -80,18 +93,17 @@ class CourseTopicDropdowns extends Component
                     'course_or_study_plan_id' => $this->selectedCourse,
                     'name' => $this->newTopic,
                 ]);
-
-                flashMessage('success', 'Topic Created.');
+                alertMessage('success', 'Topic Created Successfully!');
 
                 // Atualizar a lista de tópicos
                 $this->topics = Topic::where('user_id', $user_id)
                     ->where('course_or_study_plan_id', $this->selectedCourse)
                     ->get();
             } else {
-                flashMessage('error', 'Topic Already Exists.');
+                alertMessage('error', 'Topic Already Exists.');
             }
         } else {
-            flashMessage('error', 'Topic Not Created.');
+            alertMessage('error', 'Topic Not Created.');
         }
     }
 
@@ -110,7 +122,7 @@ class CourseTopicDropdowns extends Component
             $existingNotes->update([
                 'notes' => $this->notes,
             ]);
-            flashMessage('success', 'Notes Saved.');
+            alertMessage('success', 'Notes Saved.');
         } else {
             // Caso contrário, crie um novo registro de notas
             Notes::create([
@@ -120,7 +132,7 @@ class CourseTopicDropdowns extends Component
                 'topic_id' => $this->selectedTopic,
                 'notes' => $this->notes,
             ]);
-            flashMessage('success', 'Notes Saved.');
+            alertMessage('success', 'Notes Saved.');
         }
     }
 
