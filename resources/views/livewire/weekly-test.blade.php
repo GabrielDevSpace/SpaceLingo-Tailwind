@@ -84,7 +84,7 @@
         <div class="w-full m-1 bg-violet-100 border-2 border-violet-300 border-dashed rounded-md" id="myTabContent">
 
             <div class="hidden" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="p-4 rounded-md">
+                <div class="p-2 rounded-md">
                     <div id="divToShowOriginal" class="flex items-center">
                         <textarea wire:model="newOriginalText" id="originalText" rows="12" placeholder="Add Original Text" class="border-2 border-gray-200 p-2 w-full rounded-md"></textarea>
                     </div>
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                <div class="p-4 rounded-md">
+                <div class="p-2 rounded-md">
                     <div id="divToShowTranslated" class="flex items-center">
                         <textarea wire:model="newTranslatedText" id="TranslatedText" rows="12" placeholder="Add Translated Text" class="border-2 border-gray-200 p-2 w-full rounded-md"></textarea>
                     </div>
@@ -111,7 +111,7 @@
         </div>
         <!-- TABS -->
         <div class="w-full m-1 bg-violet-100 border-2 border-violet-300 border-dashed rounded-md">
-            <div class="p-4 rounded-md">
+            <div class="p-2 rounded-md">
                 <div id="divToShowTest" class="flex items-center">
                     <textarea wire:model="newTestText" id="TestText" rows="12" placeholder="Write what you understand from the original text and then compare it with the official translation." class="border-2 border-gray-200 p-2 w-full rounded-md"></textarea>
                 </div>
