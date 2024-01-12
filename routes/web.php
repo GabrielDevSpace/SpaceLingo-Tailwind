@@ -8,6 +8,7 @@ use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\CourseNotesController;
+use App\Http\Controllers\WeeklyTestController;
 use App\Http\Livewire\Languages;
 
 
@@ -45,6 +46,7 @@ Route::delete('newregister/destroy/{lang_id}/{destroy_id}', [NewregisterControll
 
 Route::get('coursenotes/{id}', [CourseNotesController::class, 'index'])->name('coursenotes')->middleware('auth');
 //Route::resource('newregister', \App\Http\Controllers\NewregisterController::class);
+Route::get('weeklytest/{id}', [WeeklyTestController::class, 'index'])->name('weeklytest')->middleware('auth');
 
 Route::get('/languages', Languages::class)->middleware('auth');
 

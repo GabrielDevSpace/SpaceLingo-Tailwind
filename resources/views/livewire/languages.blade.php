@@ -47,12 +47,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="px-6 pt-4 pb-2 bg-violet-200">
+                <div class="px-2 pt-2 pb-2 bg-violet-200">
                     <div class="grid grid-cols-2 gap-2">
                         <div class="flex justify-center">
                             <a href="{{ route('newregister', ['id' => $language->id]) }}" class="block">
                                 <button class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
                                     <i class="fa fa-language"></i> Vocabulary
+                                </button>
+                            </a>
+                        </div>
+                        <div class="flex justify-center">
+                            <a href="{{ route('weeklytest', ['id' => $language->id]) }}" class="block">
+                                <button class="px-4 py-2 bg-violet-500 text-white rounded-full hover:bg-violet-700 focus:ring-4 focus:outline-none focus:ring-violet-300 lg:text-md sm:text-xs" type="button">
+                                    <i class="fa fa-calendar"></i> Weekly Test
                                 </button>
                             </a>
                         </div>
