@@ -27,8 +27,36 @@ class WeeklyTest extends Component
 
         $this->courses = CourseOrStudyPlan::with('topics')->where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
 
-        return view('livewire.course-topic-dropdowns');
+        return view('livewire.weekly-test');
     }
+
+    public $activeTab = 'original'; // Tab padrão
+    public function showOriginal()
+    {
+        $this->activeTab = 'original';
+    }
+
+    public function showTranslated()
+    {
+        $this->activeTab = 'translated';
+    }
+
+    // Adicione as funções relacionadas aos botões de salvar conforme necessário
+    public function addOriginalText()
+    {
+        // Lógica para salvar o texto original
+    }
+
+    public function addTranslatedText()
+    {
+        // Lógica para salvar o texto traduzido
+    }
+
+    public function addTestText()
+    {
+        // Lógica para salvar o texto do teste
+    }
+
 
     /* 
     Alert Messages ajax toastr

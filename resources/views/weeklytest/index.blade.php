@@ -9,7 +9,7 @@
             <img src="{{ asset('images/countries/'.$imageName) }}" alt="{{ $languageName }}" class="w-12 h-12 ml-5 mr-3">
 
             @if (!empty($languageName))
-                <span class="font-semibold text-violet-800">{{ $languageName }} - Vocabulary List</span>
+                <span class="font-semibold text-violet-800">{{ $languageName }} - Weekly Test</span>
             @endif
         </div>
     </x-slot>
