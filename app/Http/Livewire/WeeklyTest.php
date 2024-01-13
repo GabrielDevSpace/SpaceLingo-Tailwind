@@ -6,62 +6,77 @@ use App\Http\Livewire\Notification;
 use Livewire\Component;
 use App\Models\CourseOrStudyPlan;
 use App\Models\Topic;
-use App\Models\Notes;
+use App\Models\Lang;
+use App\Models\newregister;
 use App\Models\WeeklyTest as Weekly;
+use Carbon\Carbon;
 
 class WeeklyTest extends Component
 {
-    public $courses = [];
-    public $selectedCourse = null;
-    public $selectedTopic;
-    public $topics = [];
-    public $notes = '';
+
+    public $vocabulary = [];
     public $lang_id;
     public $newCourse;
-    public $newTopic;
+    public $native_language = "Portuguese - Brazil";
+
+
 
     public function render()
     {
         $user_id = auth()->id();
-        // $this->courses = CourseOrStudyPlan::where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
 
-        $this->courses = CourseOrStudyPlan::with('topics')->where('user_id', $user_id)->where('lang_id', $this->lang_id)->get();
+        // Filtre com base na data do sábado atual
+        $startDate = $this->currentSaturday->copy()->startOfWeek();
+        $endDate = $this->currentSaturday->copy()->endOfWeek();
 
-        return view('livewire.weekly-test');
+        $lang = Lang::where('id', $this->lang_id)
+            ->where('user_id', $user_id)
+            ->value('name');
+
+        $this->vocabulary = Newregister::where('lang_id', '=', $this->lang_id)
+            ->where('user_id', '=', $user_id)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->get();
+
+        $startDate = $startDate->format('d/m/Y');
+        $endDate = $endDate->format('d/m/Y');
+
+        return view('livewire.weekly-test', compact('startDate', 'endDate', 'lang'));
     }
 
-    public $activeTab = 'original'; // Tab padrão
-    public function showOriginal()
+ 
+
+    public $currentSaturday;
+
+    public function mount()
     {
-        $this->activeTab = 'original';
+        // Inicialize com o sábado atual
+        $this->currentSaturday = Carbon::now()->startOfWeek(Carbon::SATURDAY);
     }
 
-    public function showTranslated()
+    public function nextSaturday()
     {
-        $this->activeTab = 'translated';
+        // Avança para o próximo sábado
+        $this->currentSaturday->addWeek();
     }
 
-    // Adicione as funções relacionadas aos botões de salvar conforme necessário
-    public function addOriginalText()
+    public function previousSaturday()
     {
-        // Lógica para salvar o texto original
+        // Retrocede para o sábado anterior
+        $this->currentSaturday->subWeek();
     }
 
-    public function addTranslatedText()
+
+    public $newTestText;
+
+    public function copyGPT()
     {
-        // Lógica para salvar o texto traduzido
+        // Your existing logic to save the test text
+
+        // Now, let's add the logic to copy the textarea content
+        $this->dispatchBrowserEvent('copyGPT', ['text' => $this->copyGPT]);
     }
 
-    public function addTestText()
-    {
-        // Lógica para salvar o texto do teste
-    }
-
-
-    /* 
-    Alert Messages ajax toastr
-    Types: success, error, info
-    */
     public function alertMessage($type, $message)
     {
         $this->dispatchBrowserEvent(
@@ -70,119 +85,12 @@ class WeeklyTest extends Component
         );
     }
 
-    public function addCourse()
+    public function addOriginalText()
     {
-        if (!empty($this->newCourse)) {
-            $user_id = auth()->id();
-
-            // Verificar se o curso já existe para o usuário atual e o ID do idioma
-            $existingCourse = CourseOrStudyPlan::where('user_id', $user_id)
-                ->where('lang_id', $this->lang_id)
-                ->where('name', $this->newCourse)
-                ->first();
-
-            if (!$existingCourse) {
-                // Se o curso ainda não existe, adicione-o à base de dados
-                CourseOrStudyPlan::create([
-                    'user_id' => $user_id,
-                    'lang_id' => $this->lang_id,
-                    'name' => $this->newCourse,
-                ]);
-
-                $this->alertMessage('success', 'Course Added Successfully!');
-
-                // Atualizar a lista de cursos
-                $this->courses = CourseOrStudyPlan::where('user_id', $user_id)
-                    ->where('lang_id', $this->lang_id)
-                    ->get();
-            } else {
-                $this->alertMessage('error', 'Course Already Exists!');
-            }
-        } else {
-            $this->alertMessage('error', 'Course Not Created!');
-        }
+        //$this->alertMessage('success', 'Original Text Added Successfully!');
     }
 
-    public function addTopic()
+    public function addTranslatedText()
     {
-        if ($this->selectedCourse && !empty($this->newTopic)) {
-            $user_id = auth()->id();
-
-            // Verificar se o tópico já existe para o usuário atual e o curso selecionado
-            $existingTopic = Topic::where('user_id', $user_id)
-                ->where('course_or_study_plan_id', $this->selectedCourse)
-                ->where('name', $this->newTopic)
-                ->first();
-
-            if (!$existingTopic) {
-                // Se o tópico ainda não existe, adicione-o à base de dados
-                Topic::create([
-                    'user_id' => $user_id,
-                    'course_or_study_plan_id' => $this->selectedCourse,
-                    'name' => $this->newTopic,
-                ]);
-                $this->alertMessage('success', 'Topic Created Successfully!');
-
-                // Atualizar a lista de tópicos
-                $this->topics = Topic::where('user_id', $user_id)
-                    ->where('course_or_study_plan_id', $this->selectedCourse)
-                    ->get();
-            } else {
-                $this->alertMessage('error', 'Topic Already Exists.');
-            }
-        } else {
-            $this->alertMessage('error', 'Topic Not Created.');
-        }
-    }
-
-    public function saveNotes()
-    {
-        $user_id = auth()->id();
-
-        $existingNotes = Notes::where('user_id', $user_id)
-            ->where('lang_id', $this->lang_id)
-            ->where('course_or_study_plan_id', $this->selectedCourse)
-            ->where('topic_id', $this->selectedTopic)
-            ->first();
-
-        if ($existingNotes) {
-            // Se as notas já existirem, atualize-as
-            $existingNotes->update([
-                'notes' => $this->notes,
-            ]);
-            $this->alertMessage('success', 'Notes Saved.');
-        } else {
-            // Caso contrário, crie um novo registro de notas
-            Notes::create([
-                'user_id' => $user_id,
-                'lang_id' => $this->lang_id,
-                'course_or_study_plan_id' => $this->selectedCourse,
-                'topic_id' => $this->selectedTopic,
-                'notes' => $this->notes,
-            ]);
-            $this->alertMessage('success', 'Notes Saved.');
-        }
-    }
-
-    public function updatedSelectedCourse($courseId)
-    {
-        $user_id = auth()->id();
-        $this->topics = Topic::where('user_id', $user_id)->where('course_or_study_plan_id', $courseId)->get();
-    }
-
-    public function fetchNotes()
-    {
-        $user_id = auth()->id();
-        $notes = Notes::where('user_id', $user_id)
-            ->where('lang_id', $this->lang_id)
-            ->where('course_or_study_plan_id', $this->selectedCourse)
-            ->where('topic_id', $this->selectedTopic)
-            ->first();
-
-        if ($notes) {
-            $this->notes = $notes->notes;
-        } else {
-            $this->notes = 'Nenhum resultado encontrado.';
-        }
     }
 }
