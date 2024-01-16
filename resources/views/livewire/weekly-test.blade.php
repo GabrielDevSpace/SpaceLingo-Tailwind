@@ -54,38 +54,21 @@
             </div>
         </div>
     </div>
-    <div class="bg-white p-2 shadow-md rounded-md">
-    <div class="border-gray-200 dark:border-gray-700 mb-4">
-        <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
-            <li class="mr-2" role="presentation">
-                <button
-                    wire:click="exibirOriginal"
-                    class="inline-block rounded-lg text-white py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:white {{ $exibirOriginal ? 'bg-violet-600' : 'bg-gray-200 hover:bg-gray-300' }}"
-                    id="profile-tab"
-                    data-tabs-target="#profile"
-                    type="button"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="{{ $exibirOriginal ? 'true' : 'false' }}">
-                    Original
-                </button>
-            </li>
-            <li class="mr-2" role="presentation">
-                <button
-                    wire:click="exibirTranslated"
-                    class="inline-block rounded-lg text-white py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:white {{ $exibirTranslated ? 'bg-violet-600' : 'bg-gray-200 hover:bg-gray-300' }}"
-                    id="dashboard-tab"
-                    data-tabs-target="#dashboard"
-                    type="button"
-                    role="tab"
-                    aria-controls="dashboard"
-                    aria-selected="{{ $exibirTranslated ? 'true' : 'false' }}">
-                    Translation
-                </button>
-            </li>
-        </ul>
-    </div>
-</div>
+        <div class="border-gray-200 dark:border-gray-700 mb-4">
+            <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                <li class="mr-2" role="presentation">
+                    <button wire:click="exibirOriginal" class="inline-block rounded-lg text-white py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:white {{ $exibirOriginal ? 'bg-violet-600' : 'bg-gray-200 hover:bg-gray-300' }}" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="{{ $exibirOriginal ? 'true' : 'false' }}">
+                        Original
+                    </button>
+                </li>
+                <li class="mr-2" role="presentation">
+                    <button wire:click="exibirTranslated" class="inline-block rounded-lg text-white py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:white {{ $exibirTranslated ? 'bg-violet-600' : 'bg-gray-200 hover:bg-gray-300' }}" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="{{ $exibirTranslated ? 'true' : 'false' }}">
+                        Translation
+                    </button>
+                </li>
+            </ul>
+        </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center">
         <!-- TABS -->
         <div class="w-full bg-violet-100 border-2 border-violet-300 border-dashed rounded-md" id="myTabContent">
@@ -131,7 +114,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <script>
     Livewire.on('copiado', texto => {
         console.log("Texto copiado: " + texto);
