@@ -18,37 +18,16 @@ class WeeklyTest extends Component
     public $vocabulary = [];
     public $original_text;
     public $lang_id;
+    public $copiedText;
+    public $chatGPT;
     public $newOriginalText;
     public $newTranslationText;
     public $newTranslationTest;
     public $currentSaturday;
     public $native_language = "Portuguese - Brazil";
-
+    public $token;
     public $exibirOriginal = true;
     public $exibirTranslated = false;
-
-
-    public function render()
-    {
-        $user_id = auth()->id();
-
-        $startDate = $this->currentSaturday->copy()->startOfWeek();
-        $endDate = $this->currentSaturday->copy()->endOfWeek();
-
-        $lang = Lang::where('id', $this->lang_id)
-            ->where('user_id', $user_id)
-            ->value('name');
-
-        $this->vocabulary = Newregister::where('lang_id', '=', $this->lang_id)
-            ->where('user_id', '=', $user_id)
-            ->whereBetween('created_at', [$startDate, $endDate])
-            ->get();
-
-        $startDate = $startDate->format('d/m/Y');
-        $endDate = $endDate->format('d/m/Y');
-
-        return view('livewire.weekly-test', compact('startDate', 'endDate', 'lang'));
-    }
 
 
     public function exibirOriginal()
@@ -63,28 +42,6 @@ class WeeklyTest extends Component
         $this->exibirTranslated = true;
     }
 
-
-
-
-    public function mount()
-    {
-        $user_id = auth()->id();
-        $startDate = $this->currentSaturday->copy()->startOfWeek();
-        $endDate = $this->currentSaturday->copy()->endOfWeek();
-        $token = hash('sha256', $startDate->format('Ymd') . $endDate->format('Ymd'));
-        
-        $existingWeeklyRegister = Weekly::where('user_id', $user_id)
-            ->where('lang_id', $this->lang_id)
-            ->whereBetween('token_week', [$token])
-            ->first();
-        if ($existingWeeklyRegister) {
-            $this->newOriginalText = $existingWeeklyRegister->original;
-            $this->newTranslationText = $existingWeeklyRegister->translation;
-            $this->newTranslationTest = $existingWeeklyRegister->translation_test;
-        }
-        $this->currentSaturday = Carbon::now()->startOfWeek(Carbon::SATURDAY);
-    }
-
     public function nextSaturday()
     {
         $this->currentSaturday->addWeek();
@@ -95,13 +52,13 @@ class WeeklyTest extends Component
         $this->currentSaturday->subWeek();
     }
 
-
-    public $newTestText;
-
     public function copyGPT()
     {
-        $this->dispatchBrowserEvent('copyGPT', ['text' => $this->copyGPT]);
+        $this->emit('copiado', $this->chatGPT);
+
+        $this->alertMessage('success', 'Text copied to clipboard!');
     }
+
 
     public function alertMessage($type, $message)
     {
@@ -110,39 +67,111 @@ class WeeklyTest extends Component
             ['type' => $type,  'message' => $message]
         );
     }
-
-    public function addOriginalText()
+    private function calculateDateRangeAndToken()
     {
-        
-        $user_id = auth()->id();
         $startDate = $this->currentSaturday->copy()->startOfWeek();
         $endDate = $this->currentSaturday->copy()->endOfWeek();
         $token = hash('sha256', $startDate->format('Ymd') . $endDate->format('Ymd'));
 
-        $existingRecord = Weekly::where('user_id', $user_id)
+        return [
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'token' => $token,
+        ];
+    }
+
+    private function loadWeeklyRegister()
+    {
+        $user_id = auth()->id();
+        $dateRangeAndToken = $this->calculateDateRangeAndToken();
+
+        return Weekly::where('user_id', $user_id)
             ->where('lang_id', $this->lang_id)
+            ->where('token_week', $dateRangeAndToken['token'])
             ->first();
+    }
+
+    public function render()
+    {
+        $user_id = auth()->id();
+        $dateRangeAndToken = $this->calculateDateRangeAndToken();
+
+        $lang = Lang::where('id', $this->lang_id)
+            ->where('user_id', $user_id)
+            ->value('name');
+
+        $this->vocabulary = Newregister::where('lang_id', '=', $this->lang_id)
+            ->where('user_id', '=', $user_id)
+            ->whereBetween('created_at', [$dateRangeAndToken['startDate'], $dateRangeAndToken['endDate']])
+            ->get();
+
+        $vocabularyList = $this->vocabulary->pluck('vocabulary')->toArray();
+
+        $this->chatGPT = "Generate a text in the language $lang with the words below:
+                WORDS = [" . implode(',', array_map(fn ($word) => "\"$word\"", $vocabularyList)) . "]
+            
+                And also return the translation of this text in the language \"$this->native_language\" Highlight words with the <u></u> tag
+            
+                Detail: if the word is not recognized, just ignore it.";
+
+        $existingWeeklyRegister = $this->loadWeeklyRegister();
+
+        if ($existingWeeklyRegister) {
+            $this->newOriginalText = $existingWeeklyRegister->original;
+            $this->newTranslationText = $existingWeeklyRegister->translation;
+            $this->newTranslationTest = $existingWeeklyRegister->translation_test;
+        } else {
+            $this->newOriginalText = "";
+            $this->newTranslationText = "";
+            $this->newTranslationTest = "";
+        }
+
+        return view('livewire.weekly-test', [
+            'startDate' => $dateRangeAndToken['startDate']->format('d/m/Y'),
+            'endDate' => $dateRangeAndToken['endDate']->format('d/m/Y'),
+            'lang' => $lang,
+        ]);
+    }
+
+    public function mount()
+    {
+        $this->currentSaturday = Carbon::now()->startOfWeek(Carbon::SATURDAY);
+    }
+
+    private function saveTextToWeeklyRegister($field, $value)
+    {
+        $user_id = auth()->id();
+        $dateRangeAndToken = $this->calculateDateRangeAndToken();
+
+        $existingRecord = $this->loadWeeklyRegister();
 
         if ($existingRecord) {
-            $existingRecord->update([
-                'original' => $this->newOriginalText,
-            ]);
-
-            $this->alertMessage('success', 'Original Text Updated Successfully!');
+            $existingRecord->update([$field => $value]);
+            $this->alertMessage('success', ucfirst($field) . ' Updated Successfully!');
         } else {
             Weekly::create([
                 'user_id' => $user_id,
                 'lang_id' => $this->lang_id,
-                'original' => $this->newOriginalText,
-                'token_week' => $token,
+                $field => $value,
+                'token_week' => $dateRangeAndToken['token'],
             ]);
 
-            $this->alertMessage('success', 'Original Text Added Successfully!');
+            $this->alertMessage('success', ucfirst($field) . ' Added Successfully!');
         }
+    }
+
+    public function addOriginalText()
+    {
+        $this->saveTextToWeeklyRegister('original', $this->newOriginalText);
     }
 
     public function addTranslationText()
     {
-        $this->alertMessage('success', 'Original Text Added Successfully!');
+        $this->saveTextToWeeklyRegister('translation', $this->newTranslationText);
+    }
+
+    public function addTranslationTest()
+    {
+        $this->saveTextToWeeklyRegister('translation_test', $this->newTranslationTest);
     }
 }

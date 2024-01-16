@@ -14,6 +14,7 @@ class WeeklyTest extends Model
         'original',
         'translation',
         'translation_test',
+        'token_week',
         'status'
     ];
 
