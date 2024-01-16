@@ -7,7 +7,7 @@ use Livewire\Component;
 use App\Models\CourseOrStudyPlan;
 use App\Models\Topic;
 use App\Models\Lang;
-use App\Models\newregister;
+use App\Models\Newregister;
 use App\Models\WeeklyTest as Weekly;
 use Carbon\Carbon;
 
@@ -26,6 +26,9 @@ class WeeklyTest extends Component
         $user_id = auth()->id();
 
         // Filtre com base na data do sábado atual
+        //$startDate = $this->currentSaturday->copy()->startOfWeek();
+       //$endDate = $this->currentSaturday->copy()->endOfWeek();
+
         $startDate = $this->currentSaturday->copy()->startOfWeek();
         $endDate = $this->currentSaturday->copy()->endOfWeek();
 
