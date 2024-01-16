@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Str;
 use App\Http\Livewire\Notification;
 use Livewire\Component;
 use App\Models\CourseOrStudyPlan;
@@ -15,19 +16,21 @@ class WeeklyTest extends Component
 {
 
     public $vocabulary = [];
+    public $original_text;
     public $lang_id;
-    public $newCourse;
+    public $newOriginalText;
+    public $newTranslationText;
+    public $newTranslationTest;
+    public $currentSaturday;
     public $native_language = "Portuguese - Brazil";
 
+    public $exibirOriginal = true;
+    public $exibirTranslated = false;
 
 
     public function render()
     {
         $user_id = auth()->id();
-
-        // Filtre com base na data do sábado atual
-        //$startDate = $this->currentSaturday->copy()->startOfWeek();
-       //$endDate = $this->currentSaturday->copy()->endOfWeek();
 
         $startDate = $this->currentSaturday->copy()->startOfWeek();
         $endDate = $this->currentSaturday->copy()->endOfWeek();
@@ -47,25 +50,48 @@ class WeeklyTest extends Component
         return view('livewire.weekly-test', compact('startDate', 'endDate', 'lang'));
     }
 
- 
 
-    public $currentSaturday;
+    public function exibirOriginal()
+    {
+        $this->exibirOriginal = true;
+        $this->exibirTranslated = false;
+    }
+
+    public function exibirTranslated()
+    {
+        $this->exibirOriginal = false;
+        $this->exibirTranslated = true;
+    }
+
+
+
 
     public function mount()
     {
-        // Inicialize com o sábado atual
+        $user_id = auth()->id();
+        $startDate = $this->currentSaturday->copy()->startOfWeek();
+        $endDate = $this->currentSaturday->copy()->endOfWeek();
+        $token = hash('sha256', $startDate->format('Ymd') . $endDate->format('Ymd'));
+        
+        $existingWeeklyRegister = Weekly::where('user_id', $user_id)
+            ->where('lang_id', $this->lang_id)
+            ->whereBetween('token_week', [$token])
+            ->first();
+        if ($existingWeeklyRegister) {
+            $this->newOriginalText = $existingWeeklyRegister->original;
+            $this->newTranslationText = $existingWeeklyRegister->translation;
+            $this->newTranslationTest = $existingWeeklyRegister->translation_test;
+        }
         $this->currentSaturday = Carbon::now()->startOfWeek(Carbon::SATURDAY);
     }
 
     public function nextSaturday()
     {
-        // Avança para o próximo sábado
         $this->currentSaturday->addWeek();
     }
 
     public function previousSaturday()
     {
-        // Retrocede para o sábado anterior
         $this->currentSaturday->subWeek();
     }
 
@@ -74,9 +100,6 @@ class WeeklyTest extends Component
 
     public function copyGPT()
     {
-        // Your existing logic to save the test text
-
-        // Now, let's add the logic to copy the textarea content
         $this->dispatchBrowserEvent('copyGPT', ['text' => $this->copyGPT]);
     }
 
@@ -90,10 +113,36 @@ class WeeklyTest extends Component
 
     public function addOriginalText()
     {
-        //$this->alertMessage('success', 'Original Text Added Successfully!');
+        
+        $user_id = auth()->id();
+        $startDate = $this->currentSaturday->copy()->startOfWeek();
+        $endDate = $this->currentSaturday->copy()->endOfWeek();
+        $token = hash('sha256', $startDate->format('Ymd') . $endDate->format('Ymd'));
+
+        $existingRecord = Weekly::where('user_id', $user_id)
+            ->where('lang_id', $this->lang_id)
+            ->first();
+
+        if ($existingRecord) {
+            $existingRecord->update([
+                'original' => $this->newOriginalText,
+            ]);
+
+            $this->alertMessage('success', 'Original Text Updated Successfully!');
+        } else {
+            Weekly::create([
+                'user_id' => $user_id,
+                'lang_id' => $this->lang_id,
+                'original' => $this->newOriginalText,
+                'token_week' => $token,
+            ]);
+
+            $this->alertMessage('success', 'Original Text Added Successfully!');
+        }
     }
 
-    public function addTranslatedText()
+    public function addTranslationText()
     {
+        $this->alertMessage('success', 'Original Text Added Successfully!');
     }
 }
