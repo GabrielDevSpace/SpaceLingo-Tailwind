@@ -28,7 +28,23 @@ class WeeklyTest extends Component
     public $token;
     public $exibirOriginal = true;
     public $exibirTranslated = false;
+    public $exibirOriginalReview = true;
+    public $exibirTranslatedReview = false;
+    public $registerHidden = "vazio";
+    public $reviewHidden = "vazio";
 
+
+    public function exibirOriginalReview()
+    {
+        $this->exibirOriginalReview = true;
+        $this->exibirTranslatedReview = false;
+    }
+
+    public function exibirTranslatedReview()
+    {
+        $this->exibirOriginalReview = false;
+        $this->exibirTranslatedReview = true;
+    }
 
     public function exibirOriginal()
     {
@@ -45,11 +61,23 @@ class WeeklyTest extends Component
     public function nextSaturday()
     {
         $this->currentSaturday->addWeek();
+        $this->newOriginalText = "";
+            $this->newTranslationText = "";
+            $this->newTranslationTest = "";
+            $this->registerHidden = "vazio";
+            $this->reviewHidden = "vazio";
+
     }
 
     public function previousSaturday()
     {
         $this->currentSaturday->subWeek();
+        $this->newOriginalText = "";
+            $this->newTranslationText = "";
+            $this->newTranslationTest = "";
+            $this->registerHidden = "vazio";
+            $this->reviewHidden = "vazio";
+
     }
 
     public function copyGPT()
@@ -107,10 +135,12 @@ class WeeklyTest extends Component
 
         $vocabularyList = $this->vocabulary->pluck('vocabulary')->toArray();
 
-        $this->chatGPT = "Generate a text in the language $lang with the words below:
+        $this->chatGPT = "Generate a text in the original language $lang with the words below:
                 WORDS = [" . implode(',', array_map(fn ($word) => "\"$word\"", $vocabularyList)) . "]
             
-                And also return the translation of this text in the language \"$this->native_language\" Highlight words with the <u></u> tag
+                And also return the translation of this text in the language \"$this->native_language\" Highlight words original and translated with the <b></b> tag
+
+                The return expected is two plaintext, one to $lang language and other plain text to the translation in \"$this->native_language\"
             
                 Detail: if the word is not recognized, just ignore it.";
 
@@ -124,6 +154,14 @@ class WeeklyTest extends Component
             $this->newOriginalText = "";
             $this->newTranslationText = "";
             $this->newTranslationTest = "";
+        }
+
+        if ($this->newTranslationText != null && $this->newOriginalText != null) {
+            $this->registerHidden = "hidden";
+            $this->reviewHidden = "vazio";
+           } else { 
+            $this->reviewHidden = "hidden";
+            $this->registerHidden = "vazio";
         }
 
         return view('livewire.weekly-test', [
