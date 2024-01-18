@@ -19,11 +19,11 @@
             <div class="flex justify-center items-center h-full">
                 <div class="max-w-sm border-2 border-dashed border-violet-400 rounded overflow-hidden shadow-lg">
                     <div class="p-2 flex justify-center">
-                        <div class="text-violet-800 font-bold text-xl pb-2">
+                        <div class="text-violet-800 font-bold text-sm pb-2">
                             Quizzes
                         </div>
                     </div>
-                    <div class="px-6 pt-4 pb-2">
+                    <div class="p-2">
                         <button class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
                             <i class="fa fa-code mr-2"></i> Coming Soon
                         </button>
@@ -34,11 +34,11 @@
                 <div class="max-w-sm border-2 border-dashed border-violet-400 rounded overflow-hidden shadow-lg">
                     <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
                     <div class="p-2 flex justify-center">
-                        <div class="text-violet-800 font-bold text-xl pb-2">
+                        <div class="text-violet-800 font-bold text-sm pb-2">
                             Tests
                         </div>
                     </div>
-                    <div class="px-6 pt-4 pb-2">
+                    <div class="p-2">
                         <button wire:click="nextSaturday" class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
                             <i class="fa fa-code mr-2"></i> Coming Soon
                         </button>
@@ -49,11 +49,11 @@
                 <div class="max-w-sm border-2 border-dashed border-violet-400 rounded overflow-hidden shadow-lg">
                     <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
                     <div class="p-2 flex justify-center">
-                        <div class="text-violet-800 font-bold text-xl pb-2">
+                        <div class="text-violet-800 font-bold text-sm pb-2">
                             Challenges
                         </div>
                     </div>
-                    <div class="px-6 pt-4 pb-2">
+                    <div class="p-2">
                         <button wire:click="nextSaturday" class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
                             <i class="fa fa-code mr-2"></i> Coming Soon
                         </button>
@@ -64,11 +64,11 @@
                 <div class="max-w-sm border-2 border-dashed border-violet-400 rounded overflow-hidden shadow-lg">
                     <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
                     <div class="p-2 flex justify-center">
-                        <div class="text-violet-800 font-bold text-xl pb-2">
+                        <div class="text-violet-800 font-bold text-sm pb-2">
                             Tips
                         </div>
                     </div>
-                    <div class="px-6 pt-4 pb-2">
+                    <div class="p-2">
                         <button wire:click="nextSaturday" class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
                             <i class="fa fa-code mr-2"></i> Coming Soon
                         </button>
