@@ -59,7 +59,6 @@
                 </div>
                 @endforeach
             </ul>
-
         </div>
     </div>
     <div class="w-full py-4 flex justify-end">
@@ -81,7 +80,7 @@
                                         <a href="https://bard.google.com/chat" target="_BLANK" class="bg-violet-600 hover:bg-violet-900 text-white px-2 py-1 rounded-full ml-2 flex items-center text-xs">
                                             <i class="fa fa-external-link-square mr-2"></i> Bard
                                         </a>
-                                         &nbsp Or
+                                        &nbsp Or
                                         <a href="https://chat.openai.com/" target="_BLANK" class="bg-violet-600 hover:bg-violet-900 text-white px-2 py-1 rounded-full ml-2 flex items-center text-xs">
                                             <i class="fa fa-external-link-square mr-2"></i> ChatGPT
                                         </a>
@@ -96,10 +95,10 @@
             </div>
             <div class="w-full pb-4">
                 <div id="divToShowTest" class="flex items-center">
-                    <textarea wire:model="chatGPT" rows="5" placeholder="Prompt" class="border-2 border-gray-200 p-2 w-full rounded-md text-sm"></textarea>
+                    <textarea wire:model="chatGPT" id="chatGPT" rows="5" placeholder="Prompt" class="border-2 border-gray-200 p-2 w-full rounded-md text-sm"></textarea>
                 </div>
                 <div id="divToShowTestdButton" class="pt-2 flex justify-end">
-                    <button wire:click="copyGPT" class="bg-violet-600 hover:bg-violet-900 text-white px-4 py-2 rounded-full ml-2 flex items-center">
+                    <button onclick="copyToClipboard()" class="bg-violet-600 hover:bg-violet-900 text-white px-4 py-2 rounded-full ml-2 flex items-center">
                         <i class="fa fa-copy mr-2"></i> Prompt
                     </button>
                 </div>
@@ -109,8 +108,6 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center">
             <!-- TABS -->
             <div class="w-full bg-violet-100 border-2 border-violet-300 border-dashed rounded-md" id="myTabContent">
-
-
                 <div class="p-2 rounded-md">
                     <div id="divToShowOriginal" class="flex items-center">
                         <textarea wire:model.defer="newOriginalText" id="originalText" rows="12" placeholder="Add Original Text" class="border-2 border-gray-200 p-2 w-full rounded-md"></textarea>
@@ -122,9 +119,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             <!-- TABS -->
             <div class="w-full bg-violet-100 border-2 border-violet-300 border-dashed rounded-md">
 
@@ -139,7 +133,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- ############################################# -->
@@ -188,15 +181,15 @@
         </div>
     </div>
 </div>
-
-
 <script>
-    Livewire.on('copiado', texto => {
-        console.log("Texto copiado: " + texto);
-        alert("Texto copiado: " + texto);
-    });
-</script>
+    function copyToClipboard() {
+        var textarea = document.getElementById('chatGPT');
+        textarea.select();
+        document.execCommand('copy');
 
+        Livewire.emit('copyGPT');
+    }
+</script>
 <script>
     function toggleRegister() {
         var registerDiv = document.getElementById('register');
@@ -211,11 +204,6 @@
         }
     }
 </script>
-
-
-
-
-
 <script type="text/javascript">
     function ShowModal(id) {
         var modal = document.getElementById(id);

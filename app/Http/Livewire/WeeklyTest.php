@@ -32,7 +32,7 @@ class WeeklyTest extends Component
     public $exibirTranslatedReview = false;
     public $registerHidden = "vazio";
     public $reviewHidden = "vazio";
-
+    protected $listeners = ['copyGPT'];
 
     public function exibirOriginalReview()
     {
@@ -82,8 +82,6 @@ class WeeklyTest extends Component
 
     public function copyGPT()
     {
-        $this->emit('copiado', $this->chatGPT);
-
         $this->alertMessage('success', 'Text copied to clipboard!');
     }
 
