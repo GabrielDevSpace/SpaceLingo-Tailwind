@@ -17,19 +17,54 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-1 gap-4 justify-center">
         <div class="w-full py-8 flex justify-center ">
-            <ul class="flex flex-wrap leading-10">
-                @foreach ($vocabulary as $vocabularies)
-    <li class="mb-2 mr-2">
-        <b class="bg-green-500 hover:bg-green-600 text-white text-md px-2 py-1 rounded-full relative" title="{{ $vocabularies->translate }}">
-            {{ $vocabularies->vocabulary }}
-            <span class="hidden absolute bg-gray-100 text-gray-700 text-sm px-2 py-1 rounded-md mt-2 -ml-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                {{ $vocabularies->translate }}
-            </span>
-        </b>
-    </li>
-@endforeach
+        <ul class="flex flex-wrap leading-10">
 
-            </ul>
+
+@foreach ($vocabulary as $vocabularies)
+<li class="mb-2 mr-2">
+    <a href="#" onclick="ShowModal('myModal-{{ $vocabularies->id }}')" class="bg-green-500 hover:bg-green-600 text-white text-md px-2 py-1 rounded-full relative">{{ $vocabularies->vocabulary }}</a>
+</li>
+<!-- Modal -->
+<div class="fixed z-10 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal-{{ $vocabularies->id }}">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Background overlay -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <!-- Modal content -->
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 sm:mx-0 sm:h-10 sm:w-10">
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            Vocabulary: <b>{{ $vocabularies->vocabulary }}</b>
+                        </h3>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            Translate: <b>{{ $vocabularies->translate }}</b>
+                        </h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">
+
+                                @php
+                                $str_replace = ReplaceTextArea($vocabularies->note);
+                                @endphp
+
+                                {!! $str_replace !!}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="HiddenModal('myModal-{{ $vocabularies->id }}')">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+</ul>
 
         </div>
     </div>
@@ -102,7 +137,7 @@
         </div>
     </div>
     <!-- ############################################# -->
-    <div id="review"  class="pt-4 {{ $reviewHidden }}">
+    <div id="review" class="pt-4 {{ $reviewHidden }}">
         <div class="border-gray-200 dark:border-gray-700 mb-4">
             <ul class="flex flex-wrap -mb-px" id="myTabReview" data-tabs-toggle="#myTabContentReview" role="tablistReview">
                 <li class="mr-2" role="presentation">
@@ -160,5 +195,31 @@
     function toggleRegister() {
         var registerDiv = document.getElementById('register');
         registerDiv.classList.toggle('hidden');
+    }
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    function ShowModal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "block";
+    }
+
+    function HiddenModal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "";
+    }
+
+    function ShowMobileModal(id) {
+        var modalMobile = document.getElementById(id);
+        modalMobile.style.display = "block";
+    }
+
+    function HiddenMobileModal(id) {
+        var modalMobile = document.getElementById(id);
+        modalMobile.style.display = "";
     }
 </script>
