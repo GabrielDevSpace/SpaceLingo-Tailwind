@@ -20,8 +20,9 @@
             <ul class="flex flex-wrap leading-10">
                 @foreach ($vocabulary as $vocabularies)
                 <li class="mb-2 mr-2">
-                    <b class="bg-green-500 hover:bg-green-600 text-white text-md px-2 py-1 rounded-full">{{ $vocabularies->vocabulary }}</b>
+                    <b class="bg-green-500 hover:bg-green-600 text-white text-md px-2 py-1 rounded-full" title="{{ $vocabularies->translate }}">{{ $vocabularies->vocabulary }}</b>
                 </li>
+                
                 @endforeach
             </ul>
 
