@@ -19,11 +19,16 @@
         <div class="w-full py-8 flex justify-center ">
             <ul class="flex flex-wrap leading-10">
                 @foreach ($vocabulary as $vocabularies)
-                <li class="mb-2 mr-2">
-                    <b class="bg-green-500 hover:bg-green-600 text-white text-md px-2 py-1 rounded-full" title="{{ $vocabularies->translate }}">{{ $vocabularies->vocabulary }}</b>
-                </li>
-                
-                @endforeach
+    <li class="mb-2 mr-2">
+        <b class="bg-green-500 hover:bg-green-600 text-white text-md px-2 py-1 rounded-full relative" title="{{ $vocabularies->translate }}">
+            {{ $vocabularies->vocabulary }}
+            <span class="hidden absolute bg-gray-100 text-gray-700 text-sm px-2 py-1 rounded-md mt-2 -ml-2 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                {{ $vocabularies->translate }}
+            </span>
+        </b>
+    </li>
+@endforeach
+
             </ul>
 
         </div>
