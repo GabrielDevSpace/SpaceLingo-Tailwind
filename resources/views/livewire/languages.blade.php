@@ -1,17 +1,17 @@
 <div class="w-full bg-white p-2 shadow-md rounded-md overflow-x-hidden">
-<div class="w-full p-2 flex justify-center lg:hidden"> <!-- Adicionando classe lg:hidden para ocultar em telas grandes -->
+    <div class="w-full p-2 flex justify-center lg:hidden">
         <button onclick="toggleExpandMobile()" class="bg-violet-600 hover:bg-violet-900 text-white text-sm px-2 py-1 rounded-full flex items-center">
             <i class="fa fa-hand-peace-o mr-2"></i> Read the Welcome
         </button>
     </div>
-    <div id="expandMobile" class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center">
+    <div id="expandMobile" class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center pb-6">
         <div class="w-full">
             <div class="p-2 lg:p-4 bg-white">
                 <b class="pt-1 text-xl font-medium text-violet-800">
                     Welcome to <b class=""><u>SpaceLingo</u></b>, the universe of languages!
                 </b>
                 <p class="py-4 text-gray-500 leading-relaxed text-gray-600">
-                    I developed a language learning system to record new vocabulary words. This evolving tool aims to become a comprehensive resource, offering a range of uses such as <b class="text-violet-800">tests</b>, <b class="text-violet-800">challenges</b>, <b class="text-violet-800">tips</b>, <b class="text-violet-800">quizzes</b> and <b class="text-violet-800">much more</b>. Designed to enhance the learning experience, spacelingo caters to students at different proficiency levels. Join spacelingo as we explore the world of languages ​​together!
+                    I developed a language learning system to record new vocabulary words. This evolving tool aims to become a comprehensive resource, offering a range of uses such as <b class="text-violet-800">tests</b>, <b class="text-violet-800">challenges</b>, <b class="text-violet-800">tips</b>, <b class="text-violet-800">quizzes</b> and <b class="text-violet-800">much more</b>. Designed to enhance the learning experience, spacelingo caters to students at different proficiency levels. Join spacelingo as we explore the world of languages together!
                 </p>
             </div>
         </div>
@@ -32,14 +32,13 @@
             </div>
             <div class="flex justify-center items-center h-full">
                 <div class="max-w-sm border-2 border-dashed border-violet-400 rounded overflow-hidden shadow-lg">
-                    <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
                     <div class="p-2 flex justify-center">
                         <div class="text-violet-800 font-bold text-sm pb-2">
                             Tests
                         </div>
                     </div>
                     <div class="p-2">
-                        <button wire:click="nextSaturday" class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
+                        <button class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
                             <i class="fa fa-code mr-2"></i> Coming Soon
                         </button>
                     </div>
@@ -47,14 +46,13 @@
             </div>
             <div class="flex justify-center items-center h-full">
                 <div class="max-w-sm border-2 border-dashed border-violet-400 rounded overflow-hidden shadow-lg">
-                    <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
                     <div class="p-2 flex justify-center">
                         <div class="text-violet-800 font-bold text-sm pb-2">
                             Challenges
                         </div>
                     </div>
                     <div class="p-2">
-                        <button wire:click="nextSaturday" class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
+                        <button class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
                             <i class="fa fa-code mr-2"></i> Coming Soon
                         </button>
                     </div>
@@ -62,14 +60,13 @@
             </div>
             <div class="flex justify-center items-center h-full">
                 <div class="max-w-sm border-2 border-dashed border-violet-400 rounded overflow-hidden shadow-lg">
-                    <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
                     <div class="p-2 flex justify-center">
                         <div class="text-violet-800 font-bold text-sm pb-2">
                             Tips
                         </div>
                     </div>
                     <div class="p-2">
-                        <button wire:click="nextSaturday" class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
+                        <button class="bg-violet-600 hover:bg-violet-900 text-white text-xs px-2 py-1 rounded-full flex items-center">
                             <i class="fa fa-code mr-2"></i> Coming Soon
                         </button>
                     </div>
@@ -81,9 +78,10 @@
         <div class="ml-2 p-2">
             <b class="text-xl pb-4 pt-8 text-violet-800">Your Langs </b>
             <button wire:click="openAddLanguageModal" class="px-2 py-1 bg-violet-700 text-white rounded-full hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-300 text-md" type="button">
-            <i class="fa fa-plus-circle"></i> New Language
+                <i class="fa fa-plus-circle"></i> New Language
             </button>
         </div>
+        @if(count($languages) > 0)
         <div class="flex flex-wrap justify-center">
             @foreach($languages as $language)
             @php
@@ -156,6 +154,12 @@
             </div>
             @endforeach
         </div>
+        @else
+        <div class="flex justify-center">
+            <span class="text-violet-800 font-bold">No languages found. Create a language to get started!</span>
+        </div>
+        @endif
+
         @if($confirmingDelete)
         <div class="fixed inset-0 flex items-center justify-center z-50">
             <!-- Elemento de fundo semi-transparente -->
