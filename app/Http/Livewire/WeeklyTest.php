@@ -135,14 +135,27 @@ class WeeklyTest extends Component
 
         $vocabularyList = $this->vocabulary->pluck('vocabulary')->toArray();
 
-        $this->chatGPT = "Generate a text in the original language $lang with the words below:
-                WORDS = [" . implode(',', array_map(fn ($word) => "\"$word\"", $vocabularyList)) . "]
-            
-                And also return the translation of this text in the language \"$this->native_language\" Highlight words original and translated with the <b></b> tag
+        $this->chatGPT = "Generate a text in the original $lang language, this text must make sense or sound as natural as possible, and to generate this text, use the words below:
 
-                The return expected is two plaintext, one to $lang language and other plain text to the translation in \"$this->native_language\"
-            
-                Detail: if the word is not recognized, just ignore it.";
+        WORDS = [" . implode(',', array_map(fn ($word) => "\"$word\"", $vocabularyList)) . "]
+        
+        Also, return the translation of this text in \"$this->native_language\" language.
+        
+        Throughout the generated text, highlight the original words and their translations with the <b></b> tag.
+        
+        The expected return is two text boxes, one for the $lang language and another for the translation in \"$this->native_language\".
+        
+        Details: If the word is not recognized, just ignore it.
+        
+        Never place the generated text and the translation in the same text box.
+        
+        The expected return is two separate text boxes.
+        
+        Remember to generate a text that makes sense or sounds natural.
+        
+        And remember not to forget to highlight the words with the <b> tag.";
+
+
 
         $existingWeeklyRegister = $this->loadWeeklyRegister();
 
