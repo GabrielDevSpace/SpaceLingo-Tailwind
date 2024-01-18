@@ -16,7 +16,7 @@
         </span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-1 gap-4 justify-center">
-        <div class="w-full py-4 px-10 flex justify-center ">
+        <div class="w-full py-4 flex justify-center ">
             <ul class="flex flex-wrap leading-8">
                 @foreach ($vocabulary as $vocabularies)
                 <li class="mb-1 mr-2">
