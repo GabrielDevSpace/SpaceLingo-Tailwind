@@ -230,10 +230,10 @@
     </style>
 </head>
 
-<body class="leading-normal tracking-normal text-gray-900" style="font-family: 'Source Sans Pro', sans-serif;">
-    <div class="w-full px-8" style="background-image:url('bg.svg');">
+<body class="leading-normal tracking-normal text-gray-900 flex justify-center" style="font-family: 'Source Sans Pro', sans-serif;">
+    <div class="max-w-6xl px-8" style="background-image:url('bg.svg');">
         <!--Nav-->
-        <div class="w-full container mx-auto p-4">
+        <div class="w-full container p-4">
             <div class="w-full flex items-center justify-between">
                 <a href="/">
                     <img src="{{ asset('/images/logospacelingo300.png') }}" width='170px' />
@@ -251,7 +251,7 @@
             </div>
         </div>
         <!--Main-->
-        <div class="container pt-10 md:pt-20 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div class="container pt-10 md:pt-20 px-6 flex flex-wrap flex-col md:flex-row items-center">
             <!--Left Col-->
             <div class="flex flex-col w-full xl:w-3/6 justify-center lg:items-start overflow-y-hidden">
                 <h2 class="my-2 text-4xl md:text-4xl text-purple-800 font-bold leading-tight text-center md:text-left slide-in-bottom-h2">Welcome to <b><u>SpaceLingo</u></b></h2>
