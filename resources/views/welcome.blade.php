@@ -230,7 +230,7 @@
     </style>
 </head>
 
-<body class="leading-normal tracking-normal text-gray-900 flex justify-center" style="font-family: 'Source Sans Pro', sans-serif;">
+<body class="leading-normal tracking-normal text-gray-900 flex justify-center overflow: hidden" style="font-family: 'Source Sans Pro', sans-serif;">
     <div class="max-w-6xl px-8 overflow: hidden" style="background-image:url('bg.svg');">
         <!--Nav-->
         <div class="w-full container p-4">
