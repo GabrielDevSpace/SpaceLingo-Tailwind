@@ -1,4 +1,12 @@
-    <a href="#" onclick="ShowModalContact('myModalContact')" class="fixed bottom-4 right-4 text-sm bg-green-400 border-2 border-white shadow-lg hover:bg-green-600 text-white px-2 py-1 rounded-full ml-2 flex items-center"><i class="fa fa-bug"></i>&nbsp Report</a>
+<a href="#" onclick="ShowModalContact('myModalContact')" 
+   class="fixed bottom-4 right-4 text-sm bg-green-400 border-2 border-white shadow-lg hover:bg-green-600 text-white px-2 py-1 rounded-full ml-2 flex items-center">
+
+   <i class="fa fa-bug text-md py-1"></i> <!-- Icon always visible -->
+
+   <!-- "Report" text visible only on screens larger than small (sm) -->
+   <span class="hidden sm:inline-block">&nbsp; Report</span>
+</a>
+
 
     <!-- Modal -->
     <div class="fixed z-10 inset-0 hidden overflow-y-auto" aria-labelledby="modal-titled" role="dialogContact" aria-modal="true" id="myModalContact">

@@ -100,52 +100,63 @@
                 <!-- Modais -->
                 <!-- Vocabulary Modal -->
                 <div id="vocabulary-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
-                    <div class="bg-white p-8 max-w-md rounded-lg">
-                        <span class="font-bold text-lg mb-4">Vocabulary</span>
-                        <p>
-                            After creating a language, start here by adding new vocabulary learned in your daily life. These are categorized in the registry as:</p>
+                    <div class="bg-white p-8 max-w-md rounded-lg m-4">
+                        <span class="text-violet-800 font-bold text-lg mb-4">Vocabulary</span>
+                        <p class="pt-4">After creating a language, start here by adding new vocabulary learned in your daily life. These are categorized in the registry as:</p>
                         <ul class="list-disc pl-4 mt-2">
-                            <li>Word: Simple new word learned. Also, record its translation and your research on how and when this word is used in the language.</li>
-                            <li>Expression: New language expression learned, perhaps one or more words used in a specific language context.</li>
-                            <li>Contraction: Words that, when combined informally in daily life, contract to form a unique and easily pronounceable word in the language.</li>
+                            <li class="pt-2"><b class="text-violet-800">Word</b>: Simple new word learned. Also, record its translation and your research on how and when this word is used in the language.</li>
+                            <li class="pt-2"><b class="text-violet-800">Expression:</b> New language expression learned, perhaps one or more words used in a specific language context.</li>
+                            <li class="pt-2"><b class="text-violet-800">Contraction:</b> Words that, when combined informally in daily life, contract to form a unique and easily pronounceable word in the language.</li>
                         </ul>
-                        <button onclick="closeModal('vocabulary-modal')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">Close</button>
+                        <div class="flex justify-end">
+                            <button onclick="closeModal('vocabulary-modal')" class="mt-4 bg-violet-600 text-white px-4 py-2 rounded-full hover:bg-violet-800 focus:outline-none">Close</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Weekly Test Modal -->
                 <div id="weekly-test-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
-                    <div class="bg-white p-8 max-w-md rounded-lg">
-                        <span class="font-bold text-lg mb-4">Weekly Test</span>
-                        <p>At the end of each week, review all the new vocabularies. Utilize the power of AI to assist you. I've prepared a prompt for ChatGPT or BARD to generate a text containing the vocabulary you've learned during the week. The AI will also provide a translation of the text into your language.</p>
+                    <div class="bg-white p-8 max-w-md rounded-lg m-4">
+                        <span class="text-violet-800 font-bold text-lg mb-4">Weekly Test</span>
+                        <p class="pt-4">At the end of each week, review all the new vocabularies. Utilize the power of AI to assist you.</p>
+                        <p class="pt-2">I've prepared a prompt for ChatGPT or BARD to generate a text containing the vocabulary you've learned during the week.</p>
+                        <p class="pt-2">The AI will also provide a translation of the text into your language.</p>
                         <ul class="list-disc pl-4 mt-2">
-                            <li>Save the original text and the generated translation in their respective fields.</li>
-                            <li>Before looking at the translation, try to read the original text and write in the TEST field what you understood from the original text.</li>
-                            <li>Then compare it with the translation. This way, you'll be reinforcing your learning.</li>
+                            <li class="pt-2">Save the original text and the generated translation in their respective fields.</li>
+                            <li class="pt-2">Before looking at the translation, try to read the original text and write in the TEST field what you understood from the original text.</li>
+                            <li class="pt-2">Then compare it with the translation. This way, you'll be reinforcing your learning.</li>
                         </ul>
-                        <button onclick="closeModal('weekly-test-modal')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">Close</button>
+                        <div class="flex justify-end">
+                            <button onclick="closeModal('weekly-test-modal')" class="mt-4 bg-violet-600 text-white px-4 py-2 rounded-full hover:bg-violet-800 focus:outline-none">Close</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Notes Modal -->
                 <div id="notes-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
-                    <div class="bg-white p-8 max-w-md rounded-lg">
-                        <span class="font-bold text-lg mb-4">Notes</span>
-                        <p>I created this function to help you organize your notes. Often, you want to record specific language tips, instructions on a particular grammar topic, or any notes related to the language you are studying. With this, you can organize yourself with the COURSE NAME, SPECIFIC TOPIC, and NOTES on that TOPIC.</p>
-                        <button onclick="closeModal('notes-modal')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">Close</button>
+                    <div class="bg-white p-8 max-w-md rounded-lg m-4">
+                        <span class="text-violet-800 font-bold text-lg mb-4">Notes</span>
+                        <p class="pt-4">I created this function to help you organize your notes.</p>
+                        <p class="pt-2"> Often, you want to record specific language tips, instructions on a particular grammar topic, or any notes related to the language you are studying.</p>
+                        <p class="pt-2">With this, you can organize yourself with the COURSE NAME, SPECIFIC TOPIC, and NOTES on that TOPIC.</p>
+
+                        <div class="flex justify-end">
+                            <button onclick="closeModal('notes-modal')" class="mt-4 bg-violet-600 text-white px-4 py-2 rounded-full hover:bg-violet-800 focus:outline-none">Close</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Future Functions Modal -->
                 <div id="future-functions-modal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
-                    <div class="bg-white p-8 max-w-md rounded-lg">
-                        <span class="font-bold text-lg mb-4">Future Functions</span>
-                        <p>More functions will be available soon to further assist you.</p>
-                        <button onclick="closeModal('future-functions-modal')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">Close</button>
+                    <div class="bg-white p-8 max-w-md rounded-lg m-4">
+                        <span class="text-violet-800 font-bold text-lg mb-4">Future Functions</span>
+                        <p class="pt-4">More functions will be available soon to further assist you.</p>
+                        <div class="flex justify-end">
+                            <button onclick="closeModal('future-functions-modal')" class="mt-4 bg-violet-600 text-white px-4 py-2 rounded-full hover:bg-violet-800 focus:outline-none">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <script>
                 function openModal(id) {
                     var modal = document.getElementById(id);
@@ -160,7 +171,7 @@
         </div>
     </div>
     <div class="w-full px-2">
-        <div class="ml-2 px-2">
+        <div class="ml-2 px-2 py-4">
             <b class="text-xl pb-4 pt-4 text-violet-800">Your Langs </b>
             <button wire:click="openAddLanguageModal" class="px-2 py-1 bg-violet-700 text-white rounded-full hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-300 text-md" type="button">
                 <i class="fa fa-plus-circle"></i> New Language
@@ -240,7 +251,7 @@
             @endforeach
         </div>
         @else
-        <div class="flex justify-center">
+        <div class="flex justify-center p-4">
             <span class="text-violet-800 font-bold">No languages found. Create a language to get started!</span>
         </div>
         @endif
@@ -297,22 +308,18 @@
         @endif
     </div>
 </div>
+
 <script>
-    // Função para alternar a visibilidade da div expandMobile
     function toggleExpandMobile() {
         var expandMobileDiv = document.getElementById("expandMobile");
 
-        if (expandMobileDiv.style.display === "none" || expandMobileDiv.style.display === "") {
-            expandMobileDiv.style.display = "block";
-        } else {
-            expandMobileDiv.style.display = "none";
-        }
+        expandMobileDiv.style.display = (expandMobileDiv.style.display === "none" || expandMobileDiv.style.display === "") ? "block" : "none";
     }
 
     // Ocultar a div expandMobile em telas pequenas ao carregar a página
     window.onload = function() {
         var expandMobileDiv = document.getElementById("expandMobile");
-        if (window.innerWidth < 640) { // 640 é um ponto de ruptura típico para smartphones (ajuste conforme necessário)
+        if (window.innerWidth < 640) {
             expandMobileDiv.style.display = "none";
         }
     };
