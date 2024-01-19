@@ -255,7 +255,7 @@
             <!--Footer-->
         </div>
     </div>
-    <footer class="w-full fixed bottom-0 bg-purple-900 text-white text-xs py-4">
+    <footer class="w-full relative bottom-0 bg-purple-900 text-white text-xs py-4">
         <div class="container mx-auto text-center">
             <!-- Your footer content goes here -->
             <span class="text-xs">Powered by <a href="https://developerspace.com.br" class="hover:text-green-500"><b>DeveloperSpace <i class="fa fa-rocket"></i></b></a></span>
