@@ -231,7 +231,7 @@
 </head>
 
 <body class="leading-normal tracking-normal text-gray-900 flex justify-center" style="font-family: 'Source Sans Pro', sans-serif;">
-    <div class="max-w-6xl px-8" style="background-image:url('bg.svg');">
+    <div class="max-w-6xl px-8 overflow: hidden" style="background-image:url('bg.svg');">
         <!--Nav-->
         <div class="w-full container p-4">
             <div class="w-full flex items-center justify-between">
