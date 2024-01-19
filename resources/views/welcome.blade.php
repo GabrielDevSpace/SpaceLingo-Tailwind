@@ -229,10 +229,13 @@
                     <img src="{{ asset('/images/logospacelingo300.png') }}" width='170px' />
                 </a>
                 <div class="flex w-1/2 justify-end content-center">
-                    <a href="/login">
+                    <!--  <a href="/login">
                         <button class="bg-purple-700 hover:bg-purple-900 text-white text-sm px-3 py-2 rounded-full flex items-center">
                             <span><i class="fa fa-sign-in"></i> Login</span>
                         </button>
+                    </a> -->
+                    <a href="{{ route('auth.google') }}">
+                        <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
                     </a>
                 </div>
             </div>
