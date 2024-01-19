@@ -212,7 +212,7 @@
         @endif
     </div>
 </div>
-
+<livewire:contact-form />
 <script>
     // Função para alternar a visibilidade da div expandMobile
     function toggleExpandMobile() {
