@@ -59,9 +59,8 @@
     </div>
 
     @stack('modals')
-    
+    @include('components.contact-modal')
     @livewireScripts
-   
 </body>
 <!-- AlertMessages -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -73,6 +72,19 @@
             "progressBar": true,
         }
     });
+</script>
+<script type="text/javascript">
+    function ShowModalContact() {
+        var modal = document.getElementById('myModalContact');
+        modal.classList.remove('hidden');
+        modal.classList.add('block');
+    }
+
+    function HiddenModalContact() {
+        var modal = document.getElementById('myModalContact');
+        modal.classList.remove('block');
+        modal.classList.add('hidden');
+    }
 </script>
 
 </html>

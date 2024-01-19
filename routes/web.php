@@ -10,7 +10,7 @@ use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\CourseNotesController;
 use App\Http\Controllers\WeeklyTestController;
 use App\Http\Livewire\Languages;
-
+use App\Http\Controllers\ContactController;
 
 
 /*
@@ -77,3 +77,6 @@ Route::post('/edit-topic', [ExerciseController::class, 'editTopic'])->name('edit
 
 // Route to handle deleting a topic and its associated exercises
 Route::get('/delete-topic', [ExerciseController::class, 'deleteTopic'])->name('deleteTopic')->middleware('auth');
+
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
+Route::post('/contact/save', [ContactController::class, 'saveContact'])->name('contact.save');
