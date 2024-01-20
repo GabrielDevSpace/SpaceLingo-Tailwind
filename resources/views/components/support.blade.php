@@ -14,7 +14,7 @@
             <hr width="90%">
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 justify-center">
-            <div class="w-full pb-10">
+            <div class="w-full px-2 pb-16">
                 <div class="flex justify-center">
                     <img src="{{ asset('/images/support/pix_oficial.png') }}" width="100px" alt="PIX Icon">
                 </div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="w-full">
+            <div class="w-full px-2">
                 <div class="flex justify-center">
                     <img src="{{ asset('/images/support/bitcoin_logo.png') }}" width="100px" alt="Bitcoin Icon">
                 </div>
