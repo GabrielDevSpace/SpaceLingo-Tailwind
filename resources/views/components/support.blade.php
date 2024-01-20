@@ -24,10 +24,10 @@
                     </div>
                     <div>
                         <div class="flex justify-center">
-                            <span id="key_pix" class="text-sm">20d400c6-8176-44f1-a307-9c250e811bbb</span> &nbsp
+                            <span id="Key_Pix" class="text-sm">20d400c6-8176-44f1-a307-9c250e811bbb</span> &nbsp
                         </div>
                         <div class="flex justify-center">
-                            <button class="bg-purple-700 hover:bg-purple-900 text-white text-xs px-2 py-1 rounded-full flex items-center" onclick="copyToClipboard('key_pix')"><i class="fa fa-copy"></i>&nbsp Copy</button>
+                            <button class="bg-purple-700 hover:bg-purple-900 text-white text-xs px-2 py-1 rounded-full flex items-center" onclick="copyToClipboard('Key_Pix')"><i class="fa fa-copy"></i>&nbsp Copy</button>
                         </div>
                     </div>
                 </div>
@@ -47,10 +47,10 @@
                         </div>
                         <div>
                             <div class="flex justify-center">
-                                <span id="address_bitcoin" class="text-sm">0xb977ffd8b9ea4eb5ced656fbfd051ae80adc4193</span> &nbsp
+                                <span id="Address_Bitcoin" class="text-sm">0xb977ffd8b9ea4eb5ced656fbfd051ae80adc4193</span> &nbsp
                             </div>
                             <div class="flex justify-center">
-                                <button class="bg-purple-700 hover:bg-purple-900 text-white text-xs px-2 py-1 rounded-full flex items-center" onclick="copyToClipboard('address_bitcoin')"><i class="fa fa-copy"></i>&nbsp Copy</button>
+                                <button class="bg-purple-700 hover:bg-purple-900 text-white text-xs px-2 py-1 rounded-full flex items-center" onclick="copyToClipboard('Address_Bitcoin')"><i class="fa fa-copy"></i>&nbsp Copy</button>
                             </div>
                         </div>
                     </div>
