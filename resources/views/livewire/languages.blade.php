@@ -1,4 +1,4 @@
-<div class="w-full bg-white p-2 shadow-md rounded-md overflow-x-hidden">
+<div class="w-full bg-white px-2 pt-2 pb-10 shadow-md rounded-md overflow-x-hidden">
     <div class="w-full p-2 flex justify-center lg:hidden">
         <button onclick="toggleExpandMobile()" class="bg-violet-600 hover:bg-violet-900 text-white text-sm px-2 py-1 rounded-full flex items-center">
             <i class="fa fa-hand-peace-o mr-2"></i> Read the Welcome
@@ -81,7 +81,7 @@
         <div class="w-full pr-2">
             <div class="p-2 lg:p-4 bg-white">
                 <span class="pt-1 px-2 text-xl font-medium text-violet-800">
-                    Current functions and functions to be developed
+                <i class="fa fa-info-circle"></i> About - Current functions and functions to be developed
                 </span>
             </div>
             <div class="max-w-2xl mx-auto mt-2">
@@ -308,7 +308,6 @@
         @endif
     </div>
 </div>
-
 <script>
     function toggleExpandMobile() {
         var expandMobileDiv = document.getElementById("expandMobile");

@@ -259,7 +259,7 @@
                     Discover a universe of possibilities as you register and organize your vocabulary while we prepare exciting new features like quizzes, questions, tests, and tips. All of this is completely free and constantly improving!<br><br>
             </div>
             <!--Right Col-->
-            <div class="flex w-full xl:w-3/6 py-6 justify-center  overflow-y-hidden">
+            <div class="flex w-full xl:w-3/6 pb-20 justify-center  overflow-y-hidden">
                 <img class="mx-auto lg:mr-0 slide-in-bottom" src="{{ asset('/images/poster.png') }}" width='300px' />
             </div>
             <!--Footer-->
