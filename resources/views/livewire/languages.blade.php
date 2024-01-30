@@ -12,8 +12,7 @@
                 </span>
                 <div class="w-full py-6 px-2 text-gray-500 text-gray-600 text-sm">
                     <p>
-                        I developed a language learning system to record new vocabulary words.
-                        This evolving tool aims to become a comprehensive resource, offering a range of uses such as <b class="text-violet-800">tests</b>, <b class="text-violet-800">challenges</b>, <b class="text-violet-800">tips</b>, <b class="text-violet-800">quizzes</b> and <b class="text-violet-800">much more.</b> Designed to enhance the learning experience, spacelingo caters to students at different proficiency levels. Let's explore the world of languages together!
+                        I created a language learning system not only for capturing new vocabulary but also for fostering progressive learning and consolidating a knowledge base. This dynamic tool is intended to evolve into a versatile resource, encompassing features like <b class="text-violet-800">tests</b>, <b class="text-violet-800">challenges</b>, <b class="text-violet-800">tips</b>, <b class="text-violet-800">quizzes</b>, and <b class="text-violet-800">beyond</b>. Tailored to enrich the learning journey, spacelingo accommodates students of varying proficiency levels. Join us in delving into the realm of languages!
                     </p>
 
                 </div>
@@ -81,7 +80,7 @@
         <div class="w-full pr-2">
             <div class="p-2 lg:p-4 bg-white">
                 <span class="pt-1 px-2 text-xl font-medium text-violet-800">
-                <i class="fa fa-info-circle"></i> About - Current functions and functions to be developed
+                    <i class="fa fa-info-circle"></i> About - Current functions and functions to be developed
                 </span>
             </div>
             <div class="max-w-2xl mx-auto mt-2">
