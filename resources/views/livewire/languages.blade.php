@@ -103,7 +103,7 @@
                         <span class="text-violet-800 font-bold text-lg mb-4">Vocabulary</span>
                         <p class="pt-4">After creating a language, start here by adding new vocabulary learned in your daily life. These are categorized in the registry as:</p>
                         <ul class="list-disc pl-4 mt-2">
-                            <li class="pt-2"><b class="text-violet-800">Word</b>: Simple new word learned. Also, record its translation and your research on how and when this word is used in the language.</li>
+                            <li class="pt-2"><b class="text-violet-800">Vocabulary</b>: Simple new word learned. Also, record its translation and your research on how and when this word is used in the language.</li>
                             <li class="pt-2"><b class="text-violet-800">Expression:</b> New language expression learned, perhaps one or more words used in a specific language context.</li>
                             <li class="pt-2"><b class="text-violet-800">Contraction:</b> Words that, when combined informally in daily life, contract to form a unique and easily pronounceable word in the language.</li>
                         </ul>
