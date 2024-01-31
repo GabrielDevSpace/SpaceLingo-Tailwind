@@ -38,7 +38,11 @@ Route::controller(GoogleController::class)->group(function(){
 });
 Route::get('newregister', [NewregisterController::class, 'index'])->name('newregister.index')->middleware('auth');
 Route::get('newregister/{id}', [NewregisterController::class, 'lang'])->name('newregister')->middleware('auth');
-Route::get('newregister/create/{lang_id}', [NewregisterController::class, 'create'])->name('newregister.create')->middleware('auth');
+//Route::get('newregister/create/{lang_id}', [NewregisterController::class, 'create'])->name('newregister.create')->middleware('auth');
+Route::get('newregister/create/{lang_id}', [NewregisterController::class, 'create'])
+    ->name('newregister.create')
+    ->middleware('auth');
+
 Route::post('newregister/store/{lang_id}', [NewregisterController::class, 'store'])->name('newregister.store')->middleware('auth');
 Route::put('newregister/update/{lang_id}/{register_id}', [NewregisterController::class, 'update'])->name('newregister.update')->middleware('auth');
 Route::get('newregister/edit/{lang_id}/{register_id}', [NewregisterController::class, 'edit'])->name('newregister.edit')->middleware('auth');

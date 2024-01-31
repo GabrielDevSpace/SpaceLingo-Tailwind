@@ -24,10 +24,10 @@
 
             <div class="grid grid-cols-1 gap-4 mb-4">
                 <div class="flex justify-center">
-                    <input type="text" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
+                <input type="text" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
                 </div>
                 <div class="flex justify-center">
-                    <a href="{{ route('newregister.create', ['lang_id' => $lang_id]) }}" class="bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full">Add New Vocabulary</a>
+                <a href="{{ route('newregister.create', ['lang_id' => $lang_id, 'searchTerm' => $searchTerm]) }}" class="bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full">Add New Vocabulary</a>
                 </div>
             </div>
 
@@ -125,7 +125,9 @@
                         @endforeach
                         @else
                         <tr>
-                            <td class="py-2 px-6 border" colspan="4">No record found</td>
+                            <td class="py-4 px-6 border font-bold text-center text-violet-800" colspan="4">
+                                Vocabulary not found
+                            </td>
                         </tr>
                         @endif
                     </tbody>
@@ -173,8 +175,8 @@
                     <div>
                         <input type="text" class="w-64 px-4 py-2 rounded-full border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
                     </div>
-                    <div class="content-right">
-                        <a href="{{ route('newregister.create', ['lang_id' => $lang_id]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Add New Vocabulary</a>
+                    <div class="flex justify-center">
+                        <a href="{{ route('newregister.create', ['lang_id' => $lang_id, 'searchTerm' => $searchTerm]) }}" class="bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full">Add New Vocabulary</a>
                     </div>
                 </div>
 
@@ -270,7 +272,9 @@
                             @endforeach
                             @else
                             <tr>
-                                <td class="py-2 px-6 border" colspan="4">No record found</td>
+                                <td class="py-4 px-6 border font-bold text-center text-violet-800" colspan="4">
+                                    Vocabulary not found
+                                </td>
                             </tr>
                             @endif
                         </tbody>
@@ -307,5 +311,4 @@
         var modalMobile = document.getElementById(id);
         modalMobile.style.display = "";
     }
-  
 </script>

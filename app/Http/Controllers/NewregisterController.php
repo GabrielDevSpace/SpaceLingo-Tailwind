@@ -23,12 +23,11 @@ class NewregisterController extends Controller
         return view('livewire.search-pagination', compact('newregister'));
     }
 
-    public function create($id)
+    public function create($lang_id)
     {
-        $lang_id = $id;
-        return view('newregister.create', compact('lang_id'));
+        $searchTerm = request()->query('searchTerm');
+        return view('newregister.create', compact('lang_id', 'searchTerm'));
     }
-
 
     public function store(StoreNewregisterRequest $request, $lang_id)
     {

@@ -21,7 +21,7 @@
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="list-radio" class="block font-medium text-sm text-gray-700">Type</label>
+                            <label for="list-radio" class="block font-bold text-sm text-violet-800">Type</label>
                             <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                 <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                     <div class="flex items-center pl-3">
@@ -70,15 +70,15 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="vocabulary" class="block font-medium text-sm text-gray-700">Vocabulary</label>
-                            <input type="text" name="vocabulary" id="vocabulary" type="text" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full" />
+                            <label for="vocabulary" class="block font-bold text-sm text-violet-800">Vocabulary</label>
+                            <input type="text" name="vocabulary" id="vocabulary" type="text" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ $searchTerm ? $searchTerm : '' }}" />
                             @error('vocabulary')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="translate" class="block font-medium text-sm text-gray-700">Translate</label>
+                            <label for="translate" class="block font-bold text-sm text-violet-800">Translate</label>
                             <input type="text" name="translate" id="translate" type="text" autocomplete="off" class="form-input rounded-md shadow-sm mt-1 block w-full" />
                             @error('translate')
                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="note" class="block font-medium text-sm text-gray-700">Note</label>
+                            <label for="note" class="block font-bold text-sm text-violet-800">Note</label>
                             <textarea name="note" id="note" autocomplete="off" rows="20" class="form-input rounded-md shadow-sm mt-1 block w-full"></textarea>
                             <span id="character-count" class="text-sm text-red-600"></span>
                             @error('note')
@@ -96,8 +96,8 @@
                         </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button id="submitbutton" onclick="this.disabled = true; this.value = 'Creating…'; this.form.submit();" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                Create
+                            <button id="submitbutton" onclick="this.disabled = true; this.value = 'Creating…'; this.form.submit();" class="inline-flex items-center bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full">
+                            <i class="fa fa-save"></i> &nbsp Register
                             </button>
                         </div>
                     </div>
