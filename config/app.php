@@ -17,7 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'SpaceLingo'),
-
+    'version' => '1.1.0',
     /*
     |--------------------------------------------------------------------------
     | Application Environment

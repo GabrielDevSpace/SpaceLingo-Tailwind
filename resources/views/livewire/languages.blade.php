@@ -1,4 +1,4 @@
-<div class="w-full bg-white px-2 pt-2 pb-10 shadow-md rounded-md overflow-x-hidden">
+<div class="w-full bg-white px-2 pt-2">
     <div class="w-full p-2 flex justify-center lg:hidden">
         <button onclick="toggleExpandMobile()" class="bg-violet-600 hover:bg-violet-900 text-white text-sm px-2 py-1 rounded-full flex items-center">
             <i class="fa fa-hand-peace-o mr-2"></i> Read the Welcome
@@ -169,7 +169,7 @@
             </script>
         </div>
     </div>
-    <div class="w-full px-2">
+    <div class="w-full pt-2 mb-6">
         <div class="ml-2 px-2 py-4">
             <b class="text-xl pb-4 pt-4 text-violet-800">Your Langs </b>
             <button wire:click="openAddLanguageModal" class="px-2 py-1 bg-violet-700 text-white rounded-full hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-300 text-md" type="button">
@@ -207,7 +207,7 @@
             $imageName = 'russia.png';
             }
             @endphp
-            <div class="max-w-sm rounded overflow-hidden shadow-lg m-2 border-2 border-dashed border-violet-300">
+            <div class="max-w-sm rounded shadow-lg m-2 border-2 border-dashed border-violet-300">
                 <div class="bg-violet-100">
                     <button wire:click="confirmDelete('{{ $language->id }}')" class="ml-2 mt-2 px-2 py-0 bg-violet-500 text-white rounded-full hover:bg-violet-900 focus:ring-red-300 text-sm ml-0">
                         <i class="fa fa-trash"></i>
