@@ -260,14 +260,19 @@
             <!-- Elemento de fundo semi-transparente -->
             <div class="fixed inset-0 bg-black opacity-50"></div>
             <!-- Modal -->
-            <div class="modal-container bg-white rounded-lg shadow p-4" style="z-index: 9999;"> <!-- Defina um valor alto para o z-index -->
-                <h2 class="text-xl font-semibold text-gray-900">
-                    Confirm Delete
+            <div class="modal-container bg-white rounded-lg shadow-lg p-4 max-w-md mx-auto w-4/5" style="z-index: 9999;max-height: 80vh;"> <!-- Defina um valor alto para o z-index -->
+                <h2 class="text-xl font-semibold text-violet-800 py-3">
+                    Confirmation to <b class="text-red-600">Delete</b> Language
                 </h2>
-                <p>Are you sure you want to delete this language?</p>
+                <p class="text-gray-700 font-bold">Are you sure you want to delete this language?</p>
+                <br>
                 <div class="flex justify-end">
-                    <button wire:click="cancelDelete" class="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm">Cancel</button>
-                    <button wire:click="deleteLanguage" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium text-sm ml-2">Delete</button>
+                    <button wire:click="cancelDelete" class="px-3 py-2 bg-gray-500 text-white rounded-full hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-md mr-4">
+                        <i class="fa fa-ban"></i> Cancel
+                    </button>
+                    <button wire:click="deleteLanguage" class="px-3 py-2 bg-red-500 text-white rounded-full hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 text-md mr-4">
+                        <i class="fa fa-trash"></i> Delete
+                    </button>
                 </div>
             </div>
         </div>
@@ -280,8 +285,15 @@
             <div class="fixed inset-0 bg-gray-900 opacity-50"></div>
             <!-- Modal -->
             <div class="modal-container fixed inset-0 flex items-center justify-center z-50">
-                <div class="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto" style="max-height: 33vh;">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Add Language</h2>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold text-violet-800 mb-4">Add New Language</h2>
+                    <h3 class="text-sm text-violet-800">
+                        <b class="text-md flex justify-center">🥳🎊🎉 Congratulations 🎈🎊🥳</b>
+                        <i class="flex justify-center">"This is the first step in favor of yourself."</i>
+                        <br>
+                        <p class="flex justify-start">Add a new language you're learning and benefit from spacelingo's help.</p>
+                    </h3>
+                    <br>
                     <select wire:model.defer="newLanguage" id="languageSelect" class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400">
                         <option value="" disabled selected>Select a Language</option>
                         <option value="English">English</option>
@@ -298,8 +310,13 @@
                         <option value="Russian">Russian</option>
                     </select>
                     <div class="mt-4 flex justify-end">
-                        <button wire:click="closeAddLanguageModal" class="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm">Cancel</button>
-                        <button wire:click="addLanguage" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm ml-2">Add</button>
+                        <button wire:click="closeAddLanguageModal" class="px-3 py-2 bg-gray-500 text-white rounded-full hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-md mr-4">
+                            <i class="fa fa-ban"></i> Cancel
+                        </button>
+
+                        <button wire:click="addLanguage" class="px-3 py-2 bg-violet-700 text-white rounded-full hover:bg-violet-900 focus:ring-4 focus:outline-none focus:ring-violet-300 text-md" type="button">
+                            <i class="fa fa-save"></i> Register
+                        </button>
                     </div>
                 </div>
             </div>

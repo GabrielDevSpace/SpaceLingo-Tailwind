@@ -19,7 +19,7 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form method="post" action="{{ route('newregister.store', ['lang_id' => $lang_id]) }}">
                     @csrf
-                    <div class="shadow overflow-hidden sm:rounded-md">
+                    <div class="shadow-lg overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="list-radio" class="block font-bold text-sm text-violet-800">Type</label>
                             <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">

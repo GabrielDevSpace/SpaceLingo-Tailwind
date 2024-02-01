@@ -24,10 +24,10 @@
 
             <div class="grid grid-cols-1 gap-4 mb-4">
                 <div class="flex justify-center">
-                <input type="text" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
+                    <input type="text" class="w-full px-4 py-2 rounded-full border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
                 </div>
                 <div class="flex justify-center">
-                <a href="{{ route('newregister.create', ['lang_id' => $lang_id, 'searchTerm' => $searchTerm]) }}" class="bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full">Add New Vocabulary</a>
+                    <a href="{{ route('newregister.create', ['lang_id' => $lang_id, 'searchTerm' => $searchTerm]) }}" class="bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full"><i class="fa fa-plus-circle"></i> &nbsp Add New Vocabulary</a>
                 </div>
             </div>
 
@@ -176,7 +176,7 @@
                         <input type="text" class="w-64 px-4 py-2 rounded-full border border-gray-300 focus:ring focus:ring-blue-200 focus:border-blue-500 placeholder-gray-400" placeholder="Search Vocabulary or Translate" wire:model="searchTerm">
                     </div>
                     <div class="flex justify-center">
-                        <a href="{{ route('newregister.create', ['lang_id' => $lang_id, 'searchTerm' => $searchTerm]) }}" class="bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full">Add New Vocabulary</a>
+                        <a href="{{ route('newregister.create', ['lang_id' => $lang_id, 'searchTerm' => $searchTerm]) }}" class="bg-violet-800 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-full"><i class="fa fa-plus-circle"></i> &nbsp Add New Vocabulary</a>
                     </div>
                 </div>
 
@@ -219,12 +219,20 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex space-x-2">
-                                        <a href="#" onclick="ShowModal('myModal-{{ $register->id }}')" class="focus:outline-none myBtn text-white text-sm py-2 px-2 mt-1 mx-1 rounded-full bg-green-500 hover:bg-green-600 hover:shadow-lg">Note</a>
-                                        <a href="{{ route('newregister.edit',['lang_id' => $lang_id, 'register_id'=> $register->id]) }}" class="focus:outline-none text-white text-sm py-2 px-2 mt-1 mx-1 rounded-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg">Edit</a>
+                                        <a href="#" onclick="ShowModal('myModal-{{ $register->id }}')" class="bg-green-500 hover:bg-green-600 hover:shadow-lg text-white font-bold mt-1 py-2 px-4 rounded-full">
+                                            <i class="fa fa-comment"></i> Note
+                                        </a>
+
+                                        <a href="{{ route('newregister.edit',['lang_id' => $lang_id, 'register_id'=> $register->id]) }}" class="focus:outline-none bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-white font-bold mt-1 py-2 px-4 rounded-full">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+
                                         <form class="inline-block" action="{{ route('newregister.destroy', ['lang_id' => $lang_id ,'destroy_id' => $register->id]) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="submit" class="focus:outline-none text-white text-sm py-2 px-2 mt-1 mx-1 rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg" value="Delete">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="focus:outline-none text-white bg-red-500 hover:bg-red-600 hover:shadow-lg text-white font-bold mt-1 py-2 px-4 rounded-full">
+                                                <i class="fa fa-trash"></i> Delete
+                                            </button>
                                         </form>
                                     </div>
                                 </td>
@@ -238,19 +246,18 @@
                                     <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                             <div class="sm:flex sm:items-start">
-                                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-violet-100 sm:mx-0 sm:h-10 sm:w-10">
                                                     {!! $svg !!}
                                                 </div>
                                                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                                        Vocabulary: <b>{{ $register->vocabulary }}</b>
+                                                    <h3 class="text-lg leading-6 font-medium text-violet-900" id="modal-title">
+                                                        Vocabulary: <b class="bg-green-500 hover:bg-green-600 text-white text-sm px-2 py-1 rounded-full relative">{{ $register->vocabulary }}</b>
                                                     </h3>
-                                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                                        Translate: <b>{{ $register->translate }}</b>
+                                                    <h3 class="text-lg leading-6 font-medium text-violet-900" id="modal-title">
+                                                        <b>Translate:</b> <b class="text-sm">{{ $register->translate }}</b>
                                                     </h3>
                                                     <div class="mt-2">
-                                                        <p class="text-sm text-gray-500">
-
+                                                        <p class="text-sm text-violet-900">
                                                             @php
                                                             $str_replace = ReplaceTextArea($register->note);
                                                             @endphp
@@ -262,8 +269,8 @@
                                             </div>
                                         </div>
                                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                            <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="HiddenModal('myModal-{{ $register->id }}')">
-                                                Close
+                                            <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-violet-600 text-base font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 sm:ml-3 sm:w-auto sm:text-sm" onclick="HiddenModal('myModal-{{ $register->id }}')">
+                                                <i class="fa fa-close mr-1"></i> Close
                                             </button>
                                         </div>
                                     </div>
