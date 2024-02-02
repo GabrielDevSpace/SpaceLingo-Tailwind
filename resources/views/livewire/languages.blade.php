@@ -284,7 +284,7 @@
             <!-- Elemento de fundo semi-transparente -->
             <div class="fixed inset-0 bg-gray-900 opacity-50"></div>
             <!-- Modal -->
-            <div class="modal-container fixed inset-0 flex items-center justify-center z-50">
+            <div class="m-4 modal-container fixed inset-0 flex items-center justify-center z-50">
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <h2 class="text-xl font-semibold text-violet-800 mb-4">Add New Language</h2>
                     <h3 class="text-sm text-violet-800">
