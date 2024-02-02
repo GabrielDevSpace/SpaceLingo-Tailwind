@@ -1,4 +1,4 @@
-<div class="container mx-auto mt-1">
+<div class="container mx-auto mt-1 pt-3">
     <!-- LAYOUT MOBILE -->
     <div class="mobile-layout lg:hidden">
         <div class="w-full px-2">
@@ -147,26 +147,29 @@
                 <div class="grid grid-cols-3 pb-3 content-start">
                     <div class="max-w-sm overflow-hidden">
                         <div class="px-6 py-1">
-                            <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                This Week
-                            </p>
-                            <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countWeek }}</b> Learned Vocabulary</p>
+                            <div class="p-4 text-center">
+                                <i class="fa fa-calendar fa-2x text-green-600"></i>
+                                <p class="text-xs font-bold text-gray-500 uppercase mt-2">Week</p>
+                                <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-violet-800 text-base">{{ $countWeek }}</b> Learned Vocabulary</p>
+                            </div>
                         </div>
                     </div>
                     <div class="max-w-sm overflow-hidden">
                         <div class="px-6 py-1">
-                            <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                This Month
-                            </p>
-                            <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countMonth }}</b> Learned Vocabulary</p>
+                            <div class="p-4 text-center">
+                                <i class="fa fa-calendar fa-2x text-green-600"></i>
+                                <p class="text-xs font-bold text-gray-500 uppercase mt-2">Month</p>
+                                <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-violet-800 text-base">{{ $countMonth }}</b> Learned Vocabulary</p>
+                            </div>
                         </div>
                     </div>
                     <div class="max-w-sm overflow-hidden">
                         <div class="px-6 py-1">
-                            <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                All
-                            </p>
-                            <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-green-600 text-base">{{ $countAll }}</b> Learned Vocabulary</p>
+                            <div class="p-4 text-center">
+                                <i class="fa fa-calendar fa-2x text-green-600"></i>
+                                <p class="text-xs font-bold text-gray-500 uppercase mt-2">All</p>
+                                <p class="text-center text-xs font-medium text-gray-500 tracking-wider"><b class="font-bold text-violet-800 text-base">{{ $countAll }}</b> Learned Vocabulary</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -21,6 +21,10 @@
 -: Git Tag para crair recursos
 
 --> 
+## [1.3.1] - 2024-02-02
+### Corrigido
+- Corrigido Layout e Icones Navbar e adicionado menu WeeklyTest.
+
 ## [1.3.0] - 2024-02-02
 ### Adicionado
 - Adicionado funcao Copy Prompt ChatGTP / Bard para "Add New Vocabulary", Ao entrar no cadastro de um novo vocabulario é gerado um prompt para retornar a Traducao, Exemplos de Uso dessa nova palavra.
