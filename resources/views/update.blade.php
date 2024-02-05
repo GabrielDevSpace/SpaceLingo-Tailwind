@@ -36,43 +36,81 @@
 
                     <div class="col-span-2">
                         <textarea id="textarea-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" cols="70">
-                            Qual o significado da palavra em inglês "got", quando podemos utilizá-la, quais suas variações, como soa no português e 3 questoes de prova sobre a palavra informada? 
-                            Formate a resposta no formato de array onde esteja no seguinte padrão:
+- What does the word "got" mean in English?
+- 3 or more examples of usage in English and Translation in Portuguese?
+- What are its variations in the past, present, future?
+- how pronounced?
+- 3 test questions about the word informed
+- Format a response in array format where you are in the following pattern below and without any statement:
+- Rules:
+"word":"" //searched word
+"translate":"" //all translations of the word, separated with comma
+"use": 
+[
+"Example_One_English":"",
+"Example_One_Translation_Portuguese":"",
+"Example_Two_English":"",
+"Example_Two_Translation_Portuguese":"",
+"Example_Three_English":"",
+"Example_Three_Translation_Portuguese":""
+],
+"variation":
+[
+"past":"",
+"present":"",
+"future":""
+]
+"pronunciation":""  //How to pronounce the searched word in Portuguese
+"question1":"" //Generate an English sentence with blank space for a person to complete with the search word "got" in the Past tense
+"question2":"" //Generate an English sentence with blank space for a person to complete with the search word "got" in the Present tense
+"question3":"" //Generate an English sentence with blank space for a person to complete with the search word "got" in the Future tense
+"answer1":""  //answer question1
+"answer2":""  //answer question2
+"answer3":""  //answer question3
 
-                            [
-                            {
-                                "word": "palavra pesquisada",
-                                "translate": ["todas as traduções da palavra"],
-                                "use": [
-                                    "O máximo de exemplos de uso iniciando com exemplo em inglês e depois TRADUZINDO para portugues"
-                                ],
-                                "variation": [
-                                    "todas variações possíveis da palavra no presente, no futuro, no passado, etc. e dÊ a tradução das variações tambem"
-                                ],
-                                "pronunciation": [
-                                    "use uma aproximação simplificada da pronúncia em português da palavra acima, mas utilize SOMENTE letras do alfabeto portugues"
-                                ],
-                                "question1": [
-                                    "complete one sentence below in english:"
-                                ],
-                                "question2": [
-                                    "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
-                                ],
-                                "question3": [
-                                    "traduza a frase a seguir para o portugues: (frase que contenha a palavra mencionada)"
-                                ],
-                                "answer1": [
-                                    "answer question1"
-                                ],
-                                "answer2": [
-                                    "answer question2"
-                                ],
-                                "answer3": [
-                                    "answer question3"
-                                ]
-                            }
-                            ]
-                        </textarea>
+Expected Return = 
+{
+  "word": "",
+  "translate": "",
+  "use": [
+    {
+      "english": "",
+      "translation": ""
+    },
+    {
+      "english": "",
+      "translation": ""
+    },
+    {
+      "english": "",
+      "translation": ""
+    }
+  ],
+  "variation": {
+    "past": "",
+    "present": "",
+    "future": ""
+  },
+  "pronunciation": "",
+  "questions": [
+    {
+      "question": "",
+      "answer": ""
+    },
+    {
+      "question": "",
+      "answer": ""
+    },
+    {
+      "question": "",
+      "answer": ""
+    }
+  ]
+}
+
+
+
+</textarea>
                     </div>
                 </div>
 
