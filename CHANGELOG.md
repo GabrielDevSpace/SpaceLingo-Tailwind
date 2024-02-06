@@ -21,6 +21,12 @@
 -: Git Tag para crair recursos
 
 --> 
+## [1.4.0] - 2024-02-06
+### Adicionado
+- Adicionado Integração com API chatGPT para coletar 5k palavras mais usadas no ingles, exemplos de uso, 3 questoes para testes, etc. 
+- Complementado funcao chatGPT na funcao ja existente five-thousand
+- Função ainda experimental beta
+
 ## [1.3.1] - 2024-02-02
 ### Corrigido
 - Corrigido Layout e Icones Navbar e adicionado menu WeeklyTest.

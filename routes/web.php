@@ -62,6 +62,9 @@ Route::get('/five-thousand/update', function () {
 Route::post('/five-thousand/update', [JsonController::class, 'updateFromJson'])->name('five-thousand.update')->middleware('auth');
 Route::get('/five-thousand/update', [JsonController::class, 'showAllWords'])->name('five-thousand.words')->middleware('auth');
 
+Route::get('/openai', [JsonController::class, 'showForm'])->name('openai.form')->middleware('auth');
+Route::post('/openai', [JsonController::class, 'generateChat'])->name('openai.chat')->middleware('auth');
+
 Route::get('/movie', [MoviesController::class, 'index'])->middleware('auth');
 
 Route::get('/movie/create', [MoviesController::class, 'create'])->name('movie.create')->middleware('auth');
@@ -84,3 +87,4 @@ Route::get('/delete-topic', [ExerciseController::class, 'deleteTopic'])->name('d
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact/save', [ContactController::class, 'saveContact'])->name('contact.save');
+
