@@ -21,6 +21,12 @@
 -: Git Tag para crair recursos
 
 --> 
+
+## [1.5.0] - 2024-02-25
+### Adicionado
+- Adicionado Funcao Gerar PDF com resultado de Five Thousand - 5k palavras mais usadas no ingles.
+- Adicionado V2 de Five Thousand, separando cada caso de uso e sua traducao em colunas separadas no banco.
+
 ## [1.4.0] - 2024-02-06
 ### Adicionado
 - Adicionado Integração com API chatGPT para coletar 5k palavras mais usadas no ingles, exemplos de uso, 3 questoes para testes, etc. 

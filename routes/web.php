@@ -5,12 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NewregisterController;
 use App\Http\Controllers\JsonController;
+use App\Http\Controllers\JsonV2Controller;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\CourseNotesController;
 use App\Http\Controllers\WeeklyTestController;
 use App\Http\Livewire\Languages;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\pdfController;
 
 
 /*
@@ -62,8 +64,18 @@ Route::get('/five-thousand/update', function () {
 Route::post('/five-thousand/update', [JsonController::class, 'updateFromJson'])->name('five-thousand.update')->middleware('auth');
 Route::get('/five-thousand/update', [JsonController::class, 'showAllWords'])->name('five-thousand.words')->middleware('auth');
 
+Route::get('/five-thousand-v2/update', function () {
+    return view('ftv_v2_update');
+});
+Route::post('/five-thousand-v2/update', [JsonV2Controller::class, 'updateFromJson'])->name('five-thousand-v2.update')->middleware('auth');
+Route::get('/five-thousand-v2/update', [JsonV2Controller::class, 'showAllWords'])->name('five-thousand-v2.words')->middleware('auth');
+
+
 Route::get('/openai', [JsonController::class, 'showForm'])->name('openai.form')->middleware('auth');
 Route::post('/openai', [JsonController::class, 'generateChat'])->name('openai.chat')->middleware('auth');
+
+Route::get('/openaiv2', [JsonV2Controller::class, 'showForm'])->name('openaiv2.form')->middleware('auth');
+Route::post('/openaiv2', [JsonV2Controller::class, 'generateChat'])->name('openaiv2.chat')->middleware('auth');
 
 Route::get('/movie', [MoviesController::class, 'index'])->middleware('auth');
 
@@ -88,3 +100,4 @@ Route::get('/delete-topic', [ExerciseController::class, 'deleteTopic'])->name('d
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact/save', [ContactController::class, 'saveContact'])->name('contact.save');
 
+Route::get('/pdf', [pdfController::class, 'download'])->name('pdf.index')->middleware('auth');
