@@ -48,9 +48,9 @@
                         "use_one":""
                         "use_two":""
                         "use_three":""
-                        "translate_one":""
-                        "translate_two":""
-                        "translate_three":""
+                        "translate_one":"" // Entire text translated into Brazilian Portuguese
+                        "translate_two":"" // Entire text translated into Brazilian Portuguese
+                        "translate_three":"" // Entire text translated into Brazilian Portuguese
 
                         Expected Return =
                         {
