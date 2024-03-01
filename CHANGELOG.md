@@ -21,6 +21,9 @@
 -: Git Tag para crair recursos
 
 --> 
+## [1.5.1] - 2024-02-25
+### Editado
+- Editado V2 de Five Thousand, apenas campo translate.
 
 ## [1.5.0] - 2024-02-25
 ### Adicionado
