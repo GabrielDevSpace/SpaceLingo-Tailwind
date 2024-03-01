@@ -28,9 +28,9 @@
                     <div class="col-span-1">
                         <form accept-charset="UTF-8" action="{{ route('five-thousand-v2.update') }}" method="POST">
                             @csrf
-                            
+
                             <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="json" id="output" rows="10" cols="50">{{ $output }}</textarea>
-                            
+
                             <br>
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Atualizar</button>
                         </form>
@@ -40,7 +40,19 @@
                         <form accept-charset="UTF-8" action="{{ route('openaiv2.chat') }}" method="POST">
                             @csrf
                             <textarea id="textarea-input" name="textarea-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="10" cols="70">
-                        - What does the word "got" mean in English?
+                            What are the translations of the word "got" from English to Brazilian Portuguese?
+
+                            If there is more than one translation, separate it with a comma
+                            - Format a response in array format where you are in the following pattern below and without any statement:
+                            - Rules:
+                            "word":"" //searched word
+                            "translate":"" //translations separated with commas
+                            Expected Return =
+                        {
+                        "word": "",
+                        "translate": ""
+                        }
+                      <!--  - What does the word "got" mean in English?
                         - 3 examples of usage in English and Translation in Portuguese Brazil?
                         - Format a response in array format where you are in the following pattern below and without any statement:
                         - Rules:
@@ -61,7 +73,7 @@
                         "translate_one": "",
                         "translate_two": "",
                         "translate_three": ""
-                        }
+                        } -->
 
                             </textarea>
                             <!-- Adicione outros campos do formulário conforme necessário -->
@@ -129,7 +141,8 @@
                                                 @foreach ($complete as $completed)
                                                 <tr class="">
                                                     <td class="text-sm text-gray-500">
-                                                        <b class='text-gray-500'>Word: </b><b class='text-red-600'>{{ $completed->word }}</b> 
+                                                        <b class='text-gray-500'>Word: </b><b class='text-red-600'>{{ $completed->word }}</b>
+                                                        <b class='text-gray-500'>Translate: </b><b class='text-red-600'>{{ $completed->translate }}</b>
                                                     </td>
                                                     <td class="text-sm text-gray-500">
                                                         <div class="overflow-auto max-h-40">
